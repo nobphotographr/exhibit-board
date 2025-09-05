@@ -127,8 +127,8 @@ export function EventCard({ event }: EventCardProps) {
                 <Image
                   src="/images/logo-black.png"
                   alt="X"
-                  width={16}
-                  height={16}
+                  width={14}
+                  height={14}
                 />
               </a>
             </Button>
@@ -150,8 +150,8 @@ export function EventCard({ event }: EventCardProps) {
                 <Image
                   src="/images/Instagram_Glyph_Black.png"
                   alt="Instagram"
-                  width={16}
-                  height={16}
+                  width={18}
+                  height={18}
                 />
               </a>
             </Button>
@@ -173,8 +173,8 @@ export function EventCard({ event }: EventCardProps) {
                 <Image
                   src="/images/threads-logo-black-01.png"
                   alt="Threads"
-                  width={16}
-                  height={16}
+                  width={17}
+                  height={17}
                 />
               </a>
             </Button>
