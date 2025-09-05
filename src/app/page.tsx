@@ -81,25 +81,16 @@ export default function Home() {
               展示情報は告知元のSNS投稿が一次情報です。詳細は各告知をご確認ください。
             </p>
             <p>
-              登録内容の修正・削除をご希望の方は、
+              修正があれば
               <a 
-                href="https://x.com/messages/compose?recipient_id=nobphotographr" 
+                href="https://x.com/novy_jp" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-blue-600 hover:text-blue-800 underline mx-1"
               >
-                X(Twitter)のDM
+                https://x.com/novy_jp
               </a>
-              または
-              <a 
-                href="https://instagram.com/nobphotographr" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 hover:text-blue-800 underline mx-1"
-              >
-                InstagramのDM
-              </a>
-              にてご連絡ください。
+              までご連絡ください。
             </p>
           </div>
         </div>
