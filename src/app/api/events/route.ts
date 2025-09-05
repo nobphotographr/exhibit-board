@@ -5,14 +5,17 @@ import { DatabaseService, EventValidator, type FilterRange } from '@/lib/databas
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
-    const range = searchParams.get('range') as FilterRange || 'upcoming'
+    const rangeParam = searchParams.get('range')
     const prefecture = searchParams.get('prefecture')
 
     // Build filters object
     const filters: { range?: FilterRange; prefecture?: string } = {}
     
-    if (range && range !== 'all') {
-      filters.range = range
+    if (rangeParam && rangeParam !== 'all' && (rangeParam === 'upcoming' || rangeParam === 'thisMonth' || rangeParam === 'next30')) {
+      filters.range = rangeParam as FilterRange
+    } else if (!rangeParam || rangeParam === 'all') {
+      // Default to upcoming if no range specified or 'all'
+      filters.range = 'upcoming'
     }
     
     if (prefecture && prefecture !== 'all') {
