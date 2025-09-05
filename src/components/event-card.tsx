@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Event } from '@/lib/database.types'
 import { ExternalLink, MapPin, Calendar, User, CircleDollarSign } from 'lucide-react'
+import Image from 'next/image'
 
 interface EventCardProps {
   event: Event
@@ -123,7 +124,13 @@ export function EventCard({ event }: EventCardProps) {
                 rel="noopener noreferrer"
                 className="flex items-center"
               >
-                <ExternalLink className="w-3 h-3 mr-1" />
+                <Image
+                  src="/images/logo-black.png"
+                  alt="X"
+                  width={12}
+                  height={12}
+                  className="mr-1"
+                />
                 X
               </a>
             </Button>
@@ -142,7 +149,13 @@ export function EventCard({ event }: EventCardProps) {
                 rel="noopener noreferrer"
                 className="flex items-center"
               >
-                <ExternalLink className="w-3 h-3 mr-1" />
+                <Image
+                  src="/images/Instagram_Glyph_Black.png"
+                  alt="Instagram"
+                  width={12}
+                  height={12}
+                  className="mr-1"
+                />
                 Instagram
               </a>
             </Button>
@@ -161,7 +174,13 @@ export function EventCard({ event }: EventCardProps) {
                 rel="noopener noreferrer"
                 className="flex items-center"
               >
-                <ExternalLink className="w-3 h-3 mr-1" />
+                <Image
+                  src="/images/threads-logo-black-01.png"
+                  alt="Threads"
+                  width={12}
+                  height={12}
+                  className="mr-1"
+                />
                 Threads
               </a>
             </Button>
