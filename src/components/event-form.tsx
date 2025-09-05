@@ -325,7 +325,7 @@ export function EventForm({ onSuccess }: EventFormProps) {
                     <FormLabel>一言メッセージ</FormLabel>
                     <FormControl>
                       <Textarea 
-                        placeholder="例: 新作油彩画20点を展示します。お気軽にお立ち寄りください！"
+                        placeholder="例: 街角の風景を切り取った写真作品30点を展示します。お気軽にお立ち寄りください！"
                         className="min-h-[100px]"
                         {...field} 
                       />
