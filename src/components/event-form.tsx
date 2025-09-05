@@ -203,7 +203,7 @@ export function EventForm({ onSuccess }: EventFormProps) {
                   <FormItem>
                     <FormLabel>Threads URL</FormLabel>
                     <FormControl>
-                      <Input placeholder="https://threads.net/@username" {...field} />
+                      <Input placeholder="https://www.threads.com/username" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

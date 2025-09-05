@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS events (
   host_name TEXT,
   x_url TEXT CHECK (x_url IS NULL OR x_url ~ '^https?://(x\.com|twitter\.com)/'),
   ig_url TEXT CHECK (ig_url IS NULL OR ig_url ~ '^https?://(www\.)?instagram\.com/'),
-  threads_url TEXT CHECK (threads_url IS NULL OR threads_url ~ '^https?://(www\.)?threads\.net/'),
+  threads_url TEXT CHECK (threads_url IS NULL OR threads_url ~ '^https?://(www\.)?threads\.com/'),
   venue TEXT NOT NULL,
   address TEXT,
   prefecture jp_prefecture NOT NULL,
