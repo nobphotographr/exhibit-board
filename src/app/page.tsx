@@ -75,10 +75,31 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-white border-t mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center text-sm text-gray-600">
+          <div className="text-center text-sm text-gray-600 space-y-2">
             <p>
               © 2025 Exhibit Board. 
               展示情報は告知元のSNS投稿が一次情報です。詳細は各告知をご確認ください。
+            </p>
+            <p>
+              登録内容の修正・削除をご希望の方は、
+              <a 
+                href="https://x.com/messages/compose?recipient_id=nobphotographr" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-600 hover:text-blue-800 underline mx-1"
+              >
+                X(Twitter)のDM
+              </a>
+              または
+              <a 
+                href="https://instagram.com/nobphotographr" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-600 hover:text-blue-800 underline mx-1"
+              >
+                InstagramのDM
+              </a>
+              にてご連絡ください。
             </p>
           </div>
         </div>
