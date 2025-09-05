@@ -125,7 +125,7 @@ export function EventCard({ event }: EventCardProps) {
                 className="flex items-center"
               >
                 <Image
-                  src="/images/x_64.png"
+                  src="/images/logo-black.png"
                   alt="X"
                   width={16}
                   height={16}
