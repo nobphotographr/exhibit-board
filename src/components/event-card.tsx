@@ -80,138 +80,130 @@ export function EventCard({ event }: EventCardProps) {
         )}
       </CardHeader>
       
-      <CardContent className="flex flex-col h-full">
-        <div className="space-y-3">
-          {/* Date */}
+      <CardContent className="space-y-3">
+        {/* Date */}
+        <div className="flex items-center text-sm text-gray-600">
+          <Calendar className="w-4 h-4 mr-2" />
+          {formatDateRange(event.start_date, event.end_date)}
+        </div>
+
+        {/* Venue and Location */}
+        <div className="flex items-start text-sm text-gray-600">
+          <MapPin className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" />
+          <div>
+            <div className="font-medium">{event.venue}</div>
+            <div className="text-xs">{event.prefecture}</div>
+            {event.address && (
+              <div className="text-xs text-gray-500">{event.address}</div>
+            )}
+          </div>
+        </div>
+
+        {/* Price */}
+        {event.price && (
           <div className="flex items-center text-sm text-gray-600">
-            <Calendar className="w-4 h-4 mr-2" />
-            {formatDateRange(event.start_date, event.end_date)}
+            <CircleDollarSign className="w-4 h-4 mr-2" />
+            {event.price}
           </div>
+        )}
 
-          {/* Venue and Location */}
-          <div className="flex items-start text-sm text-gray-600">
-            <MapPin className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" />
-            <div>
-              <div className="font-medium">{event.venue}</div>
-              <div className="text-xs">{event.prefecture}</div>
-              {event.address && (
-                <div className="text-xs text-gray-500">{event.address}</div>
-              )}
-            </div>
+        {/* Notes */}
+        {event.notes && (
+          <div className="text-sm text-gray-600 line-clamp-2">
+            {event.notes}
           </div>
+        )}
 
-          {/* Price */}
-          {event.price && (
-            <div className="flex items-center text-sm text-gray-600">
-              <CircleDollarSign className="w-4 h-4 mr-2" />
-              {event.price}
-            </div>
-          )}
-
-          {/* Notes */}
-          {event.notes && (
-            <div className="text-sm text-gray-600 line-clamp-2">
-              {event.notes}
-            </div>
-          )}
-        </div>
-
-        {/* Flexible spacer to push bottom content down */}
-        <div className="flex-grow"></div>
-
-        {/* Bottom section - SNS + Main button */}
-        <div className="space-y-3 mt-3">
-          {/* Social Links */}
-          {(event.x_url || event.ig_url || event.threads_url) && (
-            <div className="flex flex-wrap gap-2">
-              {event.x_url && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  asChild
-                  className="text-xs"
-                >
-                  <a 
-                    href={event.x_url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center"
-                  >
-                    <Image
-                      src="/images/logo-black.png"
-                      alt="X"
-                      width={16}
-                      height={16}
-                    />
-                  </a>
-                </Button>
-              )}
-              
-              {event.ig_url && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  asChild
-                  className="text-xs"
-                >
-                  <a 
-                    href={event.ig_url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center"
-                  >
-                    <Image
-                      src="/images/Instagram_Glyph_Black.png"
-                      alt="Instagram"
-                      width={16}
-                      height={16}
-                    />
-                  </a>
-                </Button>
-              )}
-              
-              {event.threads_url && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  asChild
-                  className="text-xs"
-                >
-                  <a 
-                    href={event.threads_url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center"
-                  >
-                    <Image
-                      src="/images/threads-logo-black-01.png"
-                      alt="Threads"
-                      width={16}
-                      height={16}
-                    />
-                  </a>
-                </Button>
-              )}
-            </div>
-          )}
-
-          {/* Main Announce Link - Always at bottom */}
-          <Button
-            asChild
-            className="w-full"
-            variant="default"
+        {/* Main Announce Link */}
+        <Button
+          asChild
+          className="w-full"
+          variant="default"
+        >
+          <a 
+            href={event.announce_url} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center justify-center"
           >
-            <a 
-              href={event.announce_url} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center justify-center"
-            >
-              <ExternalLink className="w-4 h-4 mr-2" />
-              詳細を見る
-            </a>
-          </Button>
-        </div>
+            <ExternalLink className="w-4 h-4 mr-2" />
+            詳細を見る
+          </a>
+        </Button>
+
+        {/* Social Links */}
+        {(event.x_url || event.ig_url || event.threads_url) && (
+          <div className="flex flex-wrap gap-2 pt-2 justify-center">
+            {event.x_url && (
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="text-xs"
+              >
+                <a 
+                  href={event.x_url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center"
+                >
+                  <Image
+                    src="/images/logo-black.png"
+                    alt="X"
+                    width={16}
+                    height={16}
+                  />
+                </a>
+              </Button>
+            )}
+            
+            {event.ig_url && (
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="text-xs"
+              >
+                <a 
+                  href={event.ig_url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center"
+                >
+                  <Image
+                    src="/images/Instagram_Glyph_Black.png"
+                    alt="Instagram"
+                    width={16}
+                    height={16}
+                  />
+                </a>
+              </Button>
+            )}
+            
+            {event.threads_url && (
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="text-xs"
+              >
+                <a 
+                  href={event.threads_url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center"
+                >
+                  <Image
+                    src="/images/threads-logo-black-01.png"
+                    alt="Threads"
+                    width={16}
+                    height={16}
+                  />
+                </a>
+              </Button>
+            )}
+          </div>
+        )}
       </CardContent>
     </Card>
   )
