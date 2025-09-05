@@ -94,7 +94,7 @@ export function EventForm({ onSuccess }: EventFormProps) {
         throw new Error(result.message || 'Failed to submit event')
       }
 
-      setSubmitSuccess('イベントを登録しました！')
+      setSubmitSuccess('イベントを登録しました！展示一覧への反映まで5分程度かかります。一息ついてお待ちください。')
       form.reset()
       onSuccess?.(result)
 
@@ -358,9 +358,12 @@ export function EventForm({ onSuccess }: EventFormProps) {
               {isSubmitting ? '登録中...' : '展示情報を登録'}
             </Button>
 
-            <p className="text-sm text-gray-600 text-center">
-              登録された情報は公開されます。内容に間違いがないかご確認ください。
-            </p>
+            <div className="text-sm text-gray-600 text-center space-y-1">
+              <p>登録された情報は公開されます。内容に間違いがないかご確認ください。</p>
+              <p className="text-xs text-gray-500">
+                ※ 登録後、展示一覧への反映まで5分程度お時間をいただきます
+              </p>
+            </div>
           </form>
         </Form>
       </CardContent>
