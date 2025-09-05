@@ -166,7 +166,7 @@ export function EventForm({ onSuccess }: EventFormProps) {
 
             {/* Social Media Links */}
             <div className="space-y-4">
-              <h3 className="text-lg font-medium">SNSリンク（任意）</h3>
+              <h3 className="text-lg font-medium">開催者のSNSリンク（任意）</h3>
               
               <FormField
                 control={form.control}
