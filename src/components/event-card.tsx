@@ -125,10 +125,10 @@ export function EventCard({ event }: EventCardProps) {
                 className="flex items-center"
               >
                 <Image
-                  src="/images/logo-black.png"
+                  src="/images/x_64.png"
                   alt="X"
-                  width={14}
-                  height={14}
+                  width={16}
+                  height={16}
                 />
               </a>
             </Button>
@@ -148,10 +148,10 @@ export function EventCard({ event }: EventCardProps) {
                 className="flex items-center"
               >
                 <Image
-                  src="/images/Instagram_Glyph_Black.png"
+                  src="/images/instagram_64.png"
                   alt="Instagram"
-                  width={18}
-                  height={18}
+                  width={16}
+                  height={16}
                 />
               </a>
             </Button>
@@ -171,10 +171,10 @@ export function EventCard({ event }: EventCardProps) {
                 className="flex items-center"
               >
                 <Image
-                  src="/images/threads-logo-black-01.png"
+                  src="/images/threads_64.png"
                   alt="Threads"
-                  width={17}
-                  height={17}
+                  width={16}
+                  height={16}
                 />
               </a>
             </Button>
