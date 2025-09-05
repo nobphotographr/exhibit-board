@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Event } from '@/lib/database.types'
-import { ExternalLink, MapPin, Calendar, User, CircleDollarSign, MessageCircle, Camera, Hash } from 'lucide-react'
+import { ExternalLink, MapPin, Calendar, User, CircleDollarSign } from 'lucide-react'
 
 interface EventCardProps {
   event: Event
@@ -123,7 +123,7 @@ export function EventCard({ event }: EventCardProps) {
                 rel="noopener noreferrer"
                 className="flex items-center"
               >
-                <Hash className="w-3 h-3 mr-1" />
+                <ExternalLink className="w-3 h-3 mr-1" />
                 X
               </a>
             </Button>
@@ -142,7 +142,7 @@ export function EventCard({ event }: EventCardProps) {
                 rel="noopener noreferrer"
                 className="flex items-center"
               >
-                <Camera className="w-3 h-3 mr-1" />
+                <ExternalLink className="w-3 h-3 mr-1" />
                 Instagram
               </a>
             </Button>
@@ -161,7 +161,7 @@ export function EventCard({ event }: EventCardProps) {
                 rel="noopener noreferrer"
                 className="flex items-center"
               >
-                <MessageCircle className="w-3 h-3 mr-1" />
+                <ExternalLink className="w-3 h-3 mr-1" />
                 Threads
               </a>
             </Button>
