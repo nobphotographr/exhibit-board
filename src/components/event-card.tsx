@@ -53,8 +53,13 @@ export function EventCard({ event }: EventCardProps) {
           開催予定
         </span>
       )
+    } else {
+      return (
+        <span className="inline-flex items-center px-2 py-1 text-xs font-medium bg-gray-100 text-gray-600 rounded-full">
+          終了済み
+        </span>
+      )
     }
-    return null
   }
 
   return (

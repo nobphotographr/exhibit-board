@@ -20,7 +20,7 @@ export default function Home() {
                 Exhibit Board
               </h1>
               <span className="ml-3 text-sm text-gray-500">
-                展示・グループ展の開催情報掲示板
+                個展・グループ展の開催情報掲示板
               </span>
             </div>
           </div>
