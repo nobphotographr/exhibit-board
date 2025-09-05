@@ -131,8 +131,21 @@ export class EventValidator {
             }
           }
           
-          // Allow legitimate domains (has proper TLD)
-          return /^[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.[a-zA-Z]{2,}$/.test(domain)
+          // Allow legitimate domains with proper structure
+          // Must have at least one dot and end with valid TLD
+          const domainParts = domain.split('.')
+          if (domainParts.length < 2) return false
+          
+          // Check each part is valid (alphanumeric and hyphens, not starting/ending with hyphen)
+          for (const part of domainParts) {
+            if (!part || !/^[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?$/.test(part)) {
+              return false
+            }
+          }
+          
+          // Check TLD is at least 2 characters and alphabetic
+          const tld = domainParts[domainParts.length - 1]
+          return /^[a-zA-Z]{2,}$/.test(tld)
         default:
           return false
       }
