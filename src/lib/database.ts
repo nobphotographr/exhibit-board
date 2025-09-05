@@ -113,18 +113,26 @@ export class EventValidator {
         case 'threads':
           return domain === 'threads.com' || domain === 'www.threads.com'
         case 'announce':
-          // For announce URL, accept various platforms
-          const allowedDomains = [
-            'x.com', 'twitter.com', 
-            'instagram.com', 'www.instagram.com',
-            'threads.com', 'www.threads.com',
-            'note.com', 'note.mu',
-            'peatix.com', 'www.peatix.com',
-            'connpass.com',
-            'facebook.com', 'www.facebook.com',
-            'eventbrite.com', 'www.eventbrite.com'
+          // For announce URL, be more flexible - accept most legitimate domains
+          // Block only obviously suspicious patterns
+          const blockedPatterns = [
+            /localhost/,
+            /127\.0\.0\.1/,
+            /\d+\.\d+\.\d+\.\d+/, // IP addresses
+            /\.test$/,
+            /\.local$/,
+            /\.internal$/
           ]
-          return allowedDomains.includes(domain)
+          
+          // Check if domain matches blocked patterns
+          for (const pattern of blockedPatterns) {
+            if (pattern.test(domain)) {
+              return false
+            }
+          }
+          
+          // Allow legitimate domains (has proper TLD)
+          return /^[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.[a-zA-Z]{2,}$/.test(domain)
         default:
           return false
       }
