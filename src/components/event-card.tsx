@@ -148,7 +148,7 @@ export function EventCard({ event }: EventCardProps) {
                 className="flex items-center"
               >
                 <Image
-                  src="/images/instagram_64.png"
+                  src="/images/Instagram_Glyph_Black.png"
                   alt="Instagram"
                   width={16}
                   height={16}
@@ -171,7 +171,7 @@ export function EventCard({ event }: EventCardProps) {
                 className="flex items-center"
               >
                 <Image
-                  src="/images/threads_64.png"
+                  src="/images/threads-logo-black-01.png"
                   alt="Threads"
                   width={16}
                   height={16}
