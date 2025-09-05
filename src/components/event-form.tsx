@@ -154,7 +154,7 @@ export function EventForm({ onSuccess }: EventFormProps) {
                     <FormLabel>告知URL *</FormLabel>
                     <FormControl>
                       <Input 
-                        placeholder="https://x.com/username/status/..." 
+                        placeholder="https://note.com/username/n/... or https://x.com/username/status/..." 
                         {...field} 
                       />
                     </FormControl>

@@ -113,8 +113,18 @@ export class EventValidator {
         case 'threads':
           return domain === 'threads.com' || domain === 'www.threads.com'
         case 'announce':
-          // For announce URL, we can be more flexible but should validate it's a real URL
-          return ['x.com', 'twitter.com', 'instagram.com', 'www.instagram.com', 'threads.com', 'www.threads.com'].includes(domain)
+          // For announce URL, accept various platforms
+          const allowedDomains = [
+            'x.com', 'twitter.com', 
+            'instagram.com', 'www.instagram.com',
+            'threads.com', 'www.threads.com',
+            'note.com', 'note.mu',
+            'peatix.com', 'www.peatix.com',
+            'connpass.com',
+            'facebook.com', 'www.facebook.com',
+            'eventbrite.com', 'www.eventbrite.com'
+          ]
+          return allowedDomains.includes(domain)
         default:
           return false
       }
