@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { PREFECTURES } from '@/lib/constants'
+import { trackEventSubmission } from '@/lib/gtag'
 
 // Validation schema based on requirements
 const eventSchema = z.object({
@@ -95,6 +96,10 @@ export function EventForm({ onSuccess }: EventFormProps) {
       }
 
       setSubmitSuccess('イベントを登録しました！展示一覧への反映まで5分程度かかります。一息ついてお待ちください。')
+      
+      // Track successful submission
+      trackEventSubmission(data.title)
+      
       form.reset()
       onSuccess?.(result)
 

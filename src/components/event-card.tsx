@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Event } from '@/lib/database.types'
 import { ExternalLink, MapPin, Calendar, User, CircleDollarSign } from 'lucide-react'
 import Image from 'next/image'
+import { trackEventClick } from '@/lib/gtag'
 
 interface EventCardProps {
   event: Event
@@ -135,6 +136,7 @@ export function EventCard({ event }: EventCardProps) {
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center"
+                    onClick={() => trackEventClick(event.id, event.title, 'sns')}
                   >
                     <Image
                       src="/images/logo-black.png"
@@ -158,6 +160,7 @@ export function EventCard({ event }: EventCardProps) {
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center"
+                    onClick={() => trackEventClick(event.id, event.title, 'sns')}
                   >
                     <Image
                       src="/images/Instagram_Glyph_Black.png"
@@ -181,6 +184,7 @@ export function EventCard({ event }: EventCardProps) {
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center"
+                    onClick={() => trackEventClick(event.id, event.title, 'sns')}
                   >
                     <Image
                       src="/images/threads-logo-black-01.png"
@@ -205,6 +209,7 @@ export function EventCard({ event }: EventCardProps) {
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center justify-center"
+              onClick={() => trackEventClick(event.id, event.title, 'announce')}
             >
               <ExternalLink className="w-4 h-4 mr-2" />
               詳細を見る

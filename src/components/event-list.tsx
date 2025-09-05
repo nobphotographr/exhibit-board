@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { PREFECTURES, FILTER_RANGES } from '@/lib/constants'
 type FilterRange = 'upcoming' | 'thisMonth' | 'next30'
 import { Loader2, RefreshCw } from 'lucide-react'
+import { trackFilterUsage } from '@/lib/gtag'
 
 interface EventListProps {
   initialEvents?: Event[]
@@ -79,9 +80,18 @@ export function EventList({ initialEvents = [] }: EventListProps) {
                   <SelectValue placeholder="期間を選択" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">すべての期間</SelectItem>
+                  <SelectItem 
+                    value="all"
+                    onSelect={() => trackFilterUsage('range', 'all')}
+                  >
+                    すべての期間
+                  </SelectItem>
                   {FILTER_RANGES.map((range) => (
-                    <SelectItem key={range.value} value={range.value}>
+                    <SelectItem 
+                      key={range.value} 
+                      value={range.value}
+                      onSelect={() => trackFilterUsage('range', range.value)}
+                    >
                       {range.label}
                     </SelectItem>
                   ))}
