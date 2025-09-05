@@ -114,6 +114,78 @@ export function EventCard({ event }: EventCardProps) {
           </div>
         )}
 
+        {/* Social Links */}
+        <div className="flex flex-wrap gap-2 pt-2">
+          {event.x_url && (
+            <Button
+              variant="outline"
+              size="sm"
+              asChild
+              className="text-xs"
+            >
+              <a 
+                href={event.x_url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center"
+              >
+                <Image
+                  src="/images/logo-black.png"
+                  alt="X"
+                  width={16}
+                  height={16}
+                />
+              </a>
+            </Button>
+          )}
+          
+          {event.ig_url && (
+            <Button
+              variant="outline"
+              size="sm"
+              asChild
+              className="text-xs"
+            >
+              <a 
+                href={event.ig_url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center"
+              >
+                <Image
+                  src="/images/Instagram_Glyph_Black.png"
+                  alt="Instagram"
+                  width={16}
+                  height={16}
+                />
+              </a>
+            </Button>
+          )}
+          
+          {event.threads_url && (
+            <Button
+              variant="outline"
+              size="sm"
+              asChild
+              className="text-xs"
+            >
+              <a 
+                href={event.threads_url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center"
+              >
+                <Image
+                  src="/images/threads-logo-black-01.png"
+                  alt="Threads"
+                  width={16}
+                  height={16}
+                />
+              </a>
+            </Button>
+          )}
+        </div>
+
         {/* Main Announce Link */}
         <Button
           asChild
@@ -130,80 +202,6 @@ export function EventCard({ event }: EventCardProps) {
             詳細を見る
           </a>
         </Button>
-
-        {/* Social Links */}
-        {(event.x_url || event.ig_url || event.threads_url) && (
-          <div className="flex flex-wrap gap-2 pt-2 justify-center">
-            {event.x_url && (
-              <Button
-                variant="outline"
-                size="sm"
-                asChild
-                className="text-xs"
-              >
-                <a 
-                  href={event.x_url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center"
-                >
-                  <Image
-                    src="/images/logo-black.png"
-                    alt="X"
-                    width={16}
-                    height={16}
-                  />
-                </a>
-              </Button>
-            )}
-            
-            {event.ig_url && (
-              <Button
-                variant="outline"
-                size="sm"
-                asChild
-                className="text-xs"
-              >
-                <a 
-                  href={event.ig_url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center"
-                >
-                  <Image
-                    src="/images/Instagram_Glyph_Black.png"
-                    alt="Instagram"
-                    width={16}
-                    height={16}
-                  />
-                </a>
-              </Button>
-            )}
-            
-            {event.threads_url && (
-              <Button
-                variant="outline"
-                size="sm"
-                asChild
-                className="text-xs"
-              >
-                <a 
-                  href={event.threads_url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center"
-                >
-                  <Image
-                    src="/images/threads-logo-black-01.png"
-                    alt="Threads"
-                    width={16}
-                    height={16}
-                  />
-                </a>
-              </Button>
-            )}
-          </div>
-        )}
       </CardContent>
     </Card>
   )
