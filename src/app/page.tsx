@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { EventList } from '@/components/event-list'
 import { EventForm } from '@/components/event-form'
-import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Plus, List } from 'lucide-react'
 

@@ -21,7 +21,7 @@ const eventSchema = z.object({
   threads_url: z.string().url('有効なURLを入力してください').optional().or(z.literal('')),
   venue: z.string().min(1, '会場名は必須です').max(100, '会場名は100文字以下で入力してください'),
   address: z.string().max(200, '住所は200文字以下で入力してください').optional(),
-  prefecture: z.enum(PREFECTURES, { required_error: '都道府県を選択してください' }),
+  prefecture: z.enum(PREFECTURES as [string, ...string[]], { message: '都道府県を選択してください' }),
   price: z.string().max(50, '料金情報は50文字以下で入力してください').optional(),
   start_date: z.string().min(1, '開始日は必須です'),
   end_date: z.string().min(1, '終了日は必須です'),

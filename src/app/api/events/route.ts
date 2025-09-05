@@ -86,7 +86,8 @@ export async function GET(request: NextRequest) {
         'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
       }
     })
-  } catch (error) {
+  } catch (err) {
+    console.error('GET /api/events error:', err)
     return NextResponse.json([], { status: 200 })
   }
 }
@@ -114,7 +115,8 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     )
 
-  } catch (error) {
+  } catch (err) {
+    console.error('POST /api/events error:', err)
     return NextResponse.json(
       { error_code: 'server_error', message: 'Internal server error' },
       { status: 500 }

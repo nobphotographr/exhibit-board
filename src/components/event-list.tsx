@@ -1,13 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Event } from '@/lib/database.types'
 import { EventCard } from './event-card'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { PREFECTURES, FILTER_RANGES } from '@/lib/constants'
-import { FilterRange } from '@/lib/database'
+type FilterRange = 'upcoming' | 'thisMonth' | 'next30'
 import { Loader2, RefreshCw } from 'lucide-react'
 
 interface EventListProps {
@@ -23,7 +23,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
   const [selectedRange, setSelectedRange] = useState<FilterRange | 'all'>('upcoming')
   const [selectedPrefecture, setSelectedPrefecture] = useState<string>('all')
 
-  const fetchEvents = async () => {
+  const fetchEvents = useCallback(async () => {
     setLoading(true)
     setError(null)
 
@@ -46,12 +46,12 @@ export function EventList({ initialEvents = [] }: EventListProps) {
     } finally {
       setLoading(false)
     }
-  }
+  }, [selectedRange, selectedPrefecture])
 
   // Fetch events when filters change
   useEffect(() => {
     fetchEvents()
-  }, [selectedRange, selectedPrefecture])
+  }, [fetchEvents])
 
   const clearFilters = () => {
     setSelectedRange('upcoming')
