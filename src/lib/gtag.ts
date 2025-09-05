@@ -7,7 +7,7 @@ export const isGAEnabled = isProduction && GA_TRACKING_ID
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: URL) => {
-  if (!isGAEnabled) return
+  if (!isGAEnabled || !GA_TRACKING_ID) return
   
   window.gtag('config', GA_TRACKING_ID, {
     page_location: url.href,
@@ -28,7 +28,7 @@ export const event = (
     value?: number
   }
 ) => {
-  if (!isGAEnabled) return
+  if (!isGAEnabled || !GA_TRACKING_ID) return
 
   window.gtag('event', action, {
     event_category,
