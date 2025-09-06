@@ -127,7 +127,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
             <div className="flex-1">
               <Select 
                 value={selectedVenueType} 
-                onValueChange={setSelectedVenueType}
+                onValueChange={(value) => setSelectedVenueType(value as VenueType)}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="会場タイプを選択" />
