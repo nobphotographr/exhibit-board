@@ -16,3 +16,9 @@ export const FILTER_RANGES = [
   { value: 'thisWeek', label: '今週' },
   { value: 'thisMonth', label: '今月' }
 ] as const
+
+export const VENUE_TYPES = [
+  { value: 'all', label: 'すべて' },
+  { value: 'independent', label: '個展・グループ展' },
+  { value: 'major', label: '大型企画' }
+] as const

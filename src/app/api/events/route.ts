@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { DatabaseService, EventValidator, type FilterRange } from '@/lib/database'
+import { DatabaseService, EventValidator, type FilterRange, type VenueType } from '@/lib/database'
 
 // GET /api/events - Fetch events with optional filters
 export async function GET(request: NextRequest) {
@@ -7,6 +7,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     const rangeParam = searchParams.get('range')
     const prefecture = searchParams.get('prefecture')
+    const venueType = searchParams.get('venueType')
 
     // Check if running in development mode without Supabase
     const isDemoMode = !process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NODE_ENV === 'development'
@@ -97,11 +98,65 @@ export async function GET(request: NextRequest) {
           notes: '既に終了した展示です。',
           status: 'published',
           created_at: '2025-08-01T00:00:00Z'
+        },
+        {
+          id: '5',
+          title: 'フジフイルム写真展',
+          host_name: '企画展',
+          venue: 'フジフイルムスクエア',
+          prefecture: '東京都',
+          address: '東京都港区六本木',
+          start_date: today,
+          end_date: nextWeek,
+          price: '無料',
+          announce_url: 'https://fujifilm.example.com',
+          x_url: null,
+          ig_url: null,
+          threads_url: null,
+          notes: '大型企画展です。',
+          status: 'published',
+          created_at: '2025-09-01T00:00:00Z'
+        },
+        {
+          id: '6',
+          title: 'キヤノン写真展',
+          host_name: '企画展',
+          venue: 'キヤノンギャラリー',
+          prefecture: '東京都',
+          address: '東京都港区品川',
+          start_date: tomorrow,
+          end_date: nextMonth,
+          price: '無料',
+          announce_url: 'https://canon.example.com',
+          x_url: null,
+          ig_url: null,
+          threads_url: null,
+          notes: 'キヤノンギャラリーでの企画展です。',
+          status: 'published',
+          created_at: '2025-09-01T00:00:00Z'
+        },
+        {
+          id: '7',
+          title: '東京カメラ部2025写真展',
+          host_name: '東京カメラ部',
+          venue: '新宿パークタワーギャラリー',
+          prefecture: '東京都',
+          address: '東京都新宿区西新宿',
+          start_date: today,
+          end_date: nextWeek,
+          price: '無料',
+          announce_url: 'https://tokyocameraclub.example.com',
+          x_url: 'https://x.com/tokyocameraclub',
+          ig_url: 'https://instagram.com/tokyocameraclub',
+          threads_url: null,
+          notes: '東京カメラ部による大型写真展です。',
+          status: 'published',
+          created_at: '2025-09-01T00:00:00Z'
         }
       ]
 
       // Apply same filtering logic as real data
-      const filters: { range?: FilterRange; prefecture?: string } = {}
+      const filters: { range?: FilterRange; prefecture?: string; venueType?: VenueType } = {}
       
       if (rangeParam && rangeParam !== 'all' && (rangeParam === 'upcoming' || rangeParam === 'ongoing' || rangeParam === 'thisWeek' || rangeParam === 'thisMonth')) {
         filters.range = rangeParam as FilterRange
@@ -111,6 +166,10 @@ export async function GET(request: NextRequest) {
       
       if (prefecture && prefecture !== 'all') {
         filters.prefecture = prefecture
+      }
+
+      if (venueType && venueType !== 'all' && (venueType === 'major' || venueType === 'independent')) {
+        filters.venueType = venueType as VenueType
       }
 
       // Filter dummy data
@@ -150,6 +209,15 @@ export async function GET(request: NextRequest) {
       if (filters.prefecture) {
         dummyEvents = dummyEvents.filter(event => event.prefecture === filters.prefecture)
       }
+
+      // Filter by venue type
+      if (filters.venueType) {
+        const { isMajorEvent } = await import('@/lib/venue-classifier')
+        dummyEvents = dummyEvents.filter(event => {
+          const isMajor = isMajorEvent(event.venue, event.title, event.host_name)
+          return filters.venueType === 'major' ? isMajor : !isMajor
+        })
+      }
       
       return NextResponse.json(dummyEvents, { 
         status: 200,
@@ -160,7 +228,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Build filters object
-    const filters: { range?: FilterRange; prefecture?: string } = {}
+    const filters: { range?: FilterRange; prefecture?: string; venueType?: VenueType } = {}
     
     if (rangeParam && rangeParam !== 'all' && (rangeParam === 'upcoming' || rangeParam === 'ongoing' || rangeParam === 'thisWeek' || rangeParam === 'thisMonth')) {
       filters.range = rangeParam as FilterRange
@@ -171,6 +239,10 @@ export async function GET(request: NextRequest) {
     
     if (prefecture && prefecture !== 'all') {
       filters.prefecture = prefecture
+    }
+
+    if (venueType && venueType !== 'all' && (venueType === 'major' || venueType === 'independent')) {
+      filters.venueType = venueType as VenueType
     }
 
     // Fetch events from database

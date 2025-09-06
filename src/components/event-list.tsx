@@ -6,8 +6,9 @@ import { EventCard } from './event-card'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { PREFECTURES, FILTER_RANGES } from '@/lib/constants'
+import { PREFECTURES, FILTER_RANGES, VENUE_TYPES } from '@/lib/constants'
 type FilterRange = 'upcoming' | 'ongoing' | 'thisWeek' | 'thisMonth'
+type VenueType = 'all' | 'major' | 'independent'
 import { Loader2, RefreshCw } from 'lucide-react'
 import { trackFilterUsage } from '@/lib/gtag'
 
@@ -23,6 +24,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
   // Filter states
   const [selectedRange, setSelectedRange] = useState<FilterRange | 'all'>('upcoming')
   const [selectedPrefecture, setSelectedPrefecture] = useState<string>('all')
+  const [selectedVenueType, setSelectedVenueType] = useState<VenueType>('all')
 
   const fetchEvents = useCallback(async () => {
     setLoading(true)
@@ -32,6 +34,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
       const params = new URLSearchParams()
       if (selectedRange && selectedRange !== 'all') params.append('range', selectedRange)
       if (selectedPrefecture && selectedPrefecture !== 'all') params.append('prefecture', selectedPrefecture)
+      if (selectedVenueType && selectedVenueType !== 'all') params.append('venueType', selectedVenueType)
 
       const response = await fetch(`/api/events?${params.toString()}`)
       
@@ -47,7 +50,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
     } finally {
       setLoading(false)
     }
-  }, [selectedRange, selectedPrefecture])
+  }, [selectedRange, selectedPrefecture, selectedVenueType])
 
   // Fetch events when filters change
   useEffect(() => {
@@ -57,9 +60,10 @@ export function EventList({ initialEvents = [] }: EventListProps) {
   const clearFilters = () => {
     setSelectedRange('upcoming')
     setSelectedPrefecture('all')
+    setSelectedVenueType('all')
   }
 
-  const hasActiveFilters = selectedRange !== 'upcoming' || selectedPrefecture !== 'all'
+  const hasActiveFilters = selectedRange !== 'upcoming' || selectedPrefecture !== 'all' || selectedVenueType !== 'all'
 
   return (
     <div className="space-y-6">
@@ -119,6 +123,25 @@ export function EventList({ initialEvents = [] }: EventListProps) {
               </Select>
             </div>
 
+            {/* Venue Type Filter */}
+            <div className="flex-1">
+              <Select 
+                value={selectedVenueType} 
+                onValueChange={setSelectedVenueType}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="会場タイプを選択" />
+                </SelectTrigger>
+                <SelectContent>
+                  {VENUE_TYPES.map((venueType) => (
+                    <SelectItem key={venueType.value} value={venueType.value}>
+                      {venueType.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
             {/* Control Buttons */}
             <div className="flex gap-2">
               {hasActiveFilters && (
@@ -154,9 +177,14 @@ export function EventList({ initialEvents = [] }: EventListProps) {
                   {FILTER_RANGES.find(r => r.value === selectedRange)?.label}
                 </span>
               )}
-              {selectedPrefecture && (
+              {selectedPrefecture && selectedPrefecture !== 'all' && (
                 <span className="inline-flex items-center px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">
                   {selectedPrefecture}
+                </span>
+              )}
+              {selectedVenueType && selectedVenueType !== 'all' && (
+                <span className="inline-flex items-center px-2 py-1 text-xs bg-purple-100 text-purple-800 rounded-full">
+                  {VENUE_TYPES.find(v => v.value === selectedVenueType)?.label}
                 </span>
               )}
             </div>
