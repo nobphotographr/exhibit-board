@@ -1,7 +1,7 @@
 import { supabase, supabaseAdmin } from './supabase'
 import { Event, EventInsert } from './database.types'
 
-export type FilterRange = 'upcoming' | 'thisMonth' | 'next30'
+export type FilterRange = 'upcoming' | 'ongoing' | 'thisWeek' | 'thisMonth'
 
 export interface EventFilters {
   range?: FilterRange
@@ -27,16 +27,33 @@ export class DatabaseService {
           // Events that haven't ended yet
           query = query.gte('end_date', today)
           break
-        case 'thisMonth':
-          // Events in current month
-          const thisMonthStart = new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split('T')[0]
-          const thisMonthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0).toISOString().split('T')[0]
-          query = query.gte('start_date', thisMonthStart).lte('start_date', thisMonthEnd)
+          
+        case 'ongoing':
+          // Events currently happening (today is within the event period)
+          query = query.lte('start_date', today).gte('end_date', today)
           break
-        case 'next30':
-          // Events starting within next 30 days
-          const next30Days = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-          query = query.gte('start_date', today).lte('start_date', next30Days)
+          
+        case 'thisWeek':
+          // Events happening this week (overlapping with current week AND not ended yet)
+          const startOfWeek = new Date(now)
+          startOfWeek.setDate(now.getDate() - now.getDay()) // Go to Sunday
+          const endOfWeek = new Date(startOfWeek)
+          endOfWeek.setDate(startOfWeek.getDate() + 6) // Go to Saturday
+          
+          const weekStart = startOfWeek.toISOString().split('T')[0]
+          const weekEnd = endOfWeek.toISOString().split('T')[0]
+          
+          // Event overlaps with this week AND hasn't ended yet
+          query = query.lte('start_date', weekEnd).gte('end_date', weekStart).gte('end_date', today)
+          break
+          
+        case 'thisMonth':
+          // Events happening this month (overlapping with current month AND not ended yet)
+          const monthStart = new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split('T')[0]
+          const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0).toISOString().split('T')[0]
+          
+          // Event overlaps with this month AND hasn't ended yet
+          query = query.lte('start_date', monthEnd).gte('end_date', monthStart).gte('end_date', today)
           break
       }
     }

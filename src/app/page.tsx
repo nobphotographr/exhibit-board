@@ -47,7 +47,7 @@ export default function Home() {
                 展示情報一覧
               </h2>
               <p className="text-gray-600">
-                個展・グループ展の開催情報を地域や期間で絞り込んで表示できます
+                展示情報の登録にご協力ください！皆さんからの投稿でサイトが成り立っています。
               </p>
             </div>
             <EventList />
@@ -60,6 +60,9 @@ export default function Home() {
               </h2>
               <p className="text-gray-600">
                 あなたの展示情報を登録して、多くの人に知ってもらいましょう
+              </p>
+              <p className="text-sm text-gray-500">
+                ※このサイトは皆さんの投稿で成り立っています。ご協力ありがとうございます！
               </p>
             </div>
             <EventForm 

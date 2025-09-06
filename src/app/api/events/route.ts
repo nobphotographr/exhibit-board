@@ -12,63 +12,144 @@ export async function GET(request: NextRequest) {
     const isDemoMode = !process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NODE_ENV === 'development'
     
     if (isDemoMode) {
-      // Return dummy data for layout testing
-      const dummyEvents = [
+      // Create dummy data with varied dates for testing filters
+      const now = new Date()
+      const today = now.toISOString().split('T')[0]
+      
+      // Yesterday (ended)
+      const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+      // Tomorrow (starting soon)  
+      const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+      // Next week
+      const nextWeek = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+      // Next month
+      const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 15).toISOString().split('T')[0]
+      
+      let dummyEvents = [
         {
           id: '1',
-          title: '白昼夢の憂鬱',
+          title: '開催中の展示',
           host_name: '外山中美佳様',
           venue: 'ルーニィ247ファインアーツ',
           prefecture: '東京都',
           address: '東京都中央区日本橋小伝馬町17-9 さとうビルB階4F',
-          start_date: '2025-09-04',
-          end_date: '2025-09-14',
+          start_date: yesterday,
+          end_date: tomorrow,
           price: null,
           announce_url: 'https://note.com/example1',
           x_url: 'https://x.com/example1',
           ig_url: null,
           threads_url: null,
-          notes: '日常の中に潜む静寂な美しさを描いた作品展です。',
+          notes: '現在開催中の展示です。',
           status: 'published',
           created_at: '2025-09-01T00:00:00Z'
         },
         {
           id: '2',  
-          title: 'TIMELESS',
+          title: '今週の展示',
           host_name: '森谷修様・久保元幸様',
           venue: 'ギャラリー冬青',
           prefecture: '東京都',
           address: '東京都中野区中央5-18-20',
-          start_date: '2025-09-05',
-          end_date: '2025-09-27',
+          start_date: today,
+          end_date: nextWeek,
           price: '無料',
           announce_url: 'https://gallery-touseisha.com/example',
           x_url: 'https://x.com/example2',
           ig_url: 'https://instagram.com/example2',
           threads_url: 'https://threads.com/example2',
-          notes: '時を超えた美の探求をテーマに、二人の作家による共同展示を開催いたします。11:00〜19:00 日曜・月曜・祝日休廊',
+          notes: '今週開催の展示です。',
           status: 'published',
           created_at: '2025-09-01T00:00:00Z'
         },
         {
           id: '3',
-          title: '帰ってきた国産二眼レフ写真展',
+          title: '来月の展示',
           host_name: 'あめちゃん様',
           venue: 'フォトカノン戸越銀座',
           prefecture: '東京都', 
           address: '東京都品川区戸越2丁目1-3',
-          start_date: '2025-09-12',
-          end_date: '2025-09-24',
+          start_date: nextMonth,
+          end_date: new Date(now.getFullYear(), now.getMonth() + 1, 28).toISOString().split('T')[0],
           price: null,
           announce_url: 'https://photokanon.example.com',
           x_url: 'https://x.com/example3',
           ig_url: null,
           threads_url: null,
-          notes: 'スクエアフォーマット好きの国産二眼レフ好き34人による二眼レフ好きのためのグループ展',
+          notes: '来月開催予定の展示です。',
           status: 'published',
           created_at: '2025-09-01T00:00:00Z'
+        },
+        {
+          id: '4',
+          title: '終了済みの展示',
+          host_name: 'テスト様',
+          venue: 'テストギャラリー',
+          prefecture: '大阪府',
+          address: '大阪府大阪市中央区',
+          start_date: new Date(now.getTime() - 10 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+          end_date: yesterday,
+          price: '500円',
+          announce_url: 'https://test.example.com',
+          x_url: null,
+          ig_url: null,
+          threads_url: null,
+          notes: '既に終了した展示です。',
+          status: 'published',
+          created_at: '2025-08-01T00:00:00Z'
         }
       ]
+
+      // Apply same filtering logic as real data
+      const filters: { range?: FilterRange; prefecture?: string } = {}
+      
+      if (rangeParam && rangeParam !== 'all' && (rangeParam === 'upcoming' || rangeParam === 'ongoing' || rangeParam === 'thisWeek' || rangeParam === 'thisMonth')) {
+        filters.range = rangeParam as FilterRange
+      } else if (!rangeParam || rangeParam === 'all') {
+        filters.range = 'upcoming'
+      }
+      
+      if (prefecture && prefecture !== 'all') {
+        filters.prefecture = prefecture
+      }
+
+      // Filter dummy data
+      if (filters.range) {
+        dummyEvents = dummyEvents.filter(event => {
+          const eventStart = new Date(event.start_date)
+          const eventEnd = new Date(event.end_date)
+          
+          switch (filters.range) {
+            case 'upcoming':
+              return eventEnd >= new Date(today)
+              
+            case 'ongoing':
+              return eventStart <= new Date(today) && eventEnd >= new Date(today)
+              
+            case 'thisWeek':
+              const startOfWeek = new Date(now)
+              startOfWeek.setDate(now.getDate() - now.getDay())
+              const endOfWeek = new Date(startOfWeek)
+              endOfWeek.setDate(startOfWeek.getDate() + 6)
+              // Event overlaps with this week AND hasn't ended yet
+              return eventStart <= endOfWeek && eventEnd >= startOfWeek && eventEnd >= new Date(today)
+              
+            case 'thisMonth':
+              const monthStart = new Date(now.getFullYear(), now.getMonth(), 1)
+              const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0)
+              // Event overlaps with this month AND hasn't ended yet
+              return eventStart <= monthEnd && eventEnd >= monthStart && eventEnd >= new Date(today)
+              
+            default:
+              return true
+          }
+        })
+      }
+
+      // Filter by prefecture
+      if (filters.prefecture) {
+        dummyEvents = dummyEvents.filter(event => event.prefecture === filters.prefecture)
+      }
       
       return NextResponse.json(dummyEvents, { 
         status: 200,
@@ -81,7 +162,7 @@ export async function GET(request: NextRequest) {
     // Build filters object
     const filters: { range?: FilterRange; prefecture?: string } = {}
     
-    if (rangeParam && rangeParam !== 'all' && (rangeParam === 'upcoming' || rangeParam === 'thisMonth' || rangeParam === 'next30')) {
+    if (rangeParam && rangeParam !== 'all' && (rangeParam === 'upcoming' || rangeParam === 'ongoing' || rangeParam === 'thisWeek' || rangeParam === 'thisMonth')) {
       filters.range = rangeParam as FilterRange
     } else if (!rangeParam || rangeParam === 'all') {
       // Default to upcoming if no range specified or 'all'

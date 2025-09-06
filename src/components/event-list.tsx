@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { PREFECTURES, FILTER_RANGES } from '@/lib/constants'
-type FilterRange = 'upcoming' | 'thisMonth' | 'next30'
+type FilterRange = 'upcoming' | 'ongoing' | 'thisWeek' | 'thisMonth'
 import { Loader2, RefreshCw } from 'lucide-react'
 import { trackFilterUsage } from '@/lib/gtag'
 
@@ -17,7 +17,7 @@ interface EventListProps {
 
 export function EventList({ initialEvents = [] }: EventListProps) {
   const [events, setEvents] = useState<Event[]>(initialEvents)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(initialEvents.length === 0) // Initial load if no data
   const [error, setError] = useState<string | null>(null)
   
   // Filter states
