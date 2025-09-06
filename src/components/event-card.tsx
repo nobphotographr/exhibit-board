@@ -6,6 +6,7 @@ import { Event } from '@/lib/database.types'
 import { ExternalLink, MapPin, Calendar, User, CircleDollarSign } from 'lucide-react'
 import Image from 'next/image'
 import { trackEventClick } from '@/lib/gtag'
+import { handleAddToCalendar } from '@/lib/calendar-utils'
 
 interface EventCardProps {
   event: Event
@@ -121,8 +122,9 @@ export function EventCard({ event }: EventCardProps) {
 
         {/* Card Footer - Fixed at bottom */}
         <div className="mt-auto pt-4 space-y-3">
-          {/* Social Links */}
-          {(event.x_url || event.ig_url || event.threads_url) && (
+          {/* Social Links + Calendar */}
+          <div className="flex justify-between items-center">
+            {/* SNS Icons - Left side */}
             <div className="flex flex-wrap gap-2">
               {event.x_url && (
                 <Button
@@ -196,7 +198,25 @@ export function EventCard({ event }: EventCardProps) {
                 </Button>
               )}
             </div>
-          )}
+
+            {/* Calendar Icon - Right side */}
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-xs"
+              onClick={() => {
+                handleAddToCalendar(event)
+                trackEventClick(event.id, event.title, 'calendar')
+              }}
+            >
+              <Image
+                src="/images/calendar.png"
+                alt="カレンダーに追加"
+                width={16}
+                height={16}
+              />
+            </Button>
+          </div>
 
           {/* Main Announce Link */}
           <Button
