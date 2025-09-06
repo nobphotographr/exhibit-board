@@ -45,7 +45,7 @@ export const trackEventView = (eventId: string, eventTitle: string) => {
   })
 }
 
-export const trackEventClick = (eventId: string, eventTitle: string, linkType: 'announce' | 'sns') => {
+export const trackEventClick = (eventId: string, eventTitle: string, linkType: 'announce' | 'sns' | 'calendar') => {
   event('click_event_link', {
     event_category: 'Event',
     event_label: `${linkType}: ${eventId}: ${eventTitle}`,

@@ -8,7 +8,6 @@ import { Event } from './database.types'
 export const createGoogleCalendarUrl = (event: Event): string => {
   // 日付をGoogleカレンダー形式に変換 (YYYYMMDD)
   const startDate = event.start_date.replace(/-/g, '')
-  const endDate = event.end_date.replace(/-/g, '')
   
   // 終日イベントとして設定 (終了日は翌日)
   const endDatePlusOne = new Date(event.end_date + 'T00:00:00')
