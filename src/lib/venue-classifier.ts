@@ -53,6 +53,8 @@ const MAJOR_VENUES_PATTERNS = [
   // その他企業ギャラリー
   ['ケンコートキナーギャラリー', 'kenko tokina gallery'],
   ['ピクトリコショップ＆ギャラリー', 'pictrico shop gallery', 'ピクトリコギャラリー'],
+  ['ライカギャラリー', 'leica gallery', 'ライカギャラリー東京', 'ライカストア東京'],
+  ['GR SPACE TOKYO', 'gr space tokyo', 'grスペース東京', 'grスペーストーキョー'],
 
   // 写真関連団体・美術館
   ['東京都写真美術館', '東京都立写真美術館', 'tokyo photographic art museum', 'top museum'],
