@@ -8,6 +8,7 @@ const normalizeVenueName = (venueName: string): string => {
     .replace(/フジフィルム/g, 'フジフイルム') // よくある間違い修正
     .replace(/富士フィルム/g, '富士フイルム') // 表記揺れ修正
     .replace(/キャノン/g, 'キヤノン') // よくある間違い修正
+    .replace(/canon/gi, 'キヤノン') // Canon英語表記も統一
     .replace(/ニコン/g, 'ニコン') // 表記統一
     .toLowerCase()
 }
@@ -30,9 +31,8 @@ const MAJOR_VENUES_PATTERNS = [
   ['FUJIFILM Imaging Plaza東京', 'fujifilm imaging plaza 東京', 'フジフイルムイメージングプラザ東京'],
   ['FUJIFILM Imaging Plaza大阪', 'fujifilm imaging plaza 大阪', 'フジフイルムイメージングプラザ大阪'],
 
-  // Canon関連
-  ['キヤノンギャラリー', 'キャノンギャラリー', 'canon gallery'],
-  ['キヤノンギャラリー大阪', 'キャノンギャラリー大阪', 'canon gallery 大阪'],
+  // Canon関連（「キヤノン」が含まれる会場は全て大型企画として判定）
+  ['キヤノン'], // これによりキヤノンが含まれる全ての会場名をマッチ
 
   // Nikon関連
   ['ニコンサロン', 'nikon salon'],
