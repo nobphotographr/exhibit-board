@@ -76,6 +76,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
           <div className="flex flex-col sm:flex-row gap-4">
             {/* Date Range Filter */}
             <div className="flex-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1">期間</label>
               <Select 
                 value={selectedRange} 
                 onValueChange={(value) => setSelectedRange(value as FilterRange | 'all')}
@@ -105,6 +106,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
 
             {/* Prefecture Filter */}
             <div className="flex-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1">都道府県</label>
               <Select 
                 value={selectedPrefecture} 
                 onValueChange={setSelectedPrefecture}
@@ -125,6 +127,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
 
             {/* Venue Type Filter */}
             <div className="flex-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1">会場タイプ</label>
               <Select 
                 value={selectedVenueType} 
                 onValueChange={(value) => setSelectedVenueType(value as VenueType)}
