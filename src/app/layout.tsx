@@ -19,6 +19,28 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Exhibit Board - 展示情報掲示板",
   description: "個展・グループ展の開催情報を共有する掲示板サービス",
+  openGraph: {
+    title: "Exhibit Board - 展示情報掲示板",
+    description: "個展・グループ展の開催情報を共有する掲示板サービス",
+    url: "https://exhibit-board.vercel.app",
+    siteName: "Exhibit Board",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Exhibit Board - 展示情報掲示板",
+      },
+    ],
+    locale: "ja_JP",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Exhibit Board - 展示情報掲示板",
+    description: "個展・グループ展の開催情報を共有する掲示板サービス",
+    images: ["/images/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({
