@@ -1,6 +1,6 @@
 'use client'
 
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { CardContent, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Event } from '@/lib/database.types'
 import { ExternalLink, MapPin, Calendar, User, CircleDollarSign } from 'lucide-react'
@@ -45,19 +45,19 @@ export function EventCard({ event }: EventCardProps) {
   const getStatusBadge = () => {
     if (isOngoing()) {
       return (
-        <span className="inline-flex items-center px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
+        <span className="inline-flex items-center px-2 py-1 text-xs font-medium border border-foreground text-foreground">
           開催中
         </span>
       )
     } else if (isUpcoming()) {
       return (
-        <span className="inline-flex items-center px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
+        <span className="inline-flex items-center px-2 py-1 text-xs font-medium border border-border text-muted-foreground">
           開催予定
         </span>
       )
     } else {
       return (
-        <span className="inline-flex items-center px-2 py-1 text-xs font-medium bg-gray-100 text-gray-600 rounded-full">
+        <span className="inline-flex items-center px-2 py-1 text-xs font-medium border border-border text-muted-foreground">
           終了済み
         </span>
       )
@@ -65,48 +65,48 @@ export function EventCard({ event }: EventCardProps) {
   }
 
   return (
-    <Card className="h-full hover:shadow-lg transition-shadow duration-300 flex flex-col">
+    <div className="h-full border border-border flex flex-col">
       {/* Card Header */}
       <CardHeader className="pb-3">
-        <div className="flex justify-between items-start">
-          <h3 className="text-lg font-semibold line-clamp-2 flex-1">
+        <div className="flex justify-between items-start gap-2">
+          <h3 className="text-base font-semibold line-clamp-2 flex-1">
             {event.title}
           </h3>
           {getStatusBadge()}
         </div>
-        
+
         {event.host_name && (
-          <div className="flex items-center text-sm text-gray-600">
+          <div className="flex items-center text-sm text-muted-foreground">
             <User className="w-4 h-4 mr-1" />
             {event.host_name}
           </div>
         )}
       </CardHeader>
-      
+
       {/* Card Body */}
       <CardContent className="flex-1 flex flex-col">
         <div className="space-y-3 flex-1">
           {/* Date */}
-          <div className="flex items-center text-sm text-gray-600">
+          <div className="flex items-center text-sm text-muted-foreground">
             <Calendar className="w-4 h-4 mr-2" />
             {formatDateRange(event.start_date, event.end_date)}
           </div>
 
           {/* Venue and Location */}
-          <div className="flex items-start text-sm text-gray-600">
+          <div className="flex items-start text-sm text-muted-foreground">
             <MapPin className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" />
             <div>
-              <div className="font-medium">{event.venue}</div>
+              <div className="font-medium text-foreground">{event.venue}</div>
               <div className="text-xs">{event.prefecture}</div>
               {event.address && (
-                <div className="text-xs text-gray-500">{event.address}</div>
+                <div className="text-xs">{event.address}</div>
               )}
             </div>
           </div>
 
           {/* Price */}
           {event.price && (
-            <div className="flex items-center text-sm text-gray-600">
+            <div className="flex items-center text-sm text-muted-foreground">
               <CircleDollarSign className="w-4 h-4 mr-2" />
               {event.price}
             </div>
@@ -114,7 +114,7 @@ export function EventCard({ event }: EventCardProps) {
 
           {/* Notes */}
           {event.notes && (
-            <div className="text-sm text-gray-600 line-clamp-2">
+            <div className="text-sm text-muted-foreground line-clamp-2">
               {event.notes}
             </div>
           )}
@@ -133,9 +133,9 @@ export function EventCard({ event }: EventCardProps) {
                   asChild
                   className="text-xs"
                 >
-                  <a 
-                    href={event.x_url} 
-                    target="_blank" 
+                  <a
+                    href={event.x_url}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center"
                     onClick={() => trackEventClick(event.id, event.title, 'sns')}
@@ -149,7 +149,7 @@ export function EventCard({ event }: EventCardProps) {
                   </a>
                 </Button>
               )}
-              
+
               {event.ig_url && (
                 <Button
                   variant="outline"
@@ -157,9 +157,9 @@ export function EventCard({ event }: EventCardProps) {
                   asChild
                   className="text-xs"
                 >
-                  <a 
-                    href={event.ig_url} 
-                    target="_blank" 
+                  <a
+                    href={event.ig_url}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center"
                     onClick={() => trackEventClick(event.id, event.title, 'sns')}
@@ -173,7 +173,7 @@ export function EventCard({ event }: EventCardProps) {
                   </a>
                 </Button>
               )}
-              
+
               {event.threads_url && (
                 <Button
                   variant="outline"
@@ -181,9 +181,9 @@ export function EventCard({ event }: EventCardProps) {
                   asChild
                   className="text-xs"
                 >
-                  <a 
-                    href={event.threads_url} 
-                    target="_blank" 
+                  <a
+                    href={event.threads_url}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center"
                     onClick={() => trackEventClick(event.id, event.title, 'sns')}
@@ -224,9 +224,9 @@ export function EventCard({ event }: EventCardProps) {
             className="w-full"
             variant="default"
           >
-            <a 
-              href={event.announce_url} 
-              target="_blank" 
+            <a
+              href={event.announce_url}
+              target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center"
               onClick={() => trackEventClick(event.id, event.title, 'announce')}
@@ -237,6 +237,6 @@ export function EventCard({ event }: EventCardProps) {
           </Button>
         </div>
       </CardContent>
-    </Card>
+    </div>
   )
 }

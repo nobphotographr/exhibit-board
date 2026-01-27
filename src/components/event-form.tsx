@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -13,7 +12,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { PREFECTURES } from '@/lib/constants'
 import { trackEventSubmission } from '@/lib/gtag'
 
-// Validation schema based on requirements
 const eventSchema = z.object({
   title: z.string().min(1, '展示タイトルは必須です').max(100, 'タイトルは100文字以下で入力してください'),
   host_name: z.string().max(50, '主催者名は50文字以下で入力してください').optional(),
@@ -29,7 +27,6 @@ const eventSchema = z.object({
   announce_url: z.string().url('有効なURLを入力してください').min(1, '告知URLは必須です'),
   notes: z.string().max(500, 'メモは500文字以下で入力してください').optional(),
 }).refine((data) => {
-  // Validate date range
   if (data.start_date && data.end_date) {
     return new Date(data.end_date) >= new Date(data.start_date)
   }
@@ -75,7 +72,6 @@ export function EventForm({ onSuccess }: EventFormProps) {
     setSubmitSuccess(null)
 
     try {
-      // Get reCAPTCHA token (placeholder - will implement later)
       const captcha_token = 'placeholder_token'
 
       const response = await fetch('/api/events', {
@@ -95,11 +91,10 @@ export function EventForm({ onSuccess }: EventFormProps) {
         throw new Error(result.message || 'Failed to submit event')
       }
 
-      setSubmitSuccess('イベントを登録しました！展示一覧への反映まで5分程度かかります。一息ついてお待ちください。')
-      
-      // Track successful submission
+      setSubmitSuccess('イベントを登録しました！展示一覧への反映まで5分程度かかります。')
+
       trackEventSubmission(data.title)
-      
+
       form.reset()
       onSuccess?.(result)
 
@@ -112,25 +107,178 @@ export function EventForm({ onSuccess }: EventFormProps) {
   }
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle>展示情報登録</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            {/* Basic Information */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium">基本情報</h3>
-              
+    <div className="w-full max-w-2xl mx-auto border border-border p-6">
+      <h3 className="text-lg font-semibold mb-6">展示情報登録</h3>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          {/* Basic Information */}
+          <div className="space-y-4">
+            <h4 className="text-sm font-medium text-muted-foreground">基本情報</h4>
+
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>展示タイトル *</FormLabel>
+                  <FormControl>
+                    <Input placeholder="例: 個展「春の記憶」" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="host_name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>主催者名</FormLabel>
+                  <FormControl>
+                    <Input placeholder="例: 山田太郎" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="announce_url"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>告知URL *</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="https://note.com/... or https://gallery-site.com/... など"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          {/* Social Media Links */}
+          <div className="space-y-4">
+            <h4 className="text-sm font-medium text-muted-foreground">開催者のSNSリンク（任意）</h4>
+
+            <FormField
+              control={form.control}
+              name="x_url"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>X (Twitter) URL</FormLabel>
+                  <FormControl>
+                    <Input placeholder="https://x.com/username" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="ig_url"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Instagram URL</FormLabel>
+                  <FormControl>
+                    <Input placeholder="https://instagram.com/username" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="threads_url"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Threads URL</FormLabel>
+                  <FormControl>
+                    <Input placeholder="https://www.threads.com/username" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          {/* Venue Information */}
+          <div className="space-y-4">
+            <h4 className="text-sm font-medium text-muted-foreground">会場情報</h4>
+
+            <FormField
+              control={form.control}
+              name="venue"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>会場名 *</FormLabel>
+                  <FormControl>
+                    <Input placeholder="例: ○○ギャラリー" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="prefecture"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>都道府県 *</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="都道府県を選択" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {PREFECTURES.map((prefecture) => (
+                        <SelectItem key={prefecture} value={prefecture}>
+                          {prefecture}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="address"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>住所</FormLabel>
+                  <FormControl>
+                    <Input placeholder="例: 渋谷区○○1-2-3" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          {/* Event Details */}
+          <div className="space-y-4">
+            <h4 className="text-sm font-medium text-muted-foreground">開催情報</h4>
+
+            <div className="grid grid-cols-2 gap-4">
               <FormField
                 control={form.control}
-                name="title"
+                name="start_date"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>展示タイトル *</FormLabel>
+                    <FormLabel>開始日 *</FormLabel>
                     <FormControl>
-                      <Input placeholder="例: 個展「春の記憶」" {...field} />
+                      <Input type="date" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -139,201 +287,12 @@ export function EventForm({ onSuccess }: EventFormProps) {
 
               <FormField
                 control={form.control}
-                name="host_name"
+                name="end_date"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>主催者名</FormLabel>
+                    <FormLabel>終了日 *</FormLabel>
                     <FormControl>
-                      <Input placeholder="例: 山田太郎" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="announce_url"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>告知URL *</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="https://note.com/... or https://gallery-site.com/... など" 
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            {/* Social Media Links */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium">開催者のSNSリンク（任意）</h3>
-              
-              <FormField
-                control={form.control}
-                name="x_url"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>X (Twitter) URL</FormLabel>
-                    <FormControl>
-                      <Input placeholder="https://x.com/username" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="ig_url"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Instagram URL</FormLabel>
-                    <FormControl>
-                      <Input placeholder="https://instagram.com/username" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="threads_url"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Threads URL</FormLabel>
-                    <FormControl>
-                      <Input placeholder="https://www.threads.com/username" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            {/* Venue Information */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium">会場情報</h3>
-              
-              <FormField
-                control={form.control}
-                name="venue"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>会場名 *</FormLabel>
-                    <FormControl>
-                      <Input placeholder="例: ○○ギャラリー" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="prefecture"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>都道府県 *</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="都道府県を選択" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {PREFECTURES.map((prefecture) => (
-                          <SelectItem key={prefecture} value={prefecture}>
-                            {prefecture}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="address"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>住所</FormLabel>
-                    <FormControl>
-                      <Input placeholder="例: 渋谷区○○1-2-3" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            {/* Event Details */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium">開催情報</h3>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="start_date"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>開始日 *</FormLabel>
-                      <FormControl>
-                        <Input type="date" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="end_date"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>終了日 *</FormLabel>
-                      <FormControl>
-                        <Input type="date" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <FormField
-                control={form.control}
-                name="price"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>料金</FormLabel>
-                    <FormControl>
-                      <Input placeholder="例: 無料、500円、学生300円・一般500円" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="notes"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>一言メッセージ</FormLabel>
-                    <FormControl>
-                      <Textarea 
-                        placeholder="例: 街角の風景を切り取った写真作品30点を展示します。お気軽にお立ち寄りください！"
-                        className="min-h-[100px]"
-                        {...field} 
-                      />
+                      <Input type="date" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -341,37 +300,69 @@ export function EventForm({ onSuccess }: EventFormProps) {
               />
             </div>
 
-            {/* Error/Success Messages */}
-            {submitError && (
-              <div className="p-4 text-sm text-red-600 bg-red-50 rounded-md">
-                {submitError}
-              </div>
-            )}
+            <FormField
+              control={form.control}
+              name="price"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>料金</FormLabel>
+                  <FormControl>
+                    <Input placeholder="例: 無料、500円、学生300円・一般500円" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-            {submitSuccess && (
-              <div className="p-4 text-sm text-green-600 bg-green-50 rounded-md">
-                {submitSuccess}
-              </div>
-            )}
+            <FormField
+              control={form.control}
+              name="notes"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>一言メッセージ</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="例: 街角の風景を切り取った写真作品30点を展示します。お気軽にお立ち寄りください！"
+                      className="min-h-[100px]"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
-            {/* Submit Button */}
-            <Button 
-              type="submit" 
-              className="w-full" 
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? '登録中...' : '展示情報を登録'}
-            </Button>
-
-            <div className="text-sm text-gray-600 text-center space-y-1">
-              <p>登録された情報は公開されます。内容に間違いがないかご確認ください。</p>
-              <p className="text-xs text-gray-500">
-                ※ 登録後、展示一覧への反映まで5分程度お時間をいただきます
-              </p>
+          {/* Error/Success Messages */}
+          {submitError && (
+            <div className="p-4 text-sm text-destructive border border-destructive">
+              {submitError}
             </div>
-          </form>
-        </Form>
-      </CardContent>
-    </Card>
+          )}
+
+          {submitSuccess && (
+            <div className="p-4 text-sm border border-foreground text-foreground">
+              {submitSuccess}
+            </div>
+          )}
+
+          {/* Submit Button */}
+          <Button
+            type="submit"
+            className="w-full"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? '登録中...' : '展示情報を登録'}
+          </Button>
+
+          <div className="text-sm text-muted-foreground text-center space-y-1">
+            <p>登録された情報は公開されます。内容に間違いがないかご確認ください。</p>
+            <p className="text-xs">
+              ※ 登録後、展示一覧への反映まで5分程度お時間をいただきます
+            </p>
+          </div>
+        </form>
+      </Form>
+    </div>
   )
 }

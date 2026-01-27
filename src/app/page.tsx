@@ -10,26 +10,24 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState('events')
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-gray-900">
-                Exhibit Board
-              </h1>
-              <span className="ml-3 text-sm text-gray-500">
-                個展・グループ展の開催情報掲示板
-              </span>
-            </div>
+      <header className="border-b border-border">
+        <div className="max-w-5xl mx-auto px-6 sm:px-8">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-8 gap-2">
+            <h1 className="text-2xl font-semibold text-foreground">
+              Exhibit Board
+            </h1>
+            <span className="text-sm text-muted-foreground">
+              個展・グループ展の開催情報掲示板
+            </span>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+      <main className="max-w-5xl mx-auto px-6 sm:px-8 py-16">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-12">
           <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto">
             <TabsTrigger value="events" className="flex items-center gap-2">
               <List className="w-4 h-4" />
@@ -41,33 +39,29 @@ export default function Home() {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="events" className="space-y-6">
+          <TabsContent value="events" className="space-y-8">
             <div className="text-center space-y-2">
-              <h2 className="text-3xl font-bold text-gray-900">
+              <h2 className="text-2xl font-semibold text-foreground">
                 展示情報一覧
               </h2>
-              <p className="text-gray-600">
-                展示情報の登録にご協力ください！皆さんからの投稿でサイトが成り立っています。
+              <p className="text-muted-foreground">
+                展示情報の登録にご協力ください
               </p>
             </div>
             <EventList />
           </TabsContent>
 
-          <TabsContent value="submit" className="space-y-6">
-            <div className="text-center space-y-2 mb-8">
-              <h2 className="text-3xl font-bold text-gray-900">
+          <TabsContent value="submit" className="space-y-8">
+            <div className="text-center space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">
                 展示情報登録
               </h2>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 あなたの展示情報を登録して、多くの人に知ってもらいましょう
               </p>
-              <p className="text-sm text-gray-500">
-                ※このサイトは皆さんの投稿で成り立っています。ご協力ありがとうございます！
-              </p>
             </div>
-            <EventForm 
+            <EventForm
               onSuccess={() => {
-                // Switch to events tab after successful submission
                 setActiveTab('events')
               }}
             />
@@ -76,22 +70,21 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center text-sm text-gray-600 space-y-2">
+      <footer className="border-t border-border mt-24">
+        <div className="max-w-5xl mx-auto px-6 sm:px-8 py-8">
+          <div className="text-sm text-muted-foreground space-y-2">
             <p>
-              © 2025 Exhibit Board. 
               展示情報は告知元のSNS投稿が一次情報です。詳細は各告知をご確認ください。
             </p>
             <p>
               修正があれば
-              <a 
-                href="https://x.com/novy_jp" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 hover:text-blue-800 underline mx-1"
+              <a
+                href="https://x.com/novy_jp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground mx-1"
               >
-                https://x.com/novy_jp
+                @novy_jp
               </a>
               までご連絡ください。
             </p>

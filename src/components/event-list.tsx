@@ -5,7 +5,6 @@ import { Event } from '@/lib/database.types'
 import { EventCard } from './event-card'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { PREFECTURES, FILTER_RANGES, VENUE_TYPES } from '@/lib/constants'
 type FilterRange = 'upcoming' | 'ongoing' | 'thisWeek' | 'thisMonth'
 type VenueType = 'all' | 'major' | 'independent'
@@ -18,10 +17,9 @@ interface EventListProps {
 
 export function EventList({ initialEvents = [] }: EventListProps) {
   const [events, setEvents] = useState<Event[]>(initialEvents)
-  const [loading, setLoading] = useState(initialEvents.length === 0) // Initial load if no data
+  const [loading, setLoading] = useState(initialEvents.length === 0)
   const [error, setError] = useState<string | null>(null)
-  
-  // Filter states
+
   const [selectedRange, setSelectedRange] = useState<FilterRange | 'all'>('upcoming')
   const [selectedPrefecture, setSelectedPrefecture] = useState<string>('all')
   const [selectedVenueType, setSelectedVenueType] = useState<VenueType>('all')
@@ -37,7 +35,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
       if (selectedVenueType && selectedVenueType !== 'all') params.append('venueType', selectedVenueType)
 
       const response = await fetch(`/api/events?${params.toString()}`)
-      
+
       if (!response.ok) {
         throw new Error('Failed to fetch events')
       }
@@ -52,7 +50,6 @@ export function EventList({ initialEvents = [] }: EventListProps) {
     }
   }, [selectedRange, selectedPrefecture, selectedVenueType])
 
-  // Fetch events when filters change
   useEffect(() => {
     fetchEvents()
   }, [fetchEvents])
@@ -66,142 +63,136 @@ export function EventList({ initialEvents = [] }: EventListProps) {
   const hasActiveFilters = selectedRange !== 'upcoming' || selectedPrefecture !== 'all' || selectedVenueType !== 'all'
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Filter Controls */}
-      <Card>
-        <CardHeader>
-          <CardTitle>フィルタ</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col sm:flex-row gap-4">
-            {/* Date Range Filter */}
-            <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-1">期間</label>
-              <Select 
-                value={selectedRange} 
-                onValueChange={(value) => setSelectedRange(value as FilterRange | 'all')}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="期間を選択" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem 
-                    value="all"
-                    onSelect={() => trackFilterUsage('range', 'all')}
-                  >
-                    すべての期間
-                  </SelectItem>
-                  {FILTER_RANGES.map((range) => (
-                    <SelectItem 
-                      key={range.value} 
-                      value={range.value}
-                      onSelect={() => trackFilterUsage('range', range.value)}
-                    >
-                      {range.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Prefecture Filter */}
-            <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-1">都道府県</label>
-              <Select 
-                value={selectedPrefecture} 
-                onValueChange={setSelectedPrefecture}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="都道府県を選択" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">すべての地域</SelectItem>
-                  {PREFECTURES.map((prefecture) => (
-                    <SelectItem key={prefecture} value={prefecture}>
-                      {prefecture}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Venue Type Filter */}
-            <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-1">会場タイプ</label>
-              <Select 
-                value={selectedVenueType} 
-                onValueChange={(value) => setSelectedVenueType(value as VenueType)}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="会場タイプを選択" />
-                </SelectTrigger>
-                <SelectContent>
-                  {VENUE_TYPES.map((venueType) => (
-                    <SelectItem key={venueType.value} value={venueType.value}>
-                      {venueType.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Control Buttons */}
-            <div className="flex gap-2">
-              {hasActiveFilters && (
-                <Button 
-                  variant="outline" 
-                  onClick={clearFilters}
-                  disabled={loading}
+      <div className="border border-border p-6">
+        <h3 className="text-sm font-medium mb-4">フィルタ</h3>
+        <div className="flex flex-col sm:flex-row gap-4">
+          {/* Date Range Filter */}
+          <div className="flex-1">
+            <label className="block text-sm text-muted-foreground mb-2">期間</label>
+            <Select
+              value={selectedRange}
+              onValueChange={(value) => setSelectedRange(value as FilterRange | 'all')}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="期間を選択" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem
+                  value="all"
+                  onSelect={() => trackFilterUsage('range', 'all')}
                 >
-                  クリア
-                </Button>
-              )}
-              
-              <Button 
-                variant="outline" 
-                size="icon"
-                onClick={fetchEvents}
-                disabled={loading}
-              >
-                {loading ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  <RefreshCw className="h-4 w-4" />
-                )}
-              </Button>
-            </div>
+                  すべての期間
+                </SelectItem>
+                {FILTER_RANGES.map((range) => (
+                  <SelectItem
+                    key={range.value}
+                    value={range.value}
+                    onSelect={() => trackFilterUsage('range', range.value)}
+                  >
+                    {range.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
-          {/* Active Filters Display */}
-          {hasActiveFilters && (
-            <div className="mt-3 flex flex-wrap gap-2">
-              {selectedRange && (
-                <span className="inline-flex items-center px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">
-                  {FILTER_RANGES.find(r => r.value === selectedRange)?.label}
-                </span>
+          {/* Prefecture Filter */}
+          <div className="flex-1">
+            <label className="block text-sm text-muted-foreground mb-2">都道府県</label>
+            <Select
+              value={selectedPrefecture}
+              onValueChange={setSelectedPrefecture}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="都道府県を選択" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">すべての地域</SelectItem>
+                {PREFECTURES.map((prefecture) => (
+                  <SelectItem key={prefecture} value={prefecture}>
+                    {prefecture}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Venue Type Filter */}
+          <div className="flex-1">
+            <label className="block text-sm text-muted-foreground mb-2">会場タイプ</label>
+            <Select
+              value={selectedVenueType}
+              onValueChange={(value) => setSelectedVenueType(value as VenueType)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="会場タイプを選択" />
+              </SelectTrigger>
+              <SelectContent>
+                {VENUE_TYPES.map((venueType) => (
+                  <SelectItem key={venueType.value} value={venueType.value}>
+                    {venueType.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Control Buttons */}
+          <div className="flex gap-2 items-end">
+            {hasActiveFilters && (
+              <Button
+                variant="outline"
+                onClick={clearFilters}
+                disabled={loading}
+              >
+                クリア
+              </Button>
+            )}
+
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={fetchEvents}
+              disabled={loading}
+            >
+              {loading ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <RefreshCw className="h-4 w-4" />
               )}
-              {selectedPrefecture && selectedPrefecture !== 'all' && (
-                <span className="inline-flex items-center px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">
-                  {selectedPrefecture}
-                </span>
-              )}
-              {selectedVenueType && selectedVenueType !== 'all' && (
-                <span className="inline-flex items-center px-2 py-1 text-xs bg-purple-100 text-purple-800 rounded-full">
-                  {VENUE_TYPES.find(v => v.value === selectedVenueType)?.label}
-                </span>
-              )}
-            </div>
-          )}
-        </CardContent>
-      </Card>
+            </Button>
+          </div>
+        </div>
+
+        {/* Active Filters Display */}
+        {hasActiveFilters && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {selectedRange && (
+              <span className="inline-flex items-center px-2 py-1 text-xs border border-border text-muted-foreground">
+                {FILTER_RANGES.find(r => r.value === selectedRange)?.label}
+              </span>
+            )}
+            {selectedPrefecture && selectedPrefecture !== 'all' && (
+              <span className="inline-flex items-center px-2 py-1 text-xs border border-border text-muted-foreground">
+                {selectedPrefecture}
+              </span>
+            )}
+            {selectedVenueType && selectedVenueType !== 'all' && (
+              <span className="inline-flex items-center px-2 py-1 text-xs border border-border text-muted-foreground">
+                {VENUE_TYPES.find(v => v.value === selectedVenueType)?.label}
+              </span>
+            )}
+          </div>
+        )}
+      </div>
 
       {/* Error Display */}
       {error && (
-        <Card className="border-red-200 bg-red-50">
-          <CardContent className="pt-6">
-            <p className="text-red-600 text-sm">{error}</p>
-          </CardContent>
-        </Card>
+        <div className="border border-destructive p-6">
+          <p className="text-destructive text-sm">{error}</p>
+        </div>
       )}
 
       {/* Loading State */}
@@ -213,31 +204,29 @@ export function EventList({ initialEvents = [] }: EventListProps) {
 
       {/* Events Grid */}
       {!loading && events.length === 0 ? (
-        <Card>
-          <CardContent className="pt-6">
-            <div className="text-center py-8">
-              <p className="text-gray-500">
-                {hasActiveFilters 
-                  ? '条件に一致する展示が見つかりませんでした。' 
-                  : '展示情報がありません。'
-                }
-              </p>
-              {hasActiveFilters && (
-                <Button 
-                  variant="outline" 
-                  onClick={clearFilters}
-                  className="mt-4"
-                >
-                  フィルタをクリア
-                </Button>
-              )}
-            </div>
-          </CardContent>
-        </Card>
+        <div className="border border-border p-6">
+          <div className="text-center py-8">
+            <p className="text-muted-foreground">
+              {hasActiveFilters
+                ? '条件に一致する展示が見つかりませんでした。'
+                : '展示情報がありません。'
+              }
+            </p>
+            {hasActiveFilters && (
+              <Button
+                variant="outline"
+                onClick={clearFilters}
+                className="mt-4"
+              >
+                フィルタをクリア
+              </Button>
+            )}
+          </div>
+        </div>
       ) : (
         <>
           {/* Results Count */}
-          <div className="text-sm text-gray-600">
+          <div className="text-sm text-muted-foreground">
             {loading ? (
               '読み込み中...'
             ) : (
