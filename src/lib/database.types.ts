@@ -56,6 +56,8 @@ export type JpPrefecture =
   | '沖縄県'
 
 export type EventStatus = 'published' | 'pending' | 'rejected'
+export type CandidateStatus = 'pending' | 'approved' | 'rejected' | 'imported'
+export type IngestionSource = 'x' | 'website' | 'manual'
 
 export interface Database {
   public: {
@@ -119,6 +121,82 @@ export interface Database {
           updated_at?: string
         }
       }
+      event_candidates: {
+        Row: {
+          id: string
+          event_fingerprint: string
+          extracted: Json
+          confidence: number
+          status: CandidateStatus
+          first_seen_at: string
+          last_seen_at: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          event_fingerprint: string
+          extracted: Json
+          confidence: number
+          status?: CandidateStatus
+          first_seen_at?: string
+          last_seen_at?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          event_fingerprint?: string
+          extracted?: Json
+          confidence?: number
+          status?: CandidateStatus
+          first_seen_at?: string
+          last_seen_at?: string
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      candidate_sources: {
+        Row: {
+          id: string
+          candidate_id: string
+          source_type: IngestionSource
+          source_key: string
+          source_url: string
+          source_name: string | null
+          author_handle: string | null
+          content_hash: string | null
+          first_seen_at: string
+          last_seen_at: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          candidate_id: string
+          source_type: IngestionSource
+          source_key: string
+          source_url: string
+          source_name?: string | null
+          author_handle?: string | null
+          content_hash?: string | null
+          first_seen_at?: string
+          last_seen_at?: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          candidate_id?: string
+          source_type?: IngestionSource
+          source_key?: string
+          source_url?: string
+          source_name?: string | null
+          author_handle?: string | null
+          content_hash?: string | null
+          first_seen_at?: string
+          last_seen_at?: string
+          created_at?: string
+        }
+      }
     }
     Views: {
       [_ in never]: never
@@ -139,3 +217,6 @@ export interface Database {
 export type Event = Database['public']['Tables']['events']['Row']
 export type EventInsert = Database['public']['Tables']['events']['Insert']
 export type EventUpdate = Database['public']['Tables']['events']['Update']
+export type EventCandidate = Database['public']['Tables']['event_candidates']['Row']
+export type EventCandidateInsert = Database['public']['Tables']['event_candidates']['Insert']
+export type CandidateSourceInsert = Database['public']['Tables']['candidate_sources']['Insert']

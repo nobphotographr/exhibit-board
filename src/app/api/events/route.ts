@@ -308,7 +308,8 @@ export async function POST(request: NextRequest) {
       end_date: body.end_date,
       announce_url: body.announce_url,
       notes: body.notes || null,
-      status: 'published'
+      // Public submissions must be reviewed before they appear on the site.
+      status: 'pending'
     })
 
     return NextResponse.json(result, { status: 201 })
