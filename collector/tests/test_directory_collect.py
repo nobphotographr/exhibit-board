@@ -11,6 +11,7 @@ from collector.directory_collect import (
     parse_photo_asahi_listing,
     prefecture_from_text,
 )
+from collector.photo_culture_collect import already_published
 
 
 class DirectoryCollectorTests(unittest.TestCase):
@@ -70,6 +71,25 @@ class DirectoryCollectorTests(unittest.TestCase):
         self.assertEqual(candidate["extracted"]["start_date"], "2026-08-20")
         self.assertEqual(candidate["extracted"]["title"], "山田太郎「海」")
         self.assertEqual(candidate["extracted"]["notes"], "(8/24休館)")
+
+    def test_cross_directory_duplicate_uses_events_seen_in_same_run(self):
+        first = parse_jps_detail(
+            """<div class="entry-content"><table><tr>
+              <td>佐藤 倫子</td><td>『深濱』</td><td>2026/8/3～2026/8/29</td>
+              <td>江東区古石場文化センター 1階展示ロビー</td>
+            </tr></table></div>""",
+            "https://www.jps.gr.jp/?p=1",
+            LocationResolver([]),
+        )[0]
+        second = parse_capa(
+            """<div class="entry-content"><h2>東京都</h2><section>
+              <div class="place"><h4>江東区古石場文化センター 1階ロビー</h4>
+              <a href="https://venue.example/">WEBSITE</a></div>
+              <ul><li><div class="date">8/3～8/29</div><p>佐藤倫子「深濱」</p></li></ul>
+            </section></div>""",
+            "https://getnavi.jp/capa/exhibition/tokyo/",
+        )[0]
+        self.assertTrue(already_published(second, [first["extracted"]]))
 
 
 if __name__ == "__main__":

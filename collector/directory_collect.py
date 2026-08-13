@@ -405,10 +405,14 @@ def main() -> int:
     published = load_published(endpoint)
     collector = DirectoryCollector(published)
     candidates = collector.collect()
+    # Treat candidates accepted earlier in this same run as published too. This
+    # catches one exhibition listed with slightly different wording by two
+    # directories before the public API cache has had a chance to refresh.
+    seen_events = list(published)
     added = 0
     duplicates = 0
     for candidate in candidates:
-        if already_published(candidate, published):
+        if already_published(candidate, seen_events):
             duplicates += 1
             continue
         if not args.dry_run:
@@ -421,6 +425,7 @@ def main() -> int:
             "end_date": candidate["extracted"]["end_date"],
             "source_url": candidate["source"]["url"],
         }, ensure_ascii=False))
+        seen_events.append(candidate["extracted"])
         added += 1
     print(
         f"total={len(candidates)} new={added} duplicates={duplicates} failures={collector.failures}",
