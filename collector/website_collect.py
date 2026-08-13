@@ -7,7 +7,7 @@ import os
 import re
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Callable
 from urllib.parse import unquote, urljoin
@@ -41,6 +41,7 @@ def text_hash(text: str) -> str:
 def build_candidate(
     *, title: str, venue: str, prefecture: str, start_date: str, end_date: str,
     source_url: str, source_name: str, card_text: str, address: str | None = None,
+    notes: str | None = None,
 ) -> dict:
     extracted = {
         "title": title.strip(),
@@ -51,7 +52,7 @@ def build_candidate(
         "price": None,
         "start_date": start_date,
         "end_date": end_date,
-        "notes": None,
+        "notes": notes,
     }
     return {
         "event_fingerprint": fingerprint(extracted, source_url),
@@ -1040,6 +1041,215 @@ def parse_solaris(html: str) -> list[dict]:
     return unique_sources(results)
 
 
+def parse_art_gallery_m84(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for row in soup.select(".entry-content table tr"):
+        first_cell = row.find("td")
+        if not first_cell:
+            continue
+        text = normalize(first_cell.get_text(" ", strip=True))
+        dates = dates_from_text(text)
+        date_match = re.search(r"20\d{2}[./]\d{1,2}[./]\d{1,2}", text)
+        if not dates or not date_match:
+            continue
+        title = text[:date_match.start()].strip()
+        if (
+            not title
+            or any(marker in title for marker in ("休館", "休廊", "貸切"))
+            or any(marker in text for marker in ("(仮)", "（仮）", "『仮』", "未定"))
+        ):
+            continue
+        detail_link = next((
+            link for link in first_cell.select("a[href]")
+            if re.search(r"[?&]p=\d+", link.get("href", ""))
+            and "attachment_id" not in link.get("href", "")
+        ), None)
+        source_url = (
+            detail_link.get("href", "") if detail_link
+            else f"http://artgallery-m84.com/?page_id=8#event-{text_hash(title)[:12]}"
+        )
+        results.append(build_candidate(
+            title=title,
+            venue="Art Gallery M84",
+            prefecture="東京都",
+            address="東京都中央区銀座4-11-3 ウインド銀座ビル5F",
+            start_date=dates[0], end_date=dates[1],
+            source_url=source_url,
+            source_name="Art Gallery M84",
+            card_text=text,
+        ))
+    return unique_sources(results)
+
+
+def parse_ig_photo_gallery(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for heading in soup.select("center h4"):
+        if "上映" in normalize(heading.get_text(" ", strip=True)):
+            continue
+        pieces = []
+        exhibition_link = None
+        for sibling in heading.next_siblings:
+            if getattr(sibling, "name", None) in ("h4", "hr"):
+                break
+            if getattr(sibling, "get_text", None):
+                pieces.append(sibling.get_text(" ", strip=True))
+                if exhibition_link is None and hasattr(sibling, "select_one"):
+                    if sibling.name == "a" and "exhibition/" in sibling.get("href", ""):
+                        exhibition_link = sibling
+                    else:
+                        exhibition_link = sibling.select_one("a[href*='exhibition/']")
+            elif str(sibling).strip():
+                pieces.append(str(sibling).strip())
+        text = normalize(" ".join(pieces))
+        dates = dates_from_text(text)
+        if not dates or not exhibition_link:
+            continue
+        title = normalize(exhibition_link.get_text(" ", strip=True))
+        if not title:
+            continue
+        results.append(build_candidate(
+            title=title,
+            venue="IG Photo Gallery",
+            prefecture="東京都",
+            address="東京都中央区銀座3-13-17 辰中ビル3F",
+            start_date=dates[0], end_date=dates[1],
+            source_url=urljoin("https://www.igpg.jp/", exhibition_link.get("href", "")),
+            source_name="IG Photo Gallery",
+            card_text=f"{heading.get_text(' ', strip=True)} {text}",
+        ))
+    return unique_sources(results)
+
+
+def parse_fuji_photo_gallery_ginza(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for date_heading in soup.select("h2.c-heading-lv3"):
+        date_text = normalize(date_heading.get_text(" ", strip=True))
+        dates = dates_from_text(date_text)
+        section = date_heading.find_parent("section")
+        if not dates or not section:
+            continue
+        for card in section.select(".c-grid_item"):
+            title_node = card.select_one("p.c-heading-lv4")
+            if not title_node:
+                continue
+            title = normalize(title_node.get_text(" ", strip=True))
+            spaces = [
+                normalize(node.get_text(" ", strip=True))
+                for node in card.select(".c-imageBox_labels li")
+                if node.get_text(" ", strip=True)
+            ]
+            venue = "富士フォトギャラリー銀座"
+            if spaces:
+                venue += "（" + "・".join(spaces) + "）"
+            card_text = normalize(f"{date_text} {card.get_text(' ', strip=True)}")
+            results.append(build_candidate(
+                title=title,
+                venue=venue,
+                prefecture="東京都",
+                address="東京都中央区銀座1-2-4 サクセス銀座ファーストビル4F",
+                start_date=dates[0], end_date=dates[1],
+                source_url=(
+                    "https://www.prolab-create.jp/gallery/ginza/"
+                    f"#event-{text_hash(date_text + title)[:12]}"
+                ),
+                source_name="富士フォトギャラリー銀座",
+                card_text=card_text,
+            ))
+    return unique_sources(results)
+
+
+def parse_gallery_limelight_ics(ics: str) -> list[dict]:
+    unfolded = re.sub(r"\r?\n[ \t]", "", ics)
+    results = []
+    for block in re.findall(r"BEGIN:VEVENT\r?\n(.*?)\r?\nEND:VEVENT", unfolded, re.DOTALL):
+        start_match = re.search(r"^DTSTART(?:;[^:]*)?:(\d{8})", block, re.MULTILINE)
+        end_match = re.search(r"^DTEND(?:;[^:]*)?:(\d{8})", block, re.MULTILINE)
+        title_match = re.search(r"^SUMMARY:(.*)$", block, re.MULTILINE)
+        uid_match = re.search(r"^UID:(.*)$", block, re.MULTILINE)
+        if not start_match or not end_match or not title_match:
+            continue
+        title = re.sub(r"\s+", " ", normalize(
+            title_match.group(1)
+            .replace(r"\n", " ")
+            .replace(r"\,", ",")
+            .replace(r"\;", ";")
+            .replace(r"\\", "\\")
+        )).strip()
+        if (
+            not title
+            or any(marker in title for marker in (
+                "予約", "貸し切り", "貸切", "お休み", "休廊", "ご利用あり",
+                "タイトル未定", "開催延期", "(仮)", "（仮）", "・仮", "仮・",
+            ))
+            or title in ("共催展示予定", "展示予定")
+        ):
+            continue
+        start = datetime.strptime(start_match.group(1), "%Y%m%d").date()
+        # iCalendar's DTEND is exclusive for all-day events.
+        end = datetime.strptime(end_match.group(1), "%Y%m%d").date() - timedelta(days=1)
+        if end < start:
+            continue
+        uid = uid_match.group(1).strip() if uid_match else title
+        results.append(build_candidate(
+            title=title,
+            venue="Gallery LimeLight",
+            prefecture="大阪府",
+            address="大阪府大阪市住吉区帝塚山中4-1-4",
+            start_date=start.isoformat(), end_date=end.isoformat(),
+            source_url=(
+                "http://gallerylimelight.web.fc2.com/exhibitioncalendarnew.html"
+                f"#event-{text_hash(uid)[:12]}"
+            ),
+            source_name="Gallery LimeLight 展示カレンダー",
+            card_text=block,
+        ))
+    return unique_sources(results)
+
+
+def parse_gallery_bauhaus(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    text = re.sub(r"\s+", " ", normalize(soup.get_text(" ", strip=True))).strip()
+    current = re.search(
+        r"Now Exhibition\s+(?P<title>.{2,300}?)\s+"
+        r"会\s*期\s*/?.{0,10}?(?P<dates>20\d{2}年\d{1,2}月\d{1,2}日.{0,40}?"
+        r"[~〜～–—-].{0,20}?\d{1,2}月\d{1,2}日)",
+        text,
+    )
+    if not current:
+        return []
+    dates = dates_from_text(current.group("dates"))
+    title = re.sub(r"^(?:Image\s+)+", "", current.group("title")).strip()
+    if not dates or not title:
+        return []
+    detail = next((
+        link for link in soup.select("a[href]")
+        if re.search(r"/20\d{6}[-/]", link.get("href", ""))
+    ), None)
+    source_url = (
+        urljoin("https://gallerybauhaus.wixsite.com/website/exhibition", detail.get("href", ""))
+        if detail else "https://gallerybauhaus.wixsite.com/website/exhibition"
+    )
+    closure = re.search(
+        r"20\d{2}/\d{1,2}/\d{1,2}\s*[~〜～–—-]\s*"
+        r"(?:20\d{2}/)?\d{1,2}/\d{1,2}は夏季休廊",
+        text,
+    )
+    return [build_candidate(
+        title=title,
+        venue="gallery bauhaus",
+        prefecture="東京都",
+        address="東京都千代田区外神田2-19-14",
+        start_date=dates[0], end_date=dates[1],
+        source_url=source_url,
+        source_name="gallery bauhaus",
+        card_text=current.group(0),
+        notes=closure.group(0) if closure else None,
+    )]
+
+
 def parse_tosei(html: str) -> list[dict]:
     soup = BeautifulSoup(html, "html.parser")
     results = []
@@ -1403,6 +1613,25 @@ SITES = {
     ),
     "solaris": SiteDefinition(
         "https://solaris-g.com/exhibition/", "ギャラリー・ソラリス", parse_solaris, "utf-8",
+    ),
+    "art-gallery-m84": SiteDefinition(
+        "http://artgallery-m84.com/?page_id=8", "Art Gallery M84", parse_art_gallery_m84, "utf-8",
+    ),
+    "ig-photo-gallery": SiteDefinition(
+        "https://www.igpg.jp/", "IG Photo Gallery", parse_ig_photo_gallery, "utf-8",
+    ),
+    "fuji-photo-gallery-ginza": SiteDefinition(
+        "https://www.prolab-create.jp/gallery/ginza/", "富士フォトギャラリー銀座",
+        parse_fuji_photo_gallery_ginza, "utf-8",
+    ),
+    "gallery-limelight": SiteDefinition(
+        "https://calendar.google.com/calendar/ical/"
+        "mikk03itcr95ncl2ml14j3gue0%40group.calendar.google.com/public/basic.ics",
+        "Gallery LimeLight", parse_gallery_limelight_ics, "utf-8",
+    ),
+    "gallery-bauhaus": SiteDefinition(
+        "https://gallerybauhaus.wixsite.com/website/exhibition", "gallery bauhaus",
+        parse_gallery_bauhaus, "utf-8",
     ),
     "tosei": SiteDefinition(
         "https://www.tosei-sha.jp/TOSEI-NEW-HP/html/EXHIBITIONS/j_exhibitions.html",

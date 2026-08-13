@@ -2,6 +2,16 @@ name: Collect exhibition candidates
 
 on:
   workflow_dispatch:
+    inputs:
+      collector:
+        description: Collector to run manually
+        required: true
+        default: venues
+        type: choice
+        options:
+          - venues
+          - x
+          - all
   schedule:
     # X Recent Search: daily at 06:17 JST (21:17 UTC).
     - cron: '17 21 * * *'
@@ -17,7 +27,10 @@ concurrency:
 
 jobs:
   collect-x:
-    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '17 21 * * *'
+    if: >-
+      github.event.schedule == '17 21 * * *' ||
+      (github.event_name == 'workflow_dispatch' &&
+      (inputs.collector == 'x' || inputs.collector == 'all'))
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -38,7 +51,10 @@ jobs:
           --bootstrap-hours 30
 
   collect-venues:
-    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '42 20 * * *'
+    if: >-
+      github.event.schedule == '42 20 * * *' ||
+      (github.event_name == 'workflow_dispatch' &&
+      (inputs.collector == 'venues' || inputs.collector == 'all'))
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:

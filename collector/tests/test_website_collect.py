@@ -4,8 +4,12 @@ import unittest
 from collector.website_collect import (
     annual_festival_parser,
     fujifilm_regional_parser,
+    parse_art_gallery_m84,
     parse_canon,
+    parse_fuji_photo_gallery_ginza,
     parse_fujifilm,
+    parse_gallery_bauhaus,
+    parse_gallery_limelight_ics,
     parse_jcii,
     parse_japanese_medium_format_2026,
     parse_kenko,
@@ -17,6 +21,7 @@ from collector.website_collect import (
     parse_fotori,
     parse_gallery_owada,
     parse_higashikawa,
+    parse_ig_photo_gallery,
     parse_iia_gallery,
     parse_fugensha,
     parse_gallery176,
@@ -329,6 +334,69 @@ class WebsiteCollectorTests(unittest.TestCase):
         candidates = parse_solaris(html)
         self.assertEqual(len(candidates), 1)
         self.assertEqual(candidates[0]["extracted"]["title"], "修了展 vol.19")
+
+    def test_art_gallery_m84_skips_closures_and_tentative_rows(self):
+        html = """<div class="entry-content"><table><tbody><tr>
+          <td>ベッティナ・ランス写真展『密室』No.12<br>2026.10.05-10.17
+          <a href="http://artgallery-m84.com/?attachment_id=1">画像</a></td></tr></tbody>
+          <tbody><tr><td>臨時休館<br>2026.09.28-10.04</td></tr></tbody>
+          <tbody><tr><td>グループ作品展『仮』<br>2026.11.03-11.08 未定</td></tr></tbody>
+          </table></div>"""
+        candidates = parse_art_gallery_m84(html)
+        self.assertEqual(len(candidates), 1)
+        self.assertEqual(candidates[0]["extracted"]["end_date"], "2026-10-17")
+
+    def test_ig_photo_gallery_skips_screening(self):
+        html = """<center><h4>上映会</h4>8/30<br>
+          <a href="exhibition/movie.html">定期上映</a><hr>
+          <h4 id="c">9月の企画展</h4>9/8〜26<br>
+          <a href="exhibition/ming.html">ジェローム・ミン展「ボールルーム・マケット」</a><hr>
+          </center>"""
+        candidates = parse_ig_photo_gallery(html)
+        self.assertEqual(len(candidates), 1)
+        self.assertEqual(candidates[0]["extracted"]["start_date"], "2026-09-08")
+        self.assertEqual(candidates[0]["source"]["url"], "https://www.igpg.jp/exhibition/ming.html")
+
+    def test_fuji_photo_gallery_ginza_spaces(self):
+        html = """<section class="l-container"><div>
+          <h2 class="c-heading c-heading-lv3">8月14日(金)〜8月20日(木)</h2>
+          <div class="c-grid_item"><ul class="c-imageBox_labels">
+          <li>スペース1</li><li>スペース2</li></ul>
+          <p class="c-heading c-heading-lv4">第11回 Blue+写真展「海」</p></div>
+          </div></section>"""
+        candidate = parse_fuji_photo_gallery_ginza(html)[0]
+        self.assertEqual(candidate["extracted"]["end_date"], "2026-08-20")
+        self.assertIn("スペース1・スペース2", candidate["extracted"]["venue"])
+
+    def test_gallery_limelight_ics_exclusive_end_and_placeholders(self):
+        ics = """BEGIN:VCALENDAR
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260816
+DTEND;VALUE=DATE:20260823
+UID:confirmed@example.com
+SUMMARY:額装一展2026
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260913
+DTEND;VALUE=DATE:20260920
+UID:reserved@example.com
+SUMMARY:ご予約あり（個展）
+END:VEVENT
+END:VCALENDAR"""
+        candidates = parse_gallery_limelight_ics(ics)
+        self.assertEqual(len(candidates), 1)
+        self.assertEqual(candidates[0]["extracted"]["end_date"], "2026-08-22")
+
+    def test_gallery_bauhaus_schedule(self):
+        html = """<main><h1>Now Exhibition</h1><p>gallery bauhaus 20周年記念写真展</p>
+          <h2>「Chronicle 時をつなぐ眼差し」</h2>
+          <p>会 期 / 2026年6月9日(火)〜9月19日(土) ※2026/8/2〜8/31は夏季休廊</p>
+          <a href="https://gallerybauhaus.wixsite.com/website/20260609-chronicle">Read More</a></main>"""
+        candidate = parse_gallery_bauhaus(html)[0]
+        self.assertEqual(candidate["extracted"]["venue"], "gallery bauhaus")
+        self.assertEqual(candidate["extracted"]["end_date"], "2026-09-19")
+        self.assertEqual(candidate["extracted"]["notes"], "2026/8/2〜8/31は夏季休廊")
+        self.assertEqual(candidate["source"]["url"], "https://gallerybauhaus.wixsite.com/website/20260609-chronicle")
 
     def test_tosei_current_exhibition(self):
         html = """<table><tr><td class="j12"><p>稲垣徳文写真展 Paris Blue
