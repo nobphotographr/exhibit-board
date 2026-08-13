@@ -42,9 +42,14 @@ Photo & Culture, Tokyoの開催一覧を会場発見用のインデックスと�
 会場詳細と公式告知URLを辿り、公式URLを確認できた展示だけを公開対象にします。SNS共有リンクや
 公式サイトが確認できない記事は取り込みません。
 
+日本写真家協会、全日本写真連盟、CAPA CAMERA WEB、ナショナル・フォートの写真展一覧も
+発見元として巡回します。公式会場URLが掲載されている場合は公式URLを優先し、団体会員から
+提供された展覧会情報は団体ページを出典として明示します。
+
 ```bash
 .venv/bin/python collector/website_collect.py --env-file /path/to/.env --dry-run
 .venv/bin/python collector/photo_culture_collect.py --env-file /path/to/.env --dry-run
+.venv/bin/python collector/directory_collect.py --env-file /path/to/.env --dry-run
 ```
 
 ```cron

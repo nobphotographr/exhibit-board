@@ -149,7 +149,11 @@ def parse_gallery_detail(html: str) -> tuple[str | None, str | None]:
 
 
 def compact_key(value: str) -> str:
-    return re.sub(r"[^0-9a-zA-Zぁ-んァ-ヶ一-龠]", "", normalize(value)).lower()
+    normalized = normalize(value).lower()
+    normalized = normalized.replace("キャノン", "キヤノン")
+    normalized = normalized.replace("フジフィルム", "フジフイルム").replace("富士フィルム", "富士フイルム")
+    normalized = re.sub(r"(?:写真展|作品展|個展)", "", normalized)
+    return re.sub(r"[^0-9a-zA-Zぁ-んァ-ヶ一-龠]", "", normalized)
 
 
 def already_published(candidate: dict, published: list[dict]) -> bool:

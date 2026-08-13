@@ -71,3 +71,4 @@ jobs:
         run: |
           python collector/website_collect.py
           python collector/photo_culture_collect.py
+          python collector/directory_collect.py

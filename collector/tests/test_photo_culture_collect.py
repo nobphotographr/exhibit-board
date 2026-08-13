@@ -84,6 +84,18 @@ class PhotoCultureCollectorTests(unittest.TestCase):
         }]
         self.assertTrue(already_published(candidate, published))
 
+    def test_duplicate_normalizes_brand_and_exhibition_words(self):
+        candidate = build_candidate(
+            title="宇井眞紀子『ankoraci』", venue="キャノンギャラリーS", prefecture="東京都",
+            start_date="2026-08-17", end_date="2026-09-29", source_url="https://example.com/e",
+            source_name="test", card_text="test",
+        )
+        published = [{
+            "title": "宇井眞紀子 写真展『ankoraci』", "venue": "キヤノンギャラリーS",
+            "start_date": "2026-08-17", "end_date": "2026-09-29",
+        }]
+        self.assertTrue(already_published(candidate, published))
+
 
 if __name__ == "__main__":
     unittest.main()
