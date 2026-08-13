@@ -74,7 +74,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-6 sm:px-8 py-8">
           <div className="text-sm text-muted-foreground space-y-2">
             <p>
-              展示情報は告知元のSNS投稿が一次情報です。詳細は各告知をご確認ください。
+              展示情報は会場・主催者の公式サイトまたは告知元のSNS投稿をもとに掲載しています。詳細は各告知をご確認ください。
             </p>
             <p>
               修正があれば

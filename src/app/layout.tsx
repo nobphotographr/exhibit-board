@@ -17,12 +17,13 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://exhibit.iruagaru.com"),
   title: "Exhibit Board - 展示情報掲示板",
   description: "個展・グループ展の開催情報を共有する掲示板サービス",
   openGraph: {
     title: "Exhibit Board - 展示情報掲示板",
     description: "個展・グループ展の開催情報を共有する掲示板サービス",
-    url: "https://exhibit-board.vercel.app",
+    url: "https://exhibit.iruagaru.com",
     siteName: "Exhibit Board",
     images: [
       {
