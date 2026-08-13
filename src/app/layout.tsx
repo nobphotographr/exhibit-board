@@ -18,11 +18,14 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://exhibit.iruagaru.com"),
-  title: "Exhibit Board - 展示情報掲示板",
-  description: "個展・グループ展の開催情報を共有する掲示板サービス",
+  title: "Exhibit Board｜全国の写真展・写真祭情報",
+  description: "全国の写真展・写真祭を、会期・都道府県・展示規模から探せる情報サイト。個展・グループ展から美術館の企画展まで掲載しています。",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Exhibit Board - 展示情報掲示板",
-    description: "個展・グループ展の開催情報を共有する掲示板サービス",
+    title: "Exhibit Board｜全国の写真展・写真祭情報",
+    description: "個展・グループ展から美術館の企画展まで、全国の写真展を会期・地域から探せます。",
     url: "https://exhibit.iruagaru.com",
     siteName: "Exhibit Board",
     images: [
@@ -30,7 +33,7 @@ export const metadata: Metadata = {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Exhibit Board - 展示情報掲示板",
+        alt: "Exhibit Board｜全国の写真展・写真祭情報",
       },
     ],
     locale: "ja_JP",
@@ -38,8 +41,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Exhibit Board - 展示情報掲示板",
-    description: "個展・グループ展の開催情報を共有する掲示板サービス",
+    title: "Exhibit Board｜全国の写真展・写真祭情報",
+    description: "個展・グループ展から美術館の企画展まで、全国の写真展を会期・地域から探せます。",
     images: ["/images/og-image.jpg"],
   },
 };

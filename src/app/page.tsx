@@ -19,7 +19,7 @@ export default function Home() {
               Exhibit Board
             </h1>
             <span className="text-sm text-muted-foreground">
-              個展・グループ展の開催情報掲示板
+              全国の写真展・写真祭情報
             </span>
           </div>
         </div>
@@ -42,10 +42,10 @@ export default function Home() {
           <TabsContent value="events" className="space-y-8">
             <div className="text-center space-y-2">
               <h2 className="text-2xl font-semibold text-foreground">
-                展示情報一覧
+                写真展を探す
               </h2>
               <p className="text-muted-foreground">
-                展示情報の登録にご協力ください
+                会期・地域・展示規模から開催情報を絞り込めます
               </p>
             </div>
             <EventList />

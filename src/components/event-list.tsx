@@ -119,15 +119,15 @@ export function EventList({ initialEvents = [] }: EventListProps) {
             </Select>
           </div>
 
-          {/* Venue Type Filter */}
+          {/* Exhibition Scale Filter */}
           <div className="flex-1">
-            <label className="block text-sm text-muted-foreground mb-2">会場タイプ</label>
+            <label className="block text-sm text-muted-foreground mb-2">展示規模</label>
             <Select
               value={selectedVenueType}
               onValueChange={(value) => setSelectedVenueType(value as VenueType)}
             >
               <SelectTrigger>
-                <SelectValue placeholder="会場タイプを選択" />
+                <SelectValue placeholder="展示規模を選択" />
               </SelectTrigger>
               <SelectContent>
                 {VENUE_TYPES.map((venueType) => (
@@ -235,7 +235,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
           </div>
 
           {/* Events Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{gridAutoRows: '1fr'}}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {events.map((event) => (
               <EventCard key={event.id} event={event} />
             ))}
