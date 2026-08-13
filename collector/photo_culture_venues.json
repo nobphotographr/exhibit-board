@@ -1,0 +1,4152 @@
+{
+  "source": "https://photoandculture-tokyo.com/gallerylist.php",
+  "audited_at": "2026-08-13T12:10:02.809157+00:00",
+  "total": 460,
+  "summary": {
+    "official_website": 435,
+    "no_official_url": 13,
+    "social_only": 12
+  },
+  "venues": [
+    {
+      "name": "札幌芸術の森美術館",
+      "area": "北海道・札幌市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=457",
+      "address": "札幌市南区芸術の森2丁目75番地駐車場",
+      "official_url": "https://artpark.or.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "富士フイルムフォトサロン札幌",
+      "area": "北海道・札幌市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=112",
+      "address": "北海道札幌市中央区大通西6丁目1番地 富士フイルム札幌ビル1F",
+      "official_url": "https://www.fujifilm.co.jp/photosalon/sapporo/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "札幌市資料館ミニギャラリー",
+      "area": "北海道・札幌市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=1",
+      "address": "北海道札幌市中央区大通西13丁目",
+      "official_url": "http://www.s-shiryokan.jp/floor/04sapporo.htm",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "帯広競馬場 ばん馬ギャラリー",
+      "area": "北海道・帯広市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=330",
+      "address": "北海道帯広市西13条南9丁目",
+      "official_url": "https://banei-keiba.or.jp/spot_fureai.php",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "いっきゅうフォトギャラリー",
+      "area": "北海道・帯広市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=2",
+      "address": "北海道帯広市西19条南2丁目30番地5 フクハラいっきゅう内",
+      "official_url": "https://kudou910.jimdofree.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "フォトプラザ910”ギャラリー",
+      "area": "北海道・帯広市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=3",
+      "address": "北海道帯広市西3条南23丁目12-1",
+      "official_url": "https://kudou910.jimdofree.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "北海道立釧路芸術館",
+      "area": "北海道・釧路市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=224",
+      "address": "北海道釧路市幸町4丁目1番5号",
+      "official_url": "https://www.kushiro-artmu.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "北海道立函館美術館",
+      "area": "北海道・函館市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=418",
+      "address": "北海道函館市五稜郭町37-6",
+      "official_url": "https://artmuseum.pref.hokkaido.lg.jp/hbj/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "東川町文化ギャラリー",
+      "area": "北海道・上川郡",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=435",
+      "address": "北海道上川郡東川町東町1丁目19−8",
+      "official_url": "https://photo-town.jp/gallery",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "青森県立美術館",
+      "area": "青森・青森市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=117",
+      "address": "青森県青森市安田字近野185",
+      "official_url": "https://www.aomori-museum.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "岩手県立美術館",
+      "area": "岩手・盛岡市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=363",
+      "address": "岩手県盛岡市本宮字松幅12-3",
+      "official_url": "https://www.ima.or.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "土門拳記念館",
+      "area": "山形・酒田市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=4",
+      "address": "山形県酒田市飯森山2丁目13(飯森山公園内)",
+      "official_url": "http://www.domonken-kinenkan.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "東根市公益文化施設 まなびあテラス",
+      "area": "山形・東根市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=130",
+      "address": "山形県東根市中央南一丁目7-3",
+      "official_url": "https://www.manabiaterrace.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "SARP 仙台アーティストランプレイス",
+      "area": "宮城・仙台市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=365",
+      "address": "宮城県仙台市青葉区錦町1-12-7 門脇ビル1F",
+      "official_url": "https://sarp-sendai.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "花の写真館(福島市写真美術館)",
+      "area": "福島・福島市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=216",
+      "address": "福島県福島市森合町11番36号",
+      "official_url": "https://www.f-shinkoukousha.or.jp/hanano-shashinkan/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "福島県立美術館",
+      "area": "福島・福島市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=120",
+      "address": "福島県福島市森合字西養山1番地",
+      "official_url": "https://art-museum.fcs.ed.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "会津町方伝承館",
+      "area": "福島・会津若松市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=143",
+      "address": "福島県会津若松市大町二丁目8-8",
+      "official_url": "https://www.aizukanko.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "トトノエル ギャラリーカフェ",
+      "area": "福島・郡山市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=331",
+      "address": "〒963−8035 福島県郡山市希望ヶ丘1-2",
+      "official_url": "http://www.totonoel-gallery-cafe.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "コミュニティ・カフェ EMANON",
+      "area": "福島・白河市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=471",
+      "address": "福島県白河市本町9",
+      "official_url": "https://pj.emanon.fukushima.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "third district gallery",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=314",
+      "address": "東京都新宿区新宿3-8-9新宿Qビル4F",
+      "official_url": "http://www.3rddg.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "KEN NAKAHASHI",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=362",
+      "address": "東京都新宿区新宿3-1-32新宿ビル2号館5階",
+      "official_url": "https://kennakahashi.net/ja",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "IRIS GALLERY(イリス ギャラリー)",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=364",
+      "address": "東京都新宿区早稲田鶴巻町109 松本ビル1F",
+      "official_url": "https://iris--gallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "京王百貨店 新宿店 6階 アートスクエア",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=372",
+      "address": "東京都新宿区西新宿1丁目1-4 京王百貨店 新宿店 6階",
+      "official_url": "https://www.keionet.com/info/shinjuku/topics/003025.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "王城ビル",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=377",
+      "address": "東京都新宿区歌舞伎町 1-13-2 王城ビル 2階・3階",
+      "official_url": "https://ohjo.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "PENTAXクラブハウス",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=393",
+      "address": "東京都新宿区四谷本塩町4-8 パーシモンビル1F",
+      "official_url": "https://www.ricoh-imaging.co.jp/japan/community/clubhouse/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "写場 SHABA KAGURAZAKA",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=414",
+      "address": "東京都新宿区築地町8 ワタナベビル 1F",
+      "official_url": "https://shaba.gallery",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Roll",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=174",
+      "address": "東京都新宿区揚場町 2-12 セントラルコーポラス No.105",
+      "official_url": "https://yf-vg.com/roll.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "新宿眼科画廊",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=185",
+      "address": "東京都新宿区新宿5-18-11",
+      "official_url": "https://photoandculture-tokyo.com/www.gankagarou.com/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "新宿 北村写真機店 Basement Gallery",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=202",
+      "address": "東京都新宿区新宿3丁目26-14 B1F",
+      "official_url": "https://www.kitamuracamera.jp/ja",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "HAKKOギャラリー/工房",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=460",
+      "address": "東京都新宿区新小川町8-26 八紘ビル5F",
+      "official_url": "https://www.hakko-bijutsu.co.jp/print/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Sprout Curation",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=235",
+      "address": "東京都新宿区西五軒町5-1 3階",
+      "official_url": "https://sprout-curation.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリー&バー くらげ",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=252",
+      "address": "東京都新宿区早稲田鶴巻町533-17 ココミ早稲田1F、B1F",
+      "official_url": "https://gallery-kurage.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "OM SYSTEM GALLERY",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=5",
+      "address": "東京都新宿区西新宿1丁目24-1 エステック情報ビルB1F",
+      "official_url": "https://fotopus.com/showroom/index/contents/i/10",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ニコンプラザ東京 ニコンサロン/THE GALLERY",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=7",
+      "address": "東京都新宿区西新宿1丁目6-1 新宿エルタワー 28F",
+      "official_url": "https://www.nikon-image.com/activity/exhibition/thegallery/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "B GALLERY",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=123",
+      "address": "東京都新宿区新宿3-32-6 BEAMS JAPAN 5F",
+      "official_url": "https://www.beams.co.jp/bgallery/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "新宿マルイ アネックス",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=159",
+      "address": "東京都新宿区新宿3丁目1-26",
+      "official_url": "https://www.0101.co.jp/005/?from=01_pc_st005_event_head_logo",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "イセタン ザ・スペース",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=132",
+      "address": "東京都新宿区新宿3-14-1 新宿店本館2階",
+      "official_url": "https://www.mistore.jp/shopping/feature/women_f3/thespace_w.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "サードディストリクトギャラリー",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=16",
+      "address": "東京都新宿区新宿3-8-9 新宿Qビル4F",
+      "official_url": "http://www.3rddg.com/home/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "photographers’gallery",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=17",
+      "address": "東京都新宿区新宿2-16-11-401 サンフタミビル4F",
+      "official_url": "https://pg-web.net",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "PLACE M",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=9",
+      "address": "東京都新宿区新宿1-2-11 近代ビル3F",
+      "official_url": "https://www.placem.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "RED Photo Gallery",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=10",
+      "address": "東京都新宿区新宿1-2-11 近代ビル2F",
+      "official_url": "http://photogallery.red",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリー蒼穹舎",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=15",
+      "address": "東京都新宿区新宿1-3-5 新進ビル3F",
+      "official_url": "http://www.sokyusha.com/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "アイデムフォトギャラリーシリウス",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=19",
+      "address": "東京都新宿区新宿1-4-10 アイデム本社ビル2F",
+      "official_url": "https://www.photo-sirius.net",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ポートレートギャラリー",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=11",
+      "address": "東京都新宿区四谷1-7-8",
+      "official_url": "https://www.sha-bunkyo.or.jp/gallery/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリーヨクト",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=12",
+      "address": "東京都新宿区四谷4-10 ユニヴェールビル102",
+      "official_url": "https://galleryyoctohp4.wixsite.com/galleryyocto",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリー・ニエプス",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=14",
+      "address": "東京都新宿区四谷4-10 メイプル花上2F",
+      "official_url": "https://www.niepce-tokyo.net",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "TOTEM POLE PHOTO GALLERY",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=13",
+      "address": "東京都新宿区四谷四丁目22 第二富士川ビル1F",
+      "official_url": "http://tppg.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "CCAAアートプラザ 四谷三丁目ランプ坂ギャラリー",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=144",
+      "address": "東京都新宿区四谷4-20",
+      "official_url": "https://npo-ccaa.tokyo/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "こどじ",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=18",
+      "address": "東京都新宿区歌舞伎町1-1-9(花園一番街)2F",
+      "official_url": "http://www.phobbit.com/kodojitop.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "CAVE-AYUMIGALLERY",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=152",
+      "address": "東京都新宿区矢来町114 高橋ビルB2",
+      "official_url": "https://caveayumigallery.tokyo",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "柿の木荘",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=153",
+      "address": "東京都新宿区横寺町31",
+      "official_url": null,
+      "status": "no_official_url",
+      "reason": "Photo & Culture, Tokyoの会場詳細に公式URLの登録なし"
+    },
+    {
+      "name": "東京オペラシティ アートギャラリー",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=8",
+      "address": "東京都新宿区西新宿3-20-2",
+      "official_url": "https://www.operacity.jp/ag/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Gallery 463",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=452",
+      "address": "東京都新宿区荒木町8 木村ビル2F",
+      "official_url": "https://camera-kaukau.lekumo.biz/gallery463/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "CROSS OVER神楽坂 ー cafe & galleryー",
+      "area": "東京・新宿周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=258",
+      "address": "東京都新宿区矢来町109",
+      "official_url": "https://crossoverkagurazaka.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギンザ・グラフィック・ギャラリー(ggg)",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=329",
+      "address": "東京都中央区銀座7-7-2 DNP銀座ビル1F",
+      "official_url": "https://www.dnpfcp.jp/gallery/ggg/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "MYNAVI ART SQUARE",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=337",
+      "address": "東京都中央区銀座4-12-15 歌舞伎座タワー22F",
+      "official_url": "https://artsquare.mynavi.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "NAKANO GINZA GALLERY",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=354",
+      "address": null,
+      "official_url": "https://tonnex.com/ngg/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "東京交通会館",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=376",
+      "address": "東京都千代田区有楽町2-10-1",
+      "official_url": "https://www.kotsukaikan.co.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "メゾンエルメス銀座",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=378",
+      "address": "東京都中央区銀座5-4-1",
+      "official_url": "https://www.hermes.com/jp/ja/story/maison-ginza/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Gallery Nayuta",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=379",
+      "address": "〒104‐0061 東京都中央区銀座1-9-8 奥野ビル511号",
+      "official_url": "https://www.gallerynayuta.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "BAG-Brillia Art Gallery-",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=126",
+      "address": "東京都中央区京橋3丁目6-18 東京建物京橋ビル1階",
+      "official_url": "https://www.brillia-art.com/bag/index.html#exhibition",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "銀座奥野ビル306号室プロジェクト",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=131",
+      "address": "東京都中央区銀座1-9-8 奥野ビル306号室",
+      "official_url": "https://room306project.tokyo",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "CO-CO PHOTO SALON",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=138",
+      "address": "東京都中央区銀座3丁目11-14 ルート銀座ビル 4F",
+      "official_url": "https://coco-ps.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "MEGUMI OGITA",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=400",
+      "address": "東京都中央区銀座8-14-9 デュープレックス銀座タワー8/14 B1",
+      "official_url": "https://www.megumiogita.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "森岡書店 銀座店",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=158",
+      "address": "東京都中央区銀座1−28−15 鈴木ビル1階",
+      "official_url": "https://ja.takram.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "FOAM CONTEMPORARY",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=168",
+      "address": "東京都中央区銀座6-10-1 GINZA SIX 6F",
+      "official_url": "https://store.tsite.jp/ginza",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "タカ・イシイギャラリー京橋",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=424",
+      "address": "東京都中央区京橋1-7-1 TODA BUILDING 3F",
+      "official_url": "https://www.takaishiigallery.com/jp/exhibitions/kyobashi/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ポーラ ミュージアム アネックス",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=430",
+      "address": "東京都中央区銀座1-7-7 ポーラ銀座ビル 3階",
+      "official_url": "https://www.po-holdings.co.jp/m-annex/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリー新居東京",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=434",
+      "address": "東京都中央区銀座1-13-4 銀座片桐ビルIII5F",
+      "official_url": "https://www.gallery-nii.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "RICOH ART GALLERY / リコーアートギャラリー",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=183",
+      "address": "東京都中央区銀座5-7-2 三愛ドリームセンター8F / 9F",
+      "official_url": "https://artgallery.ricoh.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "グッチ銀座 ギャラリー",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=248",
+      "address": "東京都中央区銀座4-4-10 グッチ銀座7階",
+      "official_url": "https://www.gucci.com/jp/ja/store/4410-ginza-chuoku",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ARTIZON MUSEUM アーティゾン美術館",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=119",
+      "address": "東京都中央区京橋1-7-2",
+      "official_url": "https://www.artizon.museum",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "シャネル・ネクサスホール",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=32",
+      "address": "東京都中央区銀座3-5-3 シャネル銀座ビルディング4F",
+      "official_url": "https://nexushall.chanel.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "RICOH ART GALLERY",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=6",
+      "address": "東京都中央区銀座5-7-2 三愛ドリームセンター8F / 9F",
+      "official_url": "https://artgallery.ricoh.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "TOKYO INSTITUTE of PHOTOGRAPHY 72Gallery",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=210",
+      "address": "東京都中央区京橋3-6-6 エクスアートビル1F",
+      "official_url": "https://tip.or.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "アート・ギャラリー石",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=195",
+      "address": "東京都中央区銀座1-9-8 奥野ビル206号",
+      "official_url": "https://artgalleryishi.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "富士フォトギャラリー銀座",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=20",
+      "address": "東京都中央区銀座1丁目2-4 サクセス銀座ファーストビル4F",
+      "official_url": "http://www.prolab-create.jp/gallery/ginza/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "キヤノンギャラリー銀座",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=21",
+      "address": "東京都中央区銀座3-9-7",
+      "official_url": "https://cweb.canon.jp/gallery/schedule/ginza.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ソニーイメージングギャラリー銀座",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=22",
+      "address": "東京都中央区銀座5丁目8-1 銀座プレイス6F",
+      "official_url": "https://www.sony.co.jp/united/imaging/gallery/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ライカギャラリー東京",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=24",
+      "address": "東京都中央区銀座6-4-1",
+      "official_url": "https://jp.leica-camera.com/世界のライカギャラリ―/ライカギャラリー東京/ライカギャラリー東京",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ライカGINZA SIX",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=25",
+      "address": "東京都中央区銀座6丁目10-1 5F",
+      "official_url": "https://ginza6.tokyo/shops/1199",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "AKIO NAGASAWA GINZA",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=27",
+      "address": "東京都中央区銀座4-9-5 銀昭ビル6F",
+      "official_url": "https://www.akionagasawa.com/jp/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ガーディアン・ガーデン",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=28",
+      "address": "東京都中央区銀座7-3-5 ヒューリック銀座7丁目ビルB1F",
+      "official_url": "http://rcc.recruit.co.jp/gg/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Art Gallery M84",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=29",
+      "address": "東京都中央区銀座四丁目11-3 ウインド銀座ビル5F",
+      "official_url": "http://artgallery-m84.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "IG Photo Gallery",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=30",
+      "address": "東京都中央区銀座三丁目13番17号 辰中ビル3F",
+      "official_url": "https://www.igpg.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "資生堂ギャラリー",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=31",
+      "address": "東京都中央区銀座8丁目8-3 資生堂銀座ビルB1F",
+      "official_url": "https://gallery.shiseido.com/jp/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "巷房",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=33",
+      "address": "東京都中央区銀座1丁目9−8 奥野ビル",
+      "official_url": "http://gallerykobo.web.fc2.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリー小柳",
+      "area": "東京・銀座周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=34",
+      "address": "東京都中央区銀座1丁目7-5 銀座小柳ビル9F",
+      "official_url": "https://www.gallerykoyanagi.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Hi Bridge Books",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=401",
+      "address": "東京都渋谷区代々木5丁目11-10",
+      "official_url": "https://www.instagram.com/hi_bridge_books/",
+      "status": "social_only",
+      "reason": "登録URLがSNSのみ"
+    },
+    {
+      "name": "渋谷区立松濤美術館",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=262",
+      "address": "東京都渋谷区松濤2-14-14",
+      "official_url": "https://shoto-museum.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリー・ルデコ",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=268",
+      "address": "東京都渋谷区渋谷3-16-3 髙桑ビル",
+      "official_url": "https://ledeco.net",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "MAGNET by SHIBUYA109",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=296",
+      "address": "東京都渋谷区神南1-23-10",
+      "official_url": "https://magnetbyshibuya109.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Bunkamura ザ・ミュージアム",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=43",
+      "address": "東京都渋谷区道玄坂2-24-1 B1F",
+      "official_url": "https://www.bunkamura.co.jp/museum/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "SAI",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=306",
+      "address": "東京都渋谷区神宮前6丁目20−10 MIYASHITA PARK SOUTH 3F 30800",
+      "official_url": "https://www.saiart.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "東急プラザ渋谷",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=346",
+      "address": "東京都渋谷区道玄坂1丁目2−3 渋谷フクラス内",
+      "official_url": "https://shibuya.tokyu-plaza.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "GR SPACE TOKYO",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=357",
+      "address": "東京都渋谷区神宮前6丁目16-19 原宿WATビル102",
+      "official_url": "https://www.ricoh-imaging.co.jp/japan/community/grspace_tokyo/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "HECTARE",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=369",
+      "address": "東京都渋谷区神山町40-2 1F ​",
+      "official_url": "https://www.hectaregallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ユトレヒト",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=394",
+      "address": "東京都渋谷区神宮前5-36-6 ケーリーマンション2C",
+      "official_url": "https://utrecht.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "渋谷ヒカリエ8/Cube",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=176",
+      "address": "東京都渋谷区渋谷2-21-1 渋谷ヒカリエ8階",
+      "official_url": null,
+      "status": "no_official_url",
+      "reason": "Photo & Culture, Tokyoの会場詳細に公式URLの登録なし"
+    },
+    {
+      "name": "LAPIN ART GALLERY",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=440",
+      "address": "東京都渋谷区桜丘町26-1 セルリアンタワー東急ホテル ロビーフロア",
+      "official_url": "https://lapinartgallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "RAYARD MIYASHITA PARK",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=211",
+      "address": "東京都渋谷区神宮前6-20-10",
+      "official_url": "https://mitsui-shopping-park.com/urban/miyashita/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "MINA(Museum of Imaginary Narrative Arts)",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=468",
+      "address": "東京都渋谷区渋谷3-7-1",
+      "official_url": "https://mina-shibuya.org",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "NONLECTURE books/arts",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=469",
+      "address": "東京都渋谷区宇田川町16-9 渋谷ゼロゲートビルB1F",
+      "official_url": "https://nonlecture.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "タワーレコード渋谷店8階SpaceHACHIKAI",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=230",
+      "address": "東京都渋谷区神南1-22-14",
+      "official_url": "https://towershibuya.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "SKY GALLERY",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=231",
+      "address": "東京都渋谷区渋谷2-24-12 渋谷スクランブルスクエア 46F",
+      "official_url": "https://www.shibuya-scramble-square.com/sky/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "GALLERY X BY PARCO",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=234",
+      "address": "東京都渋谷区宇田川町15-1 渋谷パルコ B1F",
+      "official_url": "https://art.parco.jp/galleryx/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "渋谷ヒカリエ9F ヒカリエホール",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=247",
+      "address": "東京都渋谷区渋谷2-21-1 渋谷ヒカリエ9F",
+      "official_url": "https://www.hikarie.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "LAG(LIVE ART GALLERY)",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=274",
+      "address": "東京都渋谷区神宮前2-4-11 Daiwaビル 1F",
+      "official_url": "https://www.live-art-books.jp/lag/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "LUMIX BASE TOKYO",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=287",
+      "address": "東京都港区南青山2丁目11-17第一法規ビル1F",
+      "official_url": null,
+      "status": "no_official_url",
+      "reason": "Photo & Culture, Tokyoの会場詳細に公式URLの登録なし"
+    },
+    {
+      "name": "Nadar",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=46",
+      "address": "東京都港区南青山3-8-5 M385 BLDG #12",
+      "official_url": "https://g-nadar.net",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Nine Gallery",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=48",
+      "address": "東京都港区北青山 2-10-22 谷・荒井ビル1F",
+      "official_url": "https://ninegallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ワタリウム美術館",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=49",
+      "address": "東京都渋谷区神宮前3-7-6",
+      "official_url": "http://www.watarium.co.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "オン・サンデーズ&ライトシード・ギャラリー",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=309",
+      "address": "東京都渋谷区神宮前3-7-6(ワタリウム美術館地下)",
+      "official_url": "https://onsundays.shopselect.net/about",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "スパイラルガーデン",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=312",
+      "address": "東京都港区南青山5-6-23 スパイラル1F",
+      "official_url": "https://www.spiral.co.jp/shoplist/spiral_garden",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Akio Nagasawa Gallery Aoyama",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=317",
+      "address": "東京都港区南青山5-12-3 Noirビル2F",
+      "official_url": "https://www.akionagasawa.com/jp/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Up & Coming",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=332",
+      "address": "東京都渋谷区神宮前3-42-18",
+      "official_url": "https://upandcoming.tamabi.ac.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Gallery5610",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=366",
+      "address": "東京都港区南青山5-6-10 5610番館",
+      "official_url": "https://www.deska.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "MAHO KUBOTA GALLERY",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=380",
+      "address": "東京都渋谷区神宮前2-4-7",
+      "official_url": "https://www.mahokubota.com/ja/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "SCÈNE",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=385",
+      "address": "東京都港区南青山3-15-6 Ripple Square D-B1",
+      "official_url": "https://scenetokyo.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "YUGEN Gallery",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=405",
+      "address": "東京都港区南青山3-1-31 KD南青山ビル4F",
+      "official_url": "https://yugen-gallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Galerie GEEK/ART",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=412",
+      "address": "東京都渋谷区神宮前6-23-6",
+      "official_url": "https://geek.art/jp/top/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "駐日ブラジル連邦共和国大使館「Space Tomie Ohtake」",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=199",
+      "address": "東京都港区北青山2丁目11-12 B1F",
+      "official_url": "https://www.gov.br/mre/pt-br/embaixada-toquio",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "エスパス ルイ・ヴィトン東京",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=203",
+      "address": "東京都渋谷区神宮前5-7-5 ルイ・ヴィトン 表参道ビル 7F",
+      "official_url": "https://jp.louisvuitton.com/jpn-jp/magazine/articles/espaces-louis-vuitton",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "NICK WHITE GALLERY",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=238",
+      "address": "東京都港区南青山6-3-14-202",
+      "official_url": "https://nickwhite.tokyo",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ライカギャラリー表参道",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=304",
+      "address": "東京都渋谷区神宮前5-16-15 ライカ表参道店2F",
+      "official_url": "https://leica-camera.com/ja-JP/leica-galleries/leica-gallery-omotesando",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "表参道画廊",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=51",
+      "address": "東京都渋谷区神宮前4-17-3 アーク・アトリウムB02",
+      "official_url": "http://www.omotesando-garo.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリー同潤会",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=371",
+      "address": "東京都渋谷区神宮前4-12-10 表参道ヒルズ 同潤館 2階(※同潤会青山アパート再生棟)",
+      "official_url": "https://www.gallery-dojunkai.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "工房親 CHIKA",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=389",
+      "address": "東京都渋谷区恵比寿2丁目21−3",
+      "official_url": "https://www.kobochika.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "LIGHT BOX SATELLITE",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=423",
+      "address": "東京都港区南青山5-15-9 フラット青山101",
+      "official_url": "https://www.lightboxstudio.net/studios/light-box-gallery",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Gallery Concept 21",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=244",
+      "address": "東京都港区北青山3-15-16",
+      "official_url": "https://g-concept21.com/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "裏参道ガーデン",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=249",
+      "address": "東京都渋谷区神宮前4丁目15−2",
+      "official_url": "https://urasando-garden.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "The Mass",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=279",
+      "address": "東京都渋谷区神宮前5-11-1",
+      "official_url": "http://themass.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "seeen",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=305",
+      "address": "東京都渋谷区神宮前4-13-12",
+      "official_url": "https://seeen.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "デザインフェスタギャラリー原宿 EAST",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=324",
+      "address": "東京都渋谷区神宮前3-20-2",
+      "official_url": "https://designfestagallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "デザインフェスタギャラリー原宿 WEST",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=325",
+      "address": "東京都渋谷区神宮前3-20-18",
+      "official_url": "https://designfestagallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Creative Space Akademeia 21 Harajuku",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=436",
+      "address": "東京都渋谷区神宮前5丁目27−7 アルボーレ神宮前1F・2F",
+      "official_url": "https://creativespace.akademeia21.ac.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "X8 GALLERY",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=191",
+      "address": "渋谷区神宮前5丁目27番7号 アルボーレ神宮前1F/2F",
+      "official_url": "https://www.x8-gallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "サンブンノイチギャラリー",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=449",
+      "address": "東京都渋谷区神宮前6-24-2原宿芳村ビル3F",
+      "official_url": "https://black-beans.com/gallery",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "BOOKMARC",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=220",
+      "address": "東京都渋谷区神宮前4-26-14",
+      "official_url": "https://www.marcjacobs.jp/ja_JP/bookmarcpresents.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "東京都写真美術館",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=44",
+      "address": "東京都目黒区三田1-13-3 恵比寿ガーデンプレイス内",
+      "official_url": "https://topmuseum.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "POST",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=47",
+      "address": "東京都渋谷区恵比寿南2-10-3",
+      "official_url": "http://post-books.info",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "MEM",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=121",
+      "address": "150–0013 東京都渋谷区恵比寿1–18–4 NADiff A/P/A/R/T 3F",
+      "official_url": "https://mem-inc.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "KATA",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=137",
+      "address": "東京都渋谷区東3-16-6 LIQUIDROOM 2F",
+      "official_url": "http://kata-gallery.net",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Koma gallery",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=157",
+      "address": "東京都目黒区三田1-12-25 金子ビル201",
+      "official_url": "https://www.komagallery.com/home",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "see you gallery",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=413",
+      "address": "東京都渋谷区広尾1-15-7 Style & Deco Bldg 2F",
+      "official_url": null,
+      "status": "no_official_url",
+      "reason": "Photo & Culture, Tokyoの会場詳細に公式URLの登録なし"
+    },
+    {
+      "name": "Hiroshige Cafe Gallery",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=160",
+      "address": "東京都渋谷区恵比寿南2丁目10-4 ART CUBE EBIS B1F",
+      "official_url": "https://hiroshige-gallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "America-Bashi Gallery",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=175",
+      "address": "東京都渋谷区恵比寿南 1-22-3",
+      "official_url": "https://americabashigallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "弘重ギャラリー",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=201",
+      "address": "渋谷区恵比寿南2丁目10-4 ART CUBE EBIS B1F",
+      "official_url": "https://hiroshige-gallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "galley ON THE HILL",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=264",
+      "address": "東京都渋谷区猿楽町18-8 ヒルサイドテラスF棟 1F",
+      "official_url": "https://www.galleryonthehill.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "代官山ヒルサイドフォーラム",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=298",
+      "address": "東京都渋谷区猿楽町18 ー8",
+      "official_url": "https://hillsideterrace.com/rental_space/683/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Gallery子の星",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=53",
+      "address": "東京都渋谷区代官山町13-8 キャッスルマンション113",
+      "official_url": "http://www.nenohoshi.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "代官山 蔦屋書店 2号館",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=347",
+      "address": "東京都渋谷区猿楽町16-15",
+      "official_url": "https://store.tsite.jp/daikanyama/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "SISON GALLERy",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=402",
+      "address": "東京都渋谷区猿楽町3-18",
+      "official_url": "https://sison.tokyo",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "AL",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=403",
+      "address": "東京都渋谷区恵比寿南3-7-17 KiKi Bldg.1F,2F",
+      "official_url": "https://al-tokyo.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "DAIKANYAMA GARAGE",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=419",
+      "address": "東京都目黒区中目黒1-3-12 アーバンリゾート代官山1-2F",
+      "official_url": "https://www.daikanyamastudio.jp/studio_space/daikanyama_garage/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "LOKO GALLERY",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=180",
+      "address": "東京都渋谷区鶯谷町12-6",
+      "official_url": "https://lokogallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "LURF GALLERY",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=441",
+      "address": "東京都渋谷区猿楽町28-13 Roob1-1F 2F",
+      "official_url": "https://lurfgallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "目黒区美術館",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=267",
+      "address": "東京都目黒区目黒2-4-36",
+      "official_url": "https://mmat.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Maruse b1 gallery",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=272",
+      "address": "東京都目黒区下目黒4-1-2 クリスタルビル1階",
+      "official_url": "https://shopmaruse.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "POETIC SCAPE",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=45",
+      "address": "東京都目黒区中目黒4-4-10 1F",
+      "official_url": "https://www.poetic-scape.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ふげん社",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=58",
+      "address": "東京都目黒区下目黒5-3-12",
+      "official_url": "https://fugensha.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Jam Photo Gallery",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=59",
+      "address": "東京都目黒区目黒2-8-7 鈴木ビル2F-B号室",
+      "official_url": "https://www.jamphotogallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Blitz Gallery",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=60",
+      "address": null,
+      "official_url": "https://www.blitz-gallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "金柑画廊",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=141",
+      "address": "東京都目黒区目黒4-26-7",
+      "official_url": "https://www.kinkangallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "LOWW",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=204",
+      "address": "東京都目黒区大岡山1-6-6",
+      "official_url": "https://www.loww.co.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ペーパープール",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=150",
+      "address": "東京都目黒区祐天寺2-16-10 たちばなビル",
+      "official_url": "https://paperpool.wixsite.com/paperpool",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Vacant/Centre",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=455",
+      "address": "東京都渋谷区元代々木町27−6",
+      "official_url": "https://www.vacant.vc",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "BOOK AND SONS",
+      "area": "東京・渋谷~目黒周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=214",
+      "address": "東京都目黒区鷹番2-13-3 キャトル鷹番",
+      "official_url": "https://bookandsons.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Cale",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=261",
+      "address": "東京港区東麻布3-4-6-1F",
+      "official_url": "http://cale.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "東京ステーションギャラリー",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=295",
+      "address": "東京都千代田区丸の内1-9-1",
+      "official_url": "https://www.ejrcf.or.jp/gallery/index.asp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "SELECT by BAYCREW'S",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=327",
+      "address": "東京都港区虎ノ門二丁目6番1号 虎ノ門ヒルズ ステーションタワー2F・3F",
+      "official_url": "https://www.toranomonhills.com/gourmet_shops/3643.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "三菱一号館美術館",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=370",
+      "address": "東京都千代田区丸の内2-6-2",
+      "official_url": "https://mimt.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "art cruise gallery by Baycrew’s",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=427",
+      "address": "東京都港区虎ノ門2-6-3 虎ノ門ヒルズステーションタワー 3F SELECT BY BAYCREW’S内",
+      "official_url": "https://artcruisegallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "TARO NASU",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=443",
+      "address": "東京都港区六本木6丁目6−9 ピラミデビル4F",
+      "official_url": "https://www.taronasugallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Yutaka Kikutake Gallery Roppongi(YKG)",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=453",
+      "address": "東京都港区六本木6-6-9 ピラミデビル 2F",
+      "official_url": "https://www.yutakakikutakegallery.com/ja/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "麻布台ヒルズギャラリー",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=458",
+      "address": "東京都港区虎ノ門5-8-1 麻布台ヒルズ ガーデンプラザA MB階",
+      "official_url": "https://www.azabudai-hills.com/azabudaihillsgallery/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "CLEAR GALLERY TOKYO",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=459",
+      "address": "東京都港区六本木7丁目18-8 2F",
+      "official_url": "https://cleargallerytokyo.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "森美術館",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=218",
+      "address": "東京都港区六本木6-10-1 六本木ヒルズ森タワー",
+      "official_url": "https://www.mori.art.museum/jp/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "GALLERY ETHER",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=242",
+      "address": "東京都港区西麻布3-24-19 山王商会西麻布ビルF1-B1F",
+      "official_url": "https://www.galleryether.com/ja",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "CADAN有楽町",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=245",
+      "address": "東京都千代田区有楽町1-10-1有楽町ビル1F",
+      "official_url": "https://cadan.org",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Gallery E&M nishiazabu",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=250",
+      "address": "東京都港区西麻布4-17-10",
+      "official_url": null,
+      "status": "no_official_url",
+      "reason": "Photo & Culture, Tokyoの会場詳細に公式URLの登録なし"
+    },
+    {
+      "name": "Yumiko Chiba Associates",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=133",
+      "address": "東京都港区六本木6-4-1 六本木ヒルズ ハリウッドビューティープラザ 3F",
+      "official_url": "http://ycassociates.co.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "国立新美術館",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=281",
+      "address": "東京都港区六本木7-22-2",
+      "official_url": "https://www.nact.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "KANA KAWANISHI PHOTOGRAPHY",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=283",
+      "address": "東京都港区西麻布2-7-5 ハウス西麻布 5F",
+      "official_url": "https://www.kanakawanishi.com/gallery",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "TOKYO NODE",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=284",
+      "address": "東京都港区虎ノ門2丁目6−2 ヒルズ ステーションタワ 8・45・46・49F",
+      "official_url": "https://www.tokyonode.jp/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Gallery & Restaurant 舞台裏",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=303",
+      "address": "東京都港区虎ノ門5-8-1 麻布台ヒルズ ガーデンプラザA B1F",
+      "official_url": "https://artsticker.app/butaiura",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "AXIS Gallery",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=163",
+      "address": "東京都港区六本木5-17-1 AXISビル",
+      "official_url": "https://center.axisinc.co.jp/floorguide/axisgallery/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリー・アートアンリミテッド",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=179",
+      "address": "東京都港区南青山1-26-4 六本木ダイヤビル3F",
+      "official_url": "http://www.artunlimited.co.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "フジフイルム スクエア",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=54",
+      "address": "東京都港区赤坂9丁目7-3 東京ミッドタウン・ウェスト1F",
+      "official_url": "http://fujifilmsquare.jp/guide/salon.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "PGI",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=55",
+      "address": "東京都港区東麻布2-3-4 TKBビル3F",
+      "official_url": "https://www.pgi.ac",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Taka Ishii Gallery(complex665)",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=114",
+      "address": "東京都港区六本木6-5-24 complex665 3F",
+      "official_url": "https://www.takaishiigallery.com/jp/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "タカ・イシイギャラリー フォトグラフィー / フィルム",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=56",
+      "address": "東京都港区六本木5-17-1 AXISビル2F",
+      "official_url": "https://www.takaishiigallery.com/jp/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "禅フォトギャラリー",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=57",
+      "address": "東京都港区六本木6-6-9 ピラミデビル208号室",
+      "official_url": "https://zen-foto.jp/jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "HIDA 東京ミッドタウン店",
+      "area": "東京・六本木周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=170",
+      "address": "東京都港区赤坂9-7-3 E0301 東京ミッドタウンガレリア3F",
+      "official_url": "https://hidasangyo.com/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ソノ アイダ#新有楽町",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=275",
+      "address": "東京都千代田区有楽町 1-12-1 新有楽町ビル1階 北側112区画",
+      "official_url": "https://sonoaida.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "AA",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=292",
+      "address": "東京都中央区日本橋兜町6-5 B1F-1F",
+      "official_url": "https://www.instagram.com/aa_kabutocho/",
+      "status": "social_only",
+      "reason": "登録URLがSNSのみ"
+    },
+    {
+      "name": "ネオ書房@ワンダー店",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=293",
+      "address": "東京都千代田区神田神保町2-5-4開拓社ビル @ワンダー2F",
+      "official_url": "https://jimbo20seiki.wixsite.com/jimbocho20c",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "PARK GALLERY",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=294",
+      "address": "東京都千代田区外神田3-5-20 1F / 3F",
+      "official_url": "https://park-tokyo.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "東條會舘写真研究所",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=313",
+      "address": "東京都千代田区麹町1-6-12",
+      "official_url": "https://www.instagram.com/tojo_kaikan_photo_lab/",
+      "status": "social_only",
+      "reason": "登録URLがSNSのみ"
+    },
+    {
+      "name": "髙島屋資料館TOKYO",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=316",
+      "address": "東京都中央区日本橋2-4-1 日本橋高島屋S.C.本館4階・5階",
+      "official_url": "https://www.takashimaya.co.jp/shiryokan/tokyo/exhibition/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "トーキョーアーツアンドスペース本郷",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=321",
+      "address": "東京都文京区本郷2-4-16",
+      "official_url": "https://www.tokyoartsandspace.jp/location/hongo.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "日本橋高島屋S.C.",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=339",
+      "address": "東京都中央区日本橋2丁目4−1",
+      "official_url": "https://www.takashimaya.co.jp/nihombashi/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "東京国立近代美術館",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=349",
+      "address": "東京都千代田区北の丸公園3-1",
+      "official_url": "https://www.momat.go.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "小津和紙 小津ギャラリー",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=356",
+      "address": "東京都中央区日本橋本町3-6-2 小津本館ビル",
+      "official_url": "https://www.ozuwashi.net/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "人形町ヴィジョンズ",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=359",
+      "address": "東京都中央区日本橋堀留町2-2-9ASビル1F",
+      "official_url": "https://visions.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "WAITINGROOM",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=361",
+      "address": "東京都文京区水道2-14-2長島ビル1F",
+      "official_url": "https://waitingroom.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "KOMIYAMA TOKYO G",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=384",
+      "address": "東京都千代田区神田小川町3-20-4 第2龍名館ビル",
+      "official_url": "https://www.komiyamatokyo-g.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "TOKYO BRIGHT GALLERY",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=136",
+      "address": "東京都千代田区内神田2-13-8 BMビル5F",
+      "official_url": "https://www.tokyobrightgallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "CALOTYPE PHOTO GALLERY",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=396",
+      "address": "東京都中央区東日本橋3丁目6-6 さつきビル3階",
+      "official_url": "https://www.calotype.jp/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Lomography+",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=146",
+      "address": "東京都千代田区外神田6-11-14 3331 Arts Chiyoda 102",
+      "official_url": "https://www.lomography.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "トーキョーアーツアンドスペース本郷",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=404",
+      "address": "東京都文京区本郷2-4-16",
+      "official_url": "https://www.tokyoartsandspace.jp/location/hongo.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリーCORSO",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=408",
+      "address": "東京都千代田区神田神保町3-1-6 日建ビル3F",
+      "official_url": "https://www.lithmatic.net/lithApCorso/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "KOSHA KOSHA AKIHABARA",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=428",
+      "address": "東京都千代田区東神田3-2-3 写真弘社 5F",
+      "official_url": "https://www.shashinkosha.co.jp/koshakosha",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "New Gallery",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=431",
+      "address": "東京都千代田区神田神保町一丁目28-1 mirio神保町 1階",
+      "official_url": "https://newgallery-tokyo.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "DNPプラザ",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=178",
+      "address": "東京都新宿区市谷田町1-14-1 DNP市谷田町ビル",
+      "official_url": "https://dnp-plaza.jp/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "小宮山書店",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=450",
+      "address": "東京都千代田区神田神保町1-7",
+      "official_url": "https://www.book-komiyama.co.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "PARCEL",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=451",
+      "address": "東京都中央区日本橋馬喰町2-2-1 DDD HOTEL 1F",
+      "official_url": "https://parceltokyo.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "GALLERY 2511",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=207",
+      "address": "東京都千代田区西神田2-5-11 出版輸送ビル3F",
+      "official_url": "https://gallery.2511.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "太郎平画廊",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=236",
+      "address": "東京都中央区日本橋本町一丁目7-12(有)太郎平 太郎平日本橋ビル",
+      "official_url": "https://tarohei-gallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "半蔵門ミュージアム",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=269",
+      "address": "東京都千代田区一番町25",
+      "official_url": "https://www.hanzomonmuseum.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "BUG",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=285",
+      "address": "東京都千代田区丸の内1-9-2 グラントウキョウサウスタワー1階",
+      "official_url": "https://bug.art",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "東京国立現代美術館",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=277",
+      "address": "千代田区北の丸公園3-1",
+      "official_url": "https://www.momat.go.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "AWAJI Gallery",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=300",
+      "address": "東京都千代田区神田淡路町2-4-6 エフアンドエフロイヤルビル1F",
+      "official_url": "https://awaji.tokyo/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "アイアイエーギャラリー",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=254",
+      "address": "東京都中央区日本橋小伝馬町17-5 7ビル1F",
+      "official_url": "https://iiagallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "エプサイトギャラリー(エプソンスクエア丸の内併設)",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=26",
+      "address": "東京都千代田区丸の内3-4-1 新国際ビル1F",
+      "official_url": "https://www.epson.jp/showroom/marunouchi/epsite/gallery/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "エプソンスクエア丸の内イノベーションギャラリー",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=147",
+      "address": "東京都千代田区丸の内3-4-1 新国際ビル1F",
+      "official_url": "https://www.epson.jp/showroom/marunouchi/innovationgallery/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Space2*3",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=35",
+      "address": "東京都中央区日本橋本町1-7-9",
+      "official_url": null,
+      "status": "no_official_url",
+      "reason": "Photo & Culture, Tokyoの会場詳細に公式URLの登録なし"
+    },
+    {
+      "name": "ルーニィ247ファインアーツ",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=36",
+      "address": "東京都中央区日本橋小伝馬町17-9 さとうビルB館4F",
+      "official_url": "https://www.roonee.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "MONO GRAPHY Camera & Art",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=161",
+      "address": "東京都中央区日本橋小伝馬町17-5 2F",
+      "official_url": "https://www.monography.shop",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "gallery bauhaus",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=37",
+      "address": "東京都千代田区外神田2丁目19-14-101",
+      "official_url": "http://www.gallery-bauhaus.com/top.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "神保町画廊",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=38",
+      "address": "東京都千代田区神田神保町1丁目41-7 安野ビル1F",
+      "official_url": "https://jinbochogarou.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "SUPER LABO STORE TOKYO",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=39",
+      "address": "東京都千代田区神田猿楽町1-4-11",
+      "official_url": "https://www.superlabostoretokyo.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Kiyoyuki Kuwabara AG",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=40",
+      "address": "東京都千代田区東神田1-2-11 アガタ竹澤ビル405 桑原清幸会計事務所内",
+      "official_url": "http://kkag.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Kanzan gallery",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=41",
+      "address": "東京都千代田区東神田1-3-4 KTビル2F",
+      "official_url": "http://www.kanzan-g.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ALTERNATIVE SPACE The White",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=42",
+      "address": "東京都千代田区猿楽町2-2-1 #202",
+      "official_url": "https://www.the-white-jp.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ピクトリコショップ&ギャラリー",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=52",
+      "address": "東京都墨田区横綱1-2-16 東誠ビル5F",
+      "official_url": "https://www.pictorico.jp/shop/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "JCIIフォトサロン",
+      "area": "東京・日本橋〜神田・神保町周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=65",
+      "address": "東京都千代田区一番町25番地 JCII 一番町ビル",
+      "official_url": "https://www.jcii-cameramuseum.jp/photosalon/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Amleteron",
+      "area": "東京・中野〜高円寺周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=335",
+      "address": "東京都杉並区高円寺北2-18-10",
+      "official_url": "http://amleteron.blogspot.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "バー鳥渡",
+      "area": "東京・中野〜高円寺周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=338",
+      "address": "東京都杉並区高円寺北2-4-8-2F",
+      "official_url": "https://barchotto.jimdofree.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "tata bookshop/gallery",
+      "area": "東京・中野〜高円寺周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=383",
+      "address": "東京都杉並区高円寺北2丁目38-15",
+      "official_url": "https://tata-books.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ケンコー・トキナーギャラリー",
+      "area": "東京・中野〜高円寺周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=301",
+      "address": "東京都中野区中野5-68-10 KT中野ビル2F",
+      "official_url": "https://www.kenko-tokina.co.jp/gallery/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリー街道",
+      "area": "東京・中野〜高円寺周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=66",
+      "address": "東京都中野区中野5丁目14-5 ハウスポートB1F",
+      "official_url": "http://kaidobooks.jimdo.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "東京工芸大学 写大ギャラリー",
+      "area": "東京・中野〜高円寺周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=67",
+      "address": "東京都中野区本町2-4-7 5号館(芸術情報館)2F",
+      "official_url": "http://www.shadai.t-kougei.ac.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "スタジオ35分",
+      "area": "東京・中野〜高円寺周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=68",
+      "address": "東京都中野区上高田5-47-8",
+      "official_url": "https://35fn.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリー冬青",
+      "area": "東京・中野〜高円寺周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=69",
+      "address": "東京都中野区中央5-18-20",
+      "official_url": "http://www.tosei-sha.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Sho+1",
+      "area": "東京・上野周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=463",
+      "address": "東京都台東区上野1−4−8 上野横山ビル1F",
+      "official_url": "https://shoplusone.com/gallery-top/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "東京都美術館",
+      "area": "東京・上野周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=280",
+      "address": "東京都台東区上野公園8-36",
+      "official_url": "https://www.tobikan.jp/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "国立西洋美術館",
+      "area": "東京・上野周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=290",
+      "address": "東京都台東区上野公園7番7号",
+      "official_url": "https://www.nmwa.go.jp/jp/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "東京国立博物館",
+      "area": "東京・上野周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=171",
+      "address": "東京都台東区上野公園13-9",
+      "official_url": "https://www.tnm.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ARTiX3",
+      "area": "東京・上野周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=229",
+      "address": "東京都台東区根岸3-13-1",
+      "official_url": "https://www.jca3.art",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "229gallery",
+      "area": "東京・上野周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=239",
+      "address": "東京都台東区台東4-24-2 B1F",
+      "official_url": "https://www.u-r-u.net",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "iwao gallery",
+      "area": "東京・上野周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=115",
+      "address": "東京都台東区蔵前2-1-27 2F (御蔵前通り)",
+      "official_url": "https://iwaogallery.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "AI KOKO GALLERY",
+      "area": "東京・上野周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=209",
+      "address": "東京都台東区竜泉1-19-12第二轟ビル601",
+      "official_url": "https://aikokogallery.tumblr.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "空蓮房",
+      "area": "東京・上野周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=219",
+      "address": "東京都台東区蔵前4-17-14 長応院内",
+      "official_url": "https://kurenboh.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "WHAT CAFE",
+      "area": "東京・品川・天王洲周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=297",
+      "address": "東京都品川区東品川2-1-11",
+      "official_url": "https://cafe.warehouseofart.org",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "KOTARO NUKAGA 天王洲",
+      "area": "東京・品川・天王洲周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=307",
+      "address": "東京都品川区東品川1-33-10 TERRADA Art Complex 3F",
+      "official_url": "https://kotaronukaga.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "KOSAKU KANECHIKA",
+      "area": "東京・品川・天王洲周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=322",
+      "address": "東京都品川区東品川1-33-10 TERRADA Art Complex 5F",
+      "official_url": "https://photoandculture-tokyo.com/kosakukanechika.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "YOD Gallery(東京・天王洲)",
+      "area": "東京・品川・天王洲周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=406",
+      "address": "東京都品川区東品川1-32-8 TERRADA ART COMPLEX II 3F",
+      "official_url": "http://www.yodgallery.com/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Tokyo International Gallery",
+      "area": "東京・品川・天王洲周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=442",
+      "address": "東京都品川区東品川1-32-8 TERRADA Art Complex II 2F",
+      "official_url": "https://tokyointernationalgallery.co.jp/ja/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ANOMALY",
+      "area": "東京・品川・天王洲周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=375",
+      "address": "東京都品川区東品川1-33-10 Terrada Art Complex I 4F",
+      "official_url": "http://anomalytokyo.com/top/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "キヤノンギャラリーS/オープンギャラリー1・2",
+      "area": "東京・品川・天王洲周辺",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=63",
+      "address": "東京都港区港南 2-16-6 CANON S TOWER 1F・2F",
+      "official_url": "https://cweb.canon.jp/gallery/s/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "江東区文化センター",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=266",
+      "address": "東京都江東区東陽4-11-3",
+      "official_url": "https://www.kcf.or.jp/koto/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "WISH LESS",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=310",
+      "address": "東京都北区田端5-12-10",
+      "official_url": "https://wish-less.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "aaploit",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=315",
+      "address": "東京都文京区水道2-19-2",
+      "official_url": "https://aaploit.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "トーキョーアーツアンドスペース レジデンシー",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=323",
+      "address": "東京都墨田区立川2-14-7-1F(オフィス501)",
+      "official_url": "https://www.tokyoartsandspace.jp/location/residency.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "OGU MAG+",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=326",
+      "address": "東京都荒川区東尾久4-24-7",
+      "official_url": "http://www.ogumag.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "東京芸術劇場",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=341",
+      "address": "東京都豊島区西池袋1-8-1",
+      "official_url": "https://www.geigeki.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "雑司ヶ谷 鬼子母神堂",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=345",
+      "address": "東京都豊島区雑司ヶ谷3-15-20",
+      "official_url": "https://www.kishimojin.jp/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "@btf",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=348",
+      "address": "東京都中央区勝どき2 -8 -19 近富ビル倉庫 3階・3B",
+      "official_url": "https://www.shopbtf.com/ ",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "世田谷文学館",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=352",
+      "address": "東京都世田谷区南烏山1-10-10",
+      "official_url": "https://www.setabun.or.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "YUKAI HANDS Gallery",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=373",
+      "address": "東京都文京区関口1-30-9 ユカイハンズ・ギャラリー",
+      "official_url": "https://www.yukaihands-gallery.net/110",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "S3 Gallery TOKYO",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=386",
+      "address": "​ 東京都豊島区雑司ヶ谷3−6−6 東興ビル103",
+      "official_url": "https://www.s3gallery.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "CAPSULE",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=145",
+      "address": "東京都世田谷区池尻2-7-12 B1F",
+      "official_url": "https://capsule-gallery.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "COPYCENTER GALLERY",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=407",
+      "address": "東京都板橋区板橋4丁目4−2 ミクニビル1F右",
+      "official_url": "https://copycenter.gallery",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "七軒長屋 元居酒屋「かずの子」",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=172",
+      "address": "東京都墨田区京島3-13-5",
+      "official_url": null,
+      "status": "no_official_url",
+      "reason": "Photo & Culture, Tokyoの会場詳細に公式URLの登録なし"
+    },
+    {
+      "name": "半山ギャラリー",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=173",
+      "address": "東京都世田谷区松原1-51-3 エトワール 3F",
+      "official_url": "https://banshangallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Diginner Gallery",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=429",
+      "address": "東京都目黒区自由が丘1-11-2",
+      "official_url": "https://diginner.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Gallery NIW",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=433",
+      "address": "東京都文京区関口1-44-8",
+      "official_url": "https://gallery-niw.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "TALION GALLERY",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=181",
+      "address": "東京都豊島区目白2-2-1 B1",
+      "official_url": "https://taliongallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "世田谷美術館",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=188",
+      "address": "世田谷区砧公園1-2",
+      "official_url": "https://www.setagayaartmuseum.or.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "青砥青写真研究所AOAOLAB.",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=446",
+      "address": "東京都葛飾区高砂1-12-13",
+      "official_url": "https://aoaolab2025.wixsite.com/aoao-lab",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "西武池袋本店",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=223",
+      "address": "東京都豊島区南池袋1-28-1",
+      "official_url": "https://www.sogo-seibu.jp/inf/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "THE NORTH FACE STANDARD 二子玉川",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=227",
+      "address": "東京都世田谷区玉川1-17-9 THE NORTH FACE",
+      "official_url": "https://www.instagram.com/tnf_standard_futakotamagawa/?hl=ja",
+      "status": "social_only",
+      "reason": "登録URLがSNSのみ"
+    },
+    {
+      "name": "INHERIT GALLERY",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=149",
+      "address": "東京都世田谷区下馬1-48−3",
+      "official_url": "http://inheritgallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "flotsam books",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=467",
+      "address": "東京都杉並区和泉1-10-7",
+      "official_url": "https://flotsambooks.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "encounter gallery",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=328",
+      "address": "東京都文京区小石川5-29-5 細木ビル2F",
+      "official_url": "https://encounter-gallery.curbon.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "nagaya paper lab",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=464",
+      "address": "東京都墨田区京島3-13-6",
+      "official_url": "https://www.nagayapaperlab.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "RABA[Rich & Busy Asakusa]",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=240",
+      "address": "東京都台東区浅草7-6-1",
+      "official_url": "https://www.instagram.com/raba_info/?hl=ja",
+      "status": "social_only",
+      "reason": "登録URLがSNSのみ"
+    },
+    {
+      "name": "M16 Gallery",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=164",
+      "address": "東京都江東区冬木22−32 森芳ビル 1階",
+      "official_url": "https://m16-gallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリー路草",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=165",
+      "address": "東京都豊島区南池袋2-25-5 藤久ビル東五号館14階",
+      "official_url": "http://gallery-michikusa.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "TURNER GALLERY",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=190",
+      "address": "東京都豊島区南長崎6-1-3 ターナー色彩株式会社東京支店",
+      "official_url": "http://turnergallery.net",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリーHANA下北沢",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=192",
+      "address": "東京都世田谷区北沢3-26-2",
+      "official_url": "https://www.g-hana.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "REMINDERS PHOTOGRAPHY STRONGHOLD",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=194",
+      "address": "〒131−0032 東京都墨田区東向島2-38-5",
+      "official_url": null,
+      "status": "no_official_url",
+      "reason": "Photo & Culture, Tokyoの会場詳細に公式URLの登録なし"
+    },
+    {
+      "name": "Monochrome Gallery RAIN",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=50",
+      "address": "東京都世田谷区池尻 3-6-9",
+      "official_url": "https://monochromegalleryrain.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "東京都庭園美術館",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=61",
+      "address": null,
+      "official_url": "https://www.teien-art-museum.ne.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "東京都現代美術館",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=62",
+      "address": "東京都江東区三好4-1-1(木場公園内)",
+      "official_url": "https://www.mot-art-museum.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ニコンミュージアム",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=162",
+      "address": "東京都港区港南2-15-3 品川インターシティC棟2F",
+      "official_url": "https://www.jp.nikon.com/company/corporate/museum/special/#optical_glass",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ぎゃらりーKnulp",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=70",
+      "address": "東京都文京区千駄木3-43-10 トウトクビル2 F",
+      "official_url": "https://gallery-knulp.biz",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ときの忘れもの",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=71",
+      "address": "東京都文京区本駒込5-4-1 LAS CASAS",
+      "official_url": "http://tokinowasuremono.com/index_j.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Alt_Medium",
+      "area": "東京・その他の23区内地域",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=72",
+      "address": "東京都新宿区下落合2-6-3 堀内会館1F",
+      "official_url": "https://altmedium.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "東京アートミュージアム",
+      "area": "東京・調布市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=212",
+      "address": "東京都調布市仙川町1-25-1",
+      "official_url": "http://www.tokyoartmuseum.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "みるめGallery",
+      "area": "東京・調布市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=213",
+      "address": "調布市布田 2-32-8",
+      "official_url": "http://mirume.com/gallery/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "三鷹市美術ギャラリー",
+      "area": "東京・三鷹市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=260",
+      "address": "東京都三鷹市下連雀3-35-1 CORALコラル5階",
+      "official_url": "https://mitaka-sportsandculture.or.jp/gallery/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "OLD/NEW SELECTBOOKSHOP 百年",
+      "area": "東京・三鷹市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=134",
+      "address": "東京都武蔵野市吉祥寺本町2-2-10 村田ビル2F",
+      "official_url": "http://www.100hyakunen.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "OLD/NEW SELECTBOOKSHOP 一日",
+      "area": "東京・三鷹市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=135",
+      "address": "東京都武蔵野市吉祥寺本町2-1-3 石上ビル1F",
+      "official_url": "http://www.100hyakunen.com/guide/ichinichi",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "book obscura",
+      "area": "東京・三鷹市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=73",
+      "address": "東京都三鷹市井の頭4-21-5 #103",
+      "official_url": "https://bookobscura.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "町田市立国際版画美術館",
+      "area": "東京・町田市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=167",
+      "address": "東京都町田市原町田4-28-1",
+      "official_url": "http://hanga-museum.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "町田市フォトサロン",
+      "area": "東京・町田市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=74",
+      "address": "東京都町田市野津田町3272 薬師池公園内",
+      "official_url": "https://phmuse.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ZEIT-FOTO kunitachi",
+      "area": "東京・国立市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=182",
+      "address": "東京都国立市中2-22-33",
+      "official_url": "https://www.zeit-foto.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Park!Park!Park!",
+      "area": "東京・小平市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=351",
+      "address": "東京都小平市たかの台43-7",
+      "official_url": "https://www.instagram.com/parkparkpark_spase/",
+      "status": "social_only",
+      "reason": "登録URLがSNSのみ"
+    },
+    {
+      "name": "津田塾大学 津田梅子記念交流館 山根記念ギャラリー",
+      "area": "東京・小平市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=169",
+      "address": "東京都小平市津田町2-1-1",
+      "official_url": "https://www.tsuda.ac.jp/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "武蔵野美術大学 美術館・図書館",
+      "area": "東京・小平市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=270",
+      "address": "東京都小平市小川町1-736",
+      "official_url": "https://mauml.musabi.ac.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "キチジョウジギャラリー",
+      "area": "東京・武蔵野市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=243",
+      "address": "東京都三鷹市井の頭3-32-16 セブンスターマンション105",
+      "official_url": "http://kichijojigallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "茅スタジオ",
+      "area": "東京・西東京市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=437",
+      "address": "東京都西東京市西原町5丁目3−28 パルシオ西原 1-101",
+      "official_url": "https://www.boustudio.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "そごう美術館",
+      "area": "神奈川・横浜市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=308",
+      "address": "神奈川県横浜市西区高島2-18-1 そごう横浜店6階",
+      "official_url": "https://www.sogo-seibu.jp/common/museum/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "GALLERY SHIMIZU",
+      "area": "神奈川・横浜市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=124",
+      "address": "神奈川県横浜市中区長者町5-84 三共横浜ビル",
+      "official_url": "http://frame-shimizu.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "PlaceM Yokohama",
+      "area": "神奈川・横浜市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=139",
+      "address": "神奈川県横浜市神奈川区上反町2-17-2",
+      "official_url": "https://placem.yokohama",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "BankART Station",
+      "area": "神奈川・横浜市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=154",
+      "address": "神奈川県横浜市西区みなとみらい5-1 新高島駅B1F",
+      "official_url": "http://www.bankart1929.com/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "横浜美術館",
+      "area": "神奈川・横浜市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=415",
+      "address": "神奈川県横浜市西区みなとみらい3-4-1",
+      "official_url": "https://yokohama.art.museum",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "横浜開港資料館",
+      "area": "神奈川・横浜市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=198",
+      "address": "神奈川県横浜市中区日本大通3",
+      "official_url": null,
+      "status": "no_official_url",
+      "reason": "Photo & Culture, Tokyoの会場詳細に公式URLの登録なし"
+    },
+    {
+      "name": "ギャラリーフォレスト",
+      "area": "神奈川・横浜市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=128",
+      "address": "神奈川県横浜市港北区箕輪町2-2-32",
+      "official_url": "https://tcp.ac.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "IMAGING GALLERY GLEAM",
+      "area": "神奈川・横浜市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=208",
+      "address": "神奈川県横浜市港北区日吉2丁目2-14 一階",
+      "official_url": "http://www.takumichi-seo.com/gleam.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "横浜市民ギャラリー",
+      "area": "神奈川・横浜市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=75",
+      "address": "神奈川県横浜市西区宮崎町26番地1",
+      "official_url": "https://ycag.yafjp.org",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "みなとみらいギャラリー",
+      "area": "神奈川・横浜市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=76",
+      "address": "神奈川県横浜市西区みなとみらい2-3-5 クイーンズスクエア横浜クイーンモール2F",
+      "official_url": "https://www.mmgallery.jp/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "HUG FOR_.",
+      "area": "神奈川・鎌倉市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=343",
+      "address": "神奈川県鎌倉市由比ヶ浜1-1-29今小路ビル2F",
+      "official_url": "https://www.hugfor.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "神奈川県立近代美術館 鎌倉別館",
+      "area": "神奈川・鎌倉市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=118",
+      "address": "神奈川県鎌倉市雪ノ下2-8-1",
+      "official_url": "http://www.moma.pref.kanagawa.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "彫刻の森美術館(THE HAKONE OPEN-AIR MUSEUM)",
+      "area": "神奈川・足柄下郡",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=265",
+      "address": "神奈川県足柄下郡箱根町ニノ平1121",
+      "official_url": "https://www.hakone-oam.or.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ポーラ美術館",
+      "area": "神奈川・足柄下郡",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=151",
+      "address": "神奈川県足柄下郡箱根町仙石原小塚山1285",
+      "official_url": "https://www.polamuseum.or.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "カラボギャラリー",
+      "area": "神奈川・厚木市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=197",
+      "address": "神奈川県厚木市飯山1583 東京工芸大学厚木キャンパス12号館2階",
+      "official_url": "https://www.color.t-kougei.ac.jp/gallery/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "神奈川県立近代美術館 葉山",
+      "area": "神奈川・三浦郡",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=251",
+      "address": "神奈川県三浦郡葉山町一色2208-1",
+      "official_url": "http://www.moma.pref.kanagawa.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "相模原市民ギャラリー",
+      "area": "神奈川・相模原市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=200",
+      "address": "神奈川県相模原市中央区相模原1-1-3 セレオ相模原4階",
+      "official_url": "https://www.city.sagamihara.kanagawa.jp/kankou/bunka/1022300/gallery/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "茅ヶ崎市美術館",
+      "area": "神奈川・茅ヶ崎市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=466",
+      "address": "神奈川県茅ヶ崎市東海岸北1-4-45 (市立図書館隣り・高砂緑地内)",
+      "official_url": "https://www.chigasaki-museum.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "千葉県立美術館",
+      "area": "千葉・千葉市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=445",
+      "address": "千葉市中央区中央港1丁目10-1",
+      "official_url": "https://www.chiba-muse.or.jp/ART/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "千葉市美術館",
+      "area": "千葉・千葉市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=226",
+      "address": "千葉県千葉市中央区中央3-10-8",
+      "official_url": "https://www.ccma-net.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Atelier T",
+      "area": "千葉・千葉市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=334",
+      "address": "千葉市若葉区小倉町882-14",
+      "official_url": "https://www.atelier-t.info",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Art Gallery Café 茶々華",
+      "area": "千葉・市川市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=116",
+      "address": "千葉県市川市鬼高2-9-13 TALE COURT 下総中山1F",
+      "official_url": "https://chachaka-cafe.com/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "DIC川村記念美術館",
+      "area": "千葉・佐倉市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=77",
+      "address": "千葉県佐倉市坂戸631",
+      "official_url": "https://kawamura-museum.dic.co.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "artstudio NAZUKARI WAREHOUSE",
+      "area": "千葉・流山市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=241",
+      "address": "千葉県流山市名都借 827-3 名都借倉庫 2F",
+      "official_url": "http://www.nazukariwarehouse.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "オーエンス八千代市民ギャラリー",
+      "area": "千葉・八千代市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=259",
+      "address": "千葉県八千代市村上2510",
+      "official_url": "https://www.yachiyo-library-gallery.jp/gallery/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "市原湖畔美術館",
+      "area": "千葉・市原市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=318",
+      "address": "千葉県市原市不入 75-1",
+      "official_url": "https://lsm-ichihara.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "そごう大宮店",
+      "area": "埼玉・さいたま市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=187",
+      "address": "埼玉県さいたま市大宮区桜木町1-6-2",
+      "official_url": "https://www.sogo-seibu.jp/omiya/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "さいたま市 プラザノースギャラリー",
+      "area": "埼玉・さいたま市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=253",
+      "address": "埼玉県さいたま市北区宮原町1-852-1",
+      "official_url": "https://www.plazanorth.jp/facilities/gallery.php",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "角川武蔵野ミュージアム",
+      "area": "埼玉・所沢市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=155",
+      "address": "埼玉県所沢市東所沢和田3-31-3",
+      "official_url": "https://kadcul.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ECHO GALLERY",
+      "area": "埼玉・本庄市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=344",
+      "address": "埼玉県本庄市早稲田の杜4−2−2 bamils 1F B号室",
+      "official_url": "https://www.echogallery.jp/shop/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Leofoto/Summit Creative SHOWROOM",
+      "area": "埼玉・川口市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=425",
+      "address": "埼玉県川口市西川口3-33-29 NWビル2F",
+      "official_url": "https://widetrade.jp/topics/leofotoショールームのご案内/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "川口市立美術館",
+      "area": "埼玉・川口市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=472",
+      "address": "埼玉県川口市川口3丁目1−2",
+      "official_url": "https://kawaguchi-moa.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "足利市立美術館",
+      "area": "栃木・足利市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=78",
+      "address": "栃木県足利市通2丁目14-7",
+      "official_url": "http://www.watv.ne.jp/~ashi-bi/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "書肆ひるね",
+      "area": "栃木・宇都宮市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=271",
+      "address": "栃木県宇都宮市中戸祭1-5-4",
+      "official_url": "https://www.instagram.com/hirune.books/",
+      "status": "social_only",
+      "reason": "登録URLがSNSのみ"
+    },
+    {
+      "name": "茨城県近代美術館",
+      "area": "茨城・水戸市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=299",
+      "address": "茨城県水戸市千波町東久保666-1",
+      "official_url": "https://www.modernart.museum.ibk.ed.jp/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "大川美術館",
+      "area": "群馬・桐生市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=342",
+      "address": "群馬県桐生市小曾根町3-69",
+      "official_url": "http://okawamuseum.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "タカ・イシイギャラリー前橋",
+      "area": "群馬・前橋市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=233",
+      "address": "群馬県前橋市千代田町5-9-1まえばしガレリア1F",
+      "official_url": "https://www.takaishiigallery.com/jp/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "rin art association",
+      "area": "群馬・高崎市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=411",
+      "address": "群馬県高崎市岩押町5-24マクロビル",
+      "official_url": "https://rinartassociation.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "池田記念美術館",
+      "area": "新潟・南魚沼市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=311",
+      "address": "新潟県南魚沼市浦佐5493-3 八色の森公園内",
+      "official_url": "http://www.ikedaart.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "砂丘館",
+      "area": "新潟・新潟市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=374",
+      "address": "新潟県新潟市中央区西大畑町5218-1",
+      "official_url": "https://www.sakyukan.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ミュゼふくおかカメラ館",
+      "area": "富山・高岡市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=81",
+      "address": "富山県高岡市福岡町福岡新559番地",
+      "official_url": "https://www.camerakan.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "IACK",
+      "area": "石川・金沢市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=448",
+      "address": null,
+      "official_url": "https://photoandculture-tokyo.com/ https:/www.iack.online",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "中村キース・ヘリング美術館",
+      "area": "山梨・北杜市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=232",
+      "address": "山梨県北杜市小淵沢町10249-7",
+      "official_url": "https://www.nakamura-haring.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "清里フォトアートミュージアム",
+      "area": "山梨・北杜市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=80",
+      "address": "山梨県北杜市高根町清里3545-1222",
+      "official_url": "https://www.kmopa.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "FUJIHIMURO",
+      "area": "山梨・富士吉田市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=256",
+      "address": "山梨県富士吉田市富士見1-1-5",
+      "official_url": "https://you-fujiyoshida.jp/fujihimuro",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "茅野市民館/茅野市美術館",
+      "area": "長野・茅野市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=82",
+      "address": "長野県茅野市塚原1丁目1番1号",
+      "official_url": "http://www.chinoshiminkan.jp/museum/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "長野県立美術館",
+      "area": "長野・松本市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=358",
+      "address": "長野県長野市箱清水1-4-4(城山公園内・善光寺東隣)",
+      "official_url": "https://nagano.art.museum",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "信毎メディアガーデン",
+      "area": "長野・松本市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=140",
+      "address": "長野県松本市中央2-20-2",
+      "official_url": "https://www.shinmai-mediagarden.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "art cocoonみらい",
+      "area": "長野・千曲市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=237",
+      "address": "長野県千曲市土口378-1",
+      "official_url": "https://www.artcocoon.com/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "BLUE HOUSE STUDIO",
+      "area": "長野・東筑摩郡",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=409",
+      "address": "長野県東筑摩郡朝日村針尾1037-6",
+      "official_url": "https://www.instagram.com/studio_blue_house/",
+      "status": "social_only",
+      "reason": "登録URLがSNSのみ"
+    },
+    {
+      "name": "長野県伊那文化会館",
+      "area": "長野・伊那市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=421",
+      "address": "長野県伊那市西町5776",
+      "official_url": "https://inabun.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "静岡市美術館",
+      "area": "静岡・静岡市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=263",
+      "address": "静岡県静岡市葵区紺屋町17-1 葵タワー3F",
+      "official_url": "https://shizubi.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "フェルケール博物館",
+      "area": "静岡・静岡市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=410",
+      "address": "静岡県静岡市清水区港町-8−11",
+      "official_url": "https://www.verkehr-museum.jp/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "リバーブックス",
+      "area": "静岡・沼津市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=426",
+      "address": "静岡県沼津市下本町34",
+      "official_url": "https://www.instagram.com/riverbooks_numazu/",
+      "status": "social_only",
+      "reason": "登録URLがSNSのみ"
+    },
+    {
+      "name": "BD Gallery",
+      "area": "愛知・名古屋市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=142",
+      "address": "愛知県名古屋市中区大須3-23-24 blues dress L'ESPRIT NOUVEAU 2F",
+      "official_url": "https://www.instagram.com/bd_gallery_japan/",
+      "status": "social_only",
+      "reason": "登録URLがSNSのみ"
+    },
+    {
+      "name": "名古屋市美術館",
+      "area": "愛知・名古屋市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=438",
+      "address": "名古屋市中区栄二丁目17番25号(芸術と科学の杜・白川公園内)",
+      "official_url": "https://art-museum.city.nagoya.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "PHOTO GALLERY FLOW NAGOYA",
+      "area": "愛知・名古屋市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=465",
+      "address": "愛知県名古屋市中村区名駅4丁目16-24 名駅前東海ビル2F 207号A号室",
+      "official_url": "https://www.photo260nagoya.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "C7C gallery and shop",
+      "area": "愛知・名古屋市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=302",
+      "address": "名古屋市千種区千種2-13-21 2F",
+      "official_url": "https://c7c.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "富士フイルムフォトサロン名古屋",
+      "area": "愛知・名古屋市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=83",
+      "address": "愛知県名古屋市中区栄1丁目12-17 富士フイルム名古屋ビル1F",
+      "official_url": "https://www.fujifilm.co.jp/photosalon/nagoya/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "滋賀県立美術館",
+      "area": "滋賀・大津市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=246",
+      "address": "滋賀県大津市瀬田南大萱町1740-1",
+      "official_url": "https://www.shigamuseum.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ハイド記念館",
+      "area": "滋賀・近江八幡市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=395",
+      "address": "滋賀県近江八幡市市井町177",
+      "official_url": "https://www.vories.ac.jp/facilities/hyde-kinenkan/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "SHIJOHAN",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=340",
+      "address": "京都府京都市下京区高辻西洞院町801-7",
+      "official_url": "https://shijohan.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "立命館国際平和ミュージアム",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=360",
+      "address": "京都府京都市北区等持院北町56-1",
+      "official_url": "https://rwp-museum.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "MtK Contemporary Art",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=381",
+      "address": "京都府京都市左京区岡崎南御所町20-1",
+      "official_url": "https://mtkcontemporaryart.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "RPS京都分室パプロル",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=382",
+      "address": "京都府京都市上京区老松町603",
+      "official_url": "https://reminders-project.org/rps/ja/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "PURPLE",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=127",
+      "address": "京都府京都市中京区式阿弥町122-1 式阿弥町ビル 3階",
+      "official_url": "https://purple-purple.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Photo Gallery &Photobooks Cafe 芥",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=387",
+      "address": "京都府京都市上京区笹屋町3丁目602-2",
+      "official_url": null,
+      "status": "no_official_url",
+      "reason": "Photo & Culture, Tokyoの会場詳細に公式URLの登録なし"
+    },
+    {
+      "name": "便利堂コロタイプギャラリー",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=390",
+      "address": "京都府京都市中京区弁財天町302",
+      "official_url": "https://www.benrido.co.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "HRDファインアート",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=391",
+      "address": "京都府京都市上京区上御霊竪町494-1",
+      "official_url": "https://hrdfineart.com/top.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "何必館・京都現代美術館",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=392",
+      "address": "京都府京都市東山区祇園町北側271",
+      "official_url": "http://www.kahitsukan.or.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "瑞雲庵",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=397",
+      "address": "京都府京都市北区上賀茂南大路町62-1",
+      "official_url": "https://www.n-foundation.or.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "OM Art×Music",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=398",
+      "address": "京都府京都市下京区東塩小路町735-3 ENTERTAINMENT HUB KYOTO 8F/RF",
+      "official_url": "https://om-kyoto.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "美術館「えき」KYOTO",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=399",
+      "address": "京都府京都市下京区烏丸通塩小路下ル東塩小路町 ジェイアール京都伊勢丹7階隣接",
+      "official_url": "https://www.mistore.jp/store/kyoto/museum.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "node hotel",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=422",
+      "address": "京都市中京区四条西洞院上ル蟷螂山町 461",
+      "official_url": "https://nodehotel.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "風光 huko",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=432",
+      "address": "京都市左京区岡崎西福ノ川町22−21",
+      "official_url": "https://www.huko.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "タカ・イシイギャラリー 京都(Taka Ishii Gallery Kyoto)",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=222",
+      "address": "京都府京都市下京区矢田町123",
+      "official_url": "https://www.takaishiigallery.com/jp/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "丗|SEI",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=189",
+      "address": "京都市左京区",
+      "official_url": "https://www.water-and-art.com/丗-sei",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリー・マロニエ",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=282",
+      "address": "京都市中京区河原町通四条上る塩屋町332",
+      "official_url": "http://www.gallery-maronie.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "galleryMain",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=193",
+      "address": "京都市下京区麩屋町通五条上ル下鱗形町543-2F",
+      "official_url": "https://gallerymain.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "京都写真美術館 ギャラリー・ジャパネスク",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=84",
+      "address": "京都府京都市東山区堀池町374-2",
+      "official_url": "https://kyoto-muse.jp/japanesque/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "AMS写真館",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=113",
+      "address": "京都府京都市中京区西ノ京銅駝町48 A'BOX",
+      "official_url": "https://www.amsnet.co.jp/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ライカギャラリー京都",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=85",
+      "address": "京都府京都市東山区祇園町南側570-120",
+      "official_url": "https://jp.leica-camera.com/世界のライカギャラリ―/ライカギャラリー京都/About-us-Gallery-Kyoto",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリー古都",
+      "area": "京都・京都市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=86",
+      "address": "京都府京都市中京区河原町通蛸薬師東側塩屋町327 三條サクラヤビル6F",
+      "official_url": "http://gallerykoto.web.fc2.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Nadar / KYOTO OYAMAZKI",
+      "area": "京都・乙訓郡",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=148",
+      "address": "京都府乙訓郡大山崎町大山崎鏡田45-28",
+      "official_url": "https://g-nadar.net/oyamazaki/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "HILL TOP GALLERY / LAB",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=368",
+      "address": "大阪府大阪市中央区南船場2丁目6-22 心斎橋ギャラリービル 5F",
+      "official_url": "https://hilltopgallerylab.com/index.html ",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリー二等車",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=417",
+      "address": "大阪府大阪市西成区花園南1-11-4 カエルハウス天下茶屋 1階",
+      "official_url": null,
+      "status": "no_official_url",
+      "reason": "Photo & Culture, Tokyoの会場詳細に公式URLの登録なし"
+    },
+    {
+      "name": "大阪府立江之子島文化芸術創造センター",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=439",
+      "address": "大阪市西区江之子島2丁目1番34号",
+      "official_url": "https://www.enokojima-art.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "大阪中之島美術館",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=215",
+      "address": "大阪府大阪市北区中之島4-3-1",
+      "official_url": "https://nakka-art.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "美術古書&ギャラリー りーちあーと",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=447",
+      "address": "大阪府大阪市北区芝田1丁目1−3 阪急三番街 阪急古書のまち",
+      "official_url": "https://riichiart.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "富士フイルムフォトサロン大阪",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=88",
+      "address": "大阪府大阪市中央区本町2-5-7 メットライフ本町スクエア(旧 大阪丸紅ビル)1F",
+      "official_url": "https://www.fujifilm.co.jp/photosalon/osaka/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "富士フイルムイメージングプラザ大阪",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=89",
+      "address": "大阪府大阪市中央区難波2-2-3 御堂筋グランドビル2F",
+      "official_url": "https://imagingplaza.fujifilm.com/osaka/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ニコンプラザ大阪 THE GALLERY",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=90",
+      "address": "大阪府大阪市中央区博労町3-5-1 御堂筋グランタワー17F",
+      "official_url": "https://www.nikon-image.com/activity/exhibition/thegallery/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "キヤノンギャラリー大阪",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=91",
+      "address": "大阪府大阪市北区中之島3-2-4 中之島フェスティバルタワー・ウエスト1F",
+      "official_url": "https://cweb.canon.jp/gallery/schedule/osaka.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "国立国際美術館",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=94",
+      "address": "大阪府大阪市北区中之島4-2-55",
+      "official_url": "https://www.nmao.go.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "The Third Gallery Aya",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=95",
+      "address": "大阪府大阪市西区江戸堀1-8-24 若狭ビル2F",
+      "official_url": "http://www.thethirdgalleryaya.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリー・ソラリス",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=96",
+      "address": "大阪府大阪市中央区南船場3-2-6 大阪農林会館B1F",
+      "official_url": "https://solaris-g.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "壹燈舎",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=97",
+      "address": "大阪府大阪市中央区南船場2-6-21 グラン・ビルド心斎橋301号",
+      "official_url": "http://ittosha.server-shared.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Gallery LimeLight",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=98",
+      "address": "大阪府大阪市住吉区帝塚山中4-1-4",
+      "official_url": "http://gallerylimelight.web.fc2.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "BE=Lab&Gallery",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=99",
+      "address": "大阪府大阪市中央区東高麗橋2-28 コジマビル2F",
+      "official_url": "https://be-lab-gallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ギャラリー・アビィ",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=100",
+      "address": "大阪府大阪市中央区南船場2丁目2-28 順慶ビル212号室",
+      "official_url": "https://g-avi.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ピルゼンギャラリー",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=101",
+      "address": "大阪府大阪市中央区心斎橋筋1-3-15",
+      "official_url": "http://piruzen-g.la.coocan.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "PANTALOON",
+      "area": "大阪・大阪市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=255",
+      "address": "大阪府大阪市北区中津3-17-14",
+      "official_url": "http://www.pantaloon.org",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "豊中市民ギャラリー",
+      "area": "大阪・豊中市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=125",
+      "address": "大阪府豊中市本町1-1-5",
+      "official_url": "http://www.toyonaka-hall.jp/gallery/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "galerie SPUR",
+      "area": "大阪・豊中市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=456",
+      "address": "大阪府豊中市服部元町1-2-9",
+      "official_url": "https://www.galerie-spur.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "gallery176",
+      "area": "大阪・豊中市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=102",
+      "address": "大阪府豊中市服部元町1-6-1",
+      "official_url": "https://176.photos",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "G&S 根雨",
+      "area": "大阪・豊中市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=103",
+      "address": "大阪府豊中市服部元町1-6-1-1F",
+      "official_url": "https://www.gsneu.info",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "T Room&gallery R",
+      "area": "大阪・高槻市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=104",
+      "address": "大阪府高槻市芥川町2-17-4 トエル1F",
+      "official_url": "https://www.troom-r.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "堺市立文化館(堺アルフォンス・ミュシャ館)",
+      "area": "大阪・堺市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=196",
+      "address": "堺市堺区田出井町1-2-200 ベルマージュ堺弐番館2F~4F",
+      "official_url": "https://mucha.sakai-bunshin.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "兵庫県立美術館",
+      "area": "兵庫・神戸市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=276",
+      "address": "兵庫県神戸市中央区脇浜海岸通1-1-1(HAT神戸内)",
+      "official_url": "https://www.artm.pref.hyogo.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "神戸ファッション美術館",
+      "area": "兵庫・神戸市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=156",
+      "address": "神戸市東灘区向洋町中2-9-1",
+      "official_url": "https://www.fashionmuseum.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "THE BOOK END",
+      "area": "兵庫・神戸市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=454",
+      "address": "兵庫県神戸市中央区海岸通3-1-5海岸ビルヂング 302",
+      "official_url": "https://the-book-end.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "フォトカフェ",
+      "area": "兵庫・神戸市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=105",
+      "address": "兵庫県神戸市中央区元町通4丁目5-15",
+      "official_url": "http://www.eonet.ne.jp/~photocafe/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "あさご芸術の森美術館",
+      "area": "兵庫・朝来市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=206",
+      "address": "兵庫県朝来市多々良木739-3",
+      "official_url": "http://www.city.asago.hyogo.jp/category/2-7-1-0-0.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "MOMENT Contemporary Art Center",
+      "area": "奈良・奈良市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=470",
+      "address": "奈良県奈良市三条町484-1-1 マルシンビル1F",
+      "official_url": "https://momentcac.jp/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "入江泰吉記念奈良市写真美術館",
+      "area": "奈良・奈良市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=87",
+      "address": "奈良県奈良市高畑町600-1",
+      "official_url": "http://irietaikichi.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "PhotoGallery165",
+      "area": "三重・名張市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=205",
+      "address": "三重県名張市鴻之台4-18 タウニービッグトゥモロー103",
+      "official_url": "https://www.photogallery165.org",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "gallery0369",
+      "area": "三重・津市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=278",
+      "address": "三重県津市美里町三郷369番地",
+      "official_url": "https://gallery0369.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "かまどの下の灰までgallery",
+      "area": "和歌山・和歌山市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=319",
+      "address": "和歌山県和歌山市元博労町29",
+      "official_url": "https://www.instagram.com/kamashita.g",
+      "status": "social_only",
+      "reason": "登録URLがSNSのみ"
+    },
+    {
+      "name": "塩谷定好写真記念館",
+      "area": "鳥取・東伯郡",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=106",
+      "address": "鳥取県東伯郡琴浦町赤碕1568",
+      "official_url": "http://teiko.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "植田正治写真美術館",
+      "area": "鳥取・西伯郡",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=107",
+      "address": "鳥取県西伯郡伯耆町須村353-3",
+      "official_url": "https://www.houki-town.jp/ueda/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "ループハウス",
+      "area": "島根・松江市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=184",
+      "address": "島根県松江市松江袖師町10-32",
+      "official_url": null,
+      "status": "no_official_url",
+      "reason": "Photo & Culture, Tokyoの会場詳細に公式URLの登録なし"
+    },
+    {
+      "name": "島根県立美術館",
+      "area": "島根・松江市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=108",
+      "address": "島根県松江市袖師町1-5",
+      "official_url": "https://www.shimane-art-museum.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Cafe and Gallery鐘や・K gallery",
+      "area": "島根・飯石郡",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=291",
+      "address": "島根県飯石郡飯南町野萱805",
+      "official_url": "https://kaneya-cafegallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "隠岐の島町図書館",
+      "area": "島根・隠岐郡",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=217",
+      "address": "島根県隠岐郡隠岐の島町西町吉田",
+      "official_url": "https://www.town.okinoshima.shimane.jp/www/genre/1427787223504/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "岡山県立美術館",
+      "area": "岡山・岡山市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=129",
+      "address": "岡山市北区天神町8-48",
+      "official_url": "https://okayama-kenbi.info",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "Gallery722",
+      "area": "岡山・岡山市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=228",
+      "address": "岡山県岡山市東区吉井208",
+      "official_url": "https://ameblo.jp/whitegarden722/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "gallery fixa",
+      "area": "岡山・勝田郡",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=355",
+      "address": "岡山県勝田郡奈義町中島西39-1",
+      "official_url": "https://www.gallery-fixa.com/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "gallery G",
+      "area": "広島・広島市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=388",
+      "address": "広島県広島市中区上八丁堀4-1公開空地内",
+      "official_url": "https://gallery-g.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "本と自由",
+      "area": "広島・広島市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=186",
+      "address": "広島県広島市西区横川町3丁目4−14",
+      "official_url": "https://www.facebook.com/profile.php?id=100064780143975",
+      "status": "social_only",
+      "reason": "登録URLがSNSのみ"
+    },
+    {
+      "name": "広島市現代美術館",
+      "area": "広島・広島市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=221",
+      "address": "広島県広島市南区比治山公園1-1",
+      "official_url": "https://www.hiroshima-moca.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "MARÜTE GALLERY",
+      "area": "香川・高松市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=109",
+      "address": "香川県高松市北浜町3-2 北浜alley-j",
+      "official_url": "http://book-marute.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "丸亀市猪熊弦一郎現代美術館",
+      "area": "香川・丸亀市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=225",
+      "address": "香川県丸亀市浜町80-1",
+      "official_url": "https://www.mimoca.org/ja/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "愛媛県美術館",
+      "area": "愛媛・愛媛市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=367",
+      "address": "愛媛県松山市堀之内",
+      "official_url": "https://www.ehime-art.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "高知県立美術館",
+      "area": "高知・高知市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=177",
+      "address": "高知県高知市高須353-2",
+      "official_url": null,
+      "status": "no_official_url",
+      "reason": "Photo & Culture, Tokyoの会場詳細に公式URLの登録なし"
+    },
+    {
+      "name": "すさきまちかどギャラリー/旧三浦邸",
+      "area": "高知・須崎市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=336",
+      "address": "高知県須崎市青木町1−16",
+      "official_url": "https://machikado-gallery.com/event/exhibition/『i-can-see-you』/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "OVERGROUND",
+      "area": "福岡・福岡市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=273",
+      "address": "郵便812-0017 福岡県福岡市博多区美野島1-17-5 寿ビル2階",
+      "official_url": "https://overground.asia",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "九州産業大学美術館",
+      "area": "福岡・福岡市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=320",
+      "address": "福岡県福岡市東区松香台2-3-1",
+      "official_url": "https://www.kyusan-u.ac.jp/ksumuseum/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "アートスペース獏",
+      "area": "福岡・福岡市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=353",
+      "address": "福岡県福岡市中央区天神3丁目4−14",
+      "official_url": "http://www.artspacebaku.net/wiki/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "YUGEN Gallery FUKUOKA",
+      "area": "福岡・福岡市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=416",
+      "address": "福岡県福岡市中央区大名2-1-4 ステージ1西通り4F",
+      "official_url": "https://yugen-gallery.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "dongbaek",
+      "area": "福岡・福岡市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=462",
+      "address": "福岡県福岡市城南区別府7-1-12-102",
+      "official_url": "https://dongbaek25.com",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "LIBRIS KOBACO",
+      "area": "福岡・福岡市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=286",
+      "address": "福岡県福岡市中央区大手門3丁目2−26 田中ビル 401",
+      "official_url": "http://libris-kobaco.com/index.html",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "直方谷尾美術館",
+      "area": "福岡・直方市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=461",
+      "address": "福岡県直方市殿町10-35",
+      "official_url": "https://yumenity.com/nogata-tanio-art-museum/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "長崎県美術館",
+      "area": "長崎・長崎市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=111",
+      "address": null,
+      "official_url": "http://www.nagasaki-museum.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "下関市立美術館",
+      "area": "山口・下関",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=122",
+      "address": "山口県下関市長府黒門東町1-1",
+      "official_url": "https://www.city.shimonoseki.lg.jp/site/art/",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "那覇文化芸術劇場なはーと",
+      "area": "沖縄・那覇市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=166",
+      "address": "沖縄県那覇市久茂地3-26-27 那覇文化芸術劇場なはーと 1階 劇場事務所",
+      "official_url": "https://www.nahart.jp",
+      "status": "official_website",
+      "reason": null
+    },
+    {
+      "name": "那覇市民ギャラリー",
+      "area": "沖縄・那覇市",
+      "detail_url": "https://photoandculture-tokyo.com/gallerydet.php?i=257",
+      "address": "沖縄県那覇市久茂地1丁目1番1号 パレットくもじ6F",
+      "official_url": "https://naha-palette.jp/gallery/",
+      "status": "official_website",
+      "reason": null
+    }
+  ]
+}

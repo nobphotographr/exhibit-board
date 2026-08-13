@@ -37,11 +37,14 @@ GitHub ActionsでXを毎日06:17（日本時間）に取得します。公開リ
 
 ## Official venue sites
 
-公式サイトは1日1回だけ取得します。現在の対象はフジフイルム スクエア、キヤノンギャラリー、
-Sony Imaging Gallery、JCIIフォトサロンです。
+公式サイトは1日1回だけ取得します。メーカー系会場、美術館、独立系ギャラリーなどの専用収集に加え、
+Photo & Culture, Tokyoの開催一覧を会場発見用のインデックスとして利用します。後者は各記事から
+会場詳細と公式告知URLを辿り、公式URLを確認できた展示だけを公開対象にします。SNS共有リンクや
+公式サイトが確認できない記事は取り込みません。
 
 ```bash
 .venv/bin/python collector/website_collect.py --env-file /path/to/.env --dry-run
+.venv/bin/python collector/photo_culture_collect.py --env-file /path/to/.env --dry-run
 ```
 
 ```cron
@@ -49,3 +52,11 @@ Sony Imaging Gallery、JCIIフォトサロンです。
 ```
 
 公式会場の本番取得もGitHub Actionsで毎日05:42（日本時間）に実行します。
+
+Photo & Culture, Tokyoの登録会場全体を再点検するときは次を実行します。これは日次処理には含めません。
+
+```bash
+.venv/bin/python collector/photo_culture_audit.py --output collector/photo_culture_venues.json
+```
+
+出力には各会場を`official_website`、`social_only`、`no_official_url`、`fetch_error`に分類した結果を保存します。
