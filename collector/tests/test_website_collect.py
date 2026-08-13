@@ -11,9 +11,16 @@ from collector.website_collect import (
     parse_leofoto,
     parse_nikon,
     parse_om_system,
+    parse_fotori,
+    parse_photographers_gallery,
+    parse_placem,
+    parse_roonee,
+    parse_shadai,
     parse_sony,
     parse_sony_alpha_plaza,
+    parse_tosei,
     parse_topmuseum,
+    parse_zen_foto,
 )
 
 
@@ -137,6 +144,60 @@ class WebsiteCollectorTests(unittest.TestCase):
         candidate = parse_leofoto(json.dumps(posts, ensure_ascii=False))[0]
         self.assertEqual(candidate["extracted"]["start_date"], "2026-09-09")
         self.assertEqual(candidate["extracted"]["prefecture"], "埼玉県")
+
+    def test_fotori_schedule_link(self):
+        html = """<div class="entry-content"><p>
+          <a href="https://fotori.net/?p=38263">9/23（水）～27（日）餌取 裕也写真展 山岳独行</a>
+          <a href="https://fotori.net/?p=1">8/9（日）ワークショップ</a>
+        </p></div>"""
+        candidate = parse_fotori(html)[0]
+        self.assertEqual(candidate["extracted"]["title"], "餌取 裕也写真展 山岳独行")
+        self.assertEqual(candidate["extracted"]["end_date"], "2026-09-27")
+
+    def test_shadai_english_cross_year_dates(self):
+        html = """<a class="archive_div_a" href="https://example.com/show">
+          <div><h3 class="jp">写真術の系譜</h3><p class="en h3">Nov. 20 – Jan. 30, 2027</p></div>
+        </a>"""
+        candidate = parse_shadai(html)[0]
+        self.assertEqual(candidate["extracted"]["start_date"], "2026-11-20")
+        self.assertEqual(candidate["extracted"]["end_date"], "2027-01-30")
+
+    def test_placem_schedule_row(self):
+        html = """<table><tr><td>2026.08.17 - 2026.08.23</td>
+          <td><a href="../schedule/2026/main/test/exhibition.php">君嶋駿「雨のあと」</a></td>
+        </tr></table>"""
+        candidate = parse_placem(html)[0]
+        self.assertEqual(candidate["extracted"]["venue"], "Place M")
+        self.assertEqual(candidate["extracted"]["start_date"], "2026-08-17")
+
+    def test_photographers_gallery_card(self):
+        html = """<a class="post" href="https://pg-web.net/exhibition/test/">
+          <span class="title">岸 幸太 “連荘20”</span><span class="date">2026.8.3 – 2026.8.16</span>
+        </a>"""
+        candidate = parse_photographers_gallery(html)[0]
+        self.assertEqual(candidate["extracted"]["venue"], "photographers’ gallery")
+
+    def test_zen_foto_card(self):
+        html = """<article><h3>竹谷出 写真展「よみびとしらず」</h3>
+          <p>会期：2026年8月21日（金） — 9月26日（土）</p>
+          <a href="/jp/exhibition/test">詳細</a></article>"""
+        candidate = parse_zen_foto(html)[0]
+        self.assertEqual(candidate["extracted"]["end_date"], "2026-09-26")
+
+    def test_roonee_upcoming_card(self):
+        html = """<article class="upcmng"><div><h3>空白の風景</h3><p>Room 1</p>
+          <p>会期：2026.08.19 - 2026.08.30</p><a href="https://example.com/show"></a>
+        </div></article>"""
+        candidate = parse_roonee(html)[0]
+        self.assertIn("Room 1", candidate["extracted"]["venue"])
+
+    def test_tosei_current_exhibition(self):
+        html = """<table><tr><td class="j12"><p>稲垣徳文写真展 Paris Blue
+          2026年8月5日(水) - 8月29日(土)<a href="j_2608_inagaki.html">展示詳細</a></p>
+        </td></tr></table>"""
+        candidate = parse_tosei(html)[0]
+        self.assertEqual(candidate["extracted"]["venue"], "ギャラリー冬青")
+        self.assertEqual(candidate["extracted"]["end_date"], "2026-08-29")
 
 
 if __name__ == "__main__":

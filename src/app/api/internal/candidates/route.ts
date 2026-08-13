@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
 import { supabaseAdmin } from '@/lib/supabase'
-import type { Json } from '@/lib/database.types'
+import type { Json, JpPrefecture } from '@/lib/database.types'
 
 const extractedSchema = z.object({
   title: z.string().trim().min(1).max(300).nullable(),
@@ -69,11 +69,13 @@ export async function POST(request: NextRequest) {
   if (existing) {
     candidateId = existing.id
 
-    // A collector may refresh pending metadata, but must never reset a human decision.
-    const update = existing.status === 'pending'
+    // Website imports stay refreshable. A rejected candidate remains a human override.
+    const refreshable = existing.status === 'pending' || existing.status === 'imported'
+    const update = refreshable
       ? {
           extracted: payload.extracted as Json,
           confidence: Math.max(Number(existing.confidence), payload.confidence),
+          status: payload.source.type === 'website' ? 'imported' : existing.status,
           last_seen_at: now,
         }
       : { last_seen_at: now }
@@ -94,7 +96,7 @@ export async function POST(request: NextRequest) {
         event_fingerprint: payload.event_fingerprint,
         extracted: payload.extracted as Json,
         confidence: payload.confidence,
-        status: 'pending',
+        status: payload.source.type === 'website' ? 'imported' : 'pending',
         first_seen_at: now,
         last_seen_at: now,
       })
@@ -130,5 +132,41 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Candidate source upsert failed' }, { status: 500 })
   }
 
-  return NextResponse.json({ id: candidateId, status: existing ? 'updated' : 'created' })
+  // Official venue pages are authoritative enough to publish immediately.
+  // X and manual candidates continue through the private review queue.
+  const extracted = payload.extracted
+  const autoPublish = payload.source.type === 'website' && existing?.status !== 'rejected'
+  if (
+    autoPublish && extracted.title && extracted.venue && extracted.prefecture
+    && extracted.start_date && extracted.end_date
+  ) {
+    const { error: publishError } = await admin
+      .from('events')
+      .upsert(
+        {
+          title: extracted.title,
+          host_name: extracted.host_name ?? null,
+          venue: extracted.venue,
+          address: extracted.address ?? null,
+          prefecture: extracted.prefecture as JpPrefecture,
+          price: extracted.price ?? null,
+          start_date: extracted.start_date,
+          end_date: extracted.end_date,
+          announce_url: payload.source.url,
+          notes: extracted.notes ?? null,
+          status: 'published',
+        },
+        { onConflict: 'announce_url' },
+      )
+
+    if (publishError) {
+      console.error('Official event publication failed:', publishError)
+      return NextResponse.json({ error: 'Official event publication failed' }, { status: 500 })
+    }
+  }
+
+  return NextResponse.json({
+    id: candidateId,
+    status: autoPublish ? 'published' : (existing ? 'updated' : 'created'),
+  })
 }

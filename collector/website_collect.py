@@ -70,14 +70,50 @@ def build_candidate(
 def dates_from_text(value: str) -> tuple[str, str] | None:
     normalized = normalize(value)
     normalized = re.sub(
-        r"(20\d{2})\.(\d{1,2})\.(\d{1,2})",
+        r"(20\d{2})[./](\d{1,2})[./](\d{1,2})",
         lambda match: f"{match.group(1)}年{match.group(2)}月{match.group(3)}日",
         normalized,
     )
+    slash_range = re.search(
+        r"(?<!\d)(?P<sm>\d{1,2})/(?P<sd>\d{1,2})[^~〜～–—]{0,20}[~〜～–—]\s*"
+        r"(?:(?P<em>\d{1,2})/)?(?P<ed>\d{1,2})",
+        normalized,
+    )
+    if slash_range:
+        start_month = int(slash_range.group("sm"))
+        end_month = int(slash_range.group("em") or start_month)
+        year = datetime.now(timezone.utc).year
+        end_year = year + 1 if end_month < start_month else year
+        return (
+            f"{year:04d}-{start_month:02d}-{int(slash_range.group('sd')):02d}",
+            f"{end_year:04d}-{end_month:02d}-{int(slash_range.group('ed')):02d}",
+        )
     start, end = extract_dates(normalized, datetime.now(timezone.utc))
     if start and end:
         return start, end
     return None
+
+
+def english_dates_from_text(value: str) -> tuple[str, str] | None:
+    months = {
+        "Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6,
+        "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11, "Dec": 12,
+    }
+    match = re.search(
+        r"(?P<sm>[A-Z][a-z]{2})\.?\s*(?P<sd>\d{1,2})\s*[–—-]\s*"
+        r"(?P<em>[A-Z][a-z]{2})\.?\s*(?P<ed>\d{1,2}),?\s*(?P<year>20\d{2})",
+        normalize(value),
+    )
+    if not match or match.group("sm") not in months or match.group("em") not in months:
+        return None
+    end_year = int(match.group("year"))
+    start_month = months[match.group("sm")]
+    end_month = months[match.group("em")]
+    start_year = end_year - 1 if end_month < start_month else end_year
+    return (
+        f"{start_year:04d}-{start_month:02d}-{int(match.group('sd')):02d}",
+        f"{end_year:04d}-{end_month:02d}-{int(match.group('ed')):02d}",
+    )
 
 
 def parse_fujifilm(html: str) -> list[dict]:
@@ -470,13 +506,204 @@ def parse_leofoto(html: str) -> list[dict]:
     return unique_sources(results)
 
 
+def parse_fotori(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for link in soup.select(".entry-content a[href*='fotori.net/?p=']"):
+        title = normalize(link.get_text(" ", strip=True))
+        if not title or not any(word in title for word in ("展", "写真")):
+            continue
+        dates = dates_from_text(title)
+        if not dates:
+            continue
+        clean_title = re.sub(r"^\d{1,2}/\d{1,2}[^~〜～–—]*[~〜～–—]\s*(?:\d{1,2}/)?\d{1,2}[^）)]*[）)]\s*", "", title)
+        results.append(build_candidate(
+            title=clean_title,
+            venue="写真企画室 ホトリ",
+            prefecture="東京都",
+            address="東京都台東区浅草橋5-2-10",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=link.get("href", ""),
+            source_name="写真企画室 ホトリ",
+            card_text=title,
+        ))
+    return unique_sources(results)
+
+
+def parse_shadai(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for card in soup.select("a.archive_div_a[href]"):
+        title_node = card.select_one("h3.jp")
+        date_node = card.select_one("p.en.h3")
+        if not title_node or not date_node:
+            continue
+        dates = english_dates_from_text(date_node.get_text(" ", strip=True))
+        if not dates:
+            continue
+        results.append(build_candidate(
+            title=title_node.get_text(" ", strip=True),
+            venue="東京工芸大学 写大ギャラリー",
+            prefecture="東京都",
+            address="東京都中野区本町2-4-7 東京工芸大学5号館2F",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=card.get("href", ""),
+            source_name="写大ギャラリー",
+            card_text=card.get_text(" ", strip=True),
+        ))
+    return unique_sources(results)
+
+
+def parse_placem(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for row in soup.select("table tr"):
+        link = row.select_one("a[href]")
+        if not link:
+            continue
+        dates = dates_from_text(row.get_text(" ", strip=True))
+        if not dates:
+            continue
+        results.append(build_candidate(
+            title=link.get_text(" ", strip=True),
+            venue="Place M",
+            prefecture="東京都",
+            address="東京都新宿区新宿1-2-11 近代ビル3F",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=urljoin("https://placem.com/schedule/schedule.php", link.get("href", "")),
+            source_name="Place M",
+            card_text=row.get_text(" ", strip=True),
+        ))
+    return unique_sources(results)
+
+
+def parse_photographers_gallery(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for card in soup.select("a.post[href]"):
+        title_node = card.select_one(".title")
+        date_node = card.select_one(".date")
+        if not title_node or not date_node:
+            continue
+        dates = dates_from_text(date_node.get_text(" ", strip=True))
+        if not dates:
+            continue
+        results.append(build_candidate(
+            title=title_node.get_text(" ", strip=True),
+            venue="photographers’ gallery",
+            prefecture="東京都",
+            address="東京都新宿区新宿2-16-11 サンフタミビル4F",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=card.get("href", ""),
+            source_name="photographers’ gallery",
+            card_text=card.get_text(" ", strip=True),
+        ))
+    return unique_sources(results)
+
+
+def parse_zen_foto(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for card in soup.select("article"):
+        title_node = card.select_one("h3")
+        link = card.select_one("a[href*='/exhibition/']")
+        if not title_node or not link:
+            continue
+        dates = dates_from_text(card.get_text(" ", strip=True))
+        if not dates:
+            continue
+        results.append(build_candidate(
+            title=title_node.get_text(" ", strip=True),
+            venue="ZEN FOTO GALLERY",
+            prefecture="東京都",
+            address="東京都港区六本木6-6-9 ピラミデビル208号室",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=urljoin("https://zen-foto.jp", link.get("href", "")),
+            source_name="ZEN FOTO GALLERY",
+            card_text=card.get_text(" ", strip=True),
+        ))
+    return unique_sources(results)
+
+
+def parse_roonee(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    cards = list(soup.select("article.exhbtn"))
+    upcoming = soup.select_one("article.upcmng")
+    if upcoming:
+        cards.extend(upcoming.select(":scope > div"))
+    results = []
+    for card in cards:
+        title_node = card.select_one("h2, h3")
+        link = card.select_one("a[href]")
+        if not title_node or not link:
+            continue
+        dates = dates_from_text(card.get_text(" ", strip=True))
+        if not dates:
+            continue
+        room_node = card.select_one(".details > span")
+        if not room_node:
+            room_node = next((node for node in card.select("p") if "Room" in node.get_text() or "wall" in node.get_text()), None)
+        room = room_node.get_text(" ", strip=True) if room_node else ""
+        results.append(build_candidate(
+            title=title_node.get_text(" ", strip=True),
+            venue=f"Roonee 247 Fine Arts {room}".strip(),
+            prefecture="東京都",
+            address="東京都中央区日本橋小伝馬町17-9 さとうビルB館4F",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=link.get("href", ""),
+            source_name="Roonee 247 Fine Arts",
+            card_text=card.get_text(" ", strip=True),
+        ))
+    return unique_sources(results)
+
+
+def parse_tosei(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for cell in soup.select("td.j12"):
+        link = cell.select_one("a[href^='j_'][href$='.html']")
+        text = cell.get_text(" ", strip=True)
+        if not link or "Coming Soon" in text:
+            continue
+        dates = dates_from_text(text)
+        date_match = re.search(r"20\d{2}年\d{1,2}月\d{1,2}日", text)
+        if not dates or not date_match:
+            continue
+        title = text[:date_match.start()].strip()
+        results.append(build_candidate(
+            title=title,
+            venue="ギャラリー冬青",
+            prefecture="東京都",
+            address="東京都中野区中央5-18-20",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=urljoin(
+                "https://www.tosei-sha.jp/TOSEI-NEW-HP/html/EXHIBITIONS/j_exhibitions.html",
+                link.get("href", ""),
+            ),
+            source_name="ギャラリー冬青",
+            card_text=text,
+        ))
+    return unique_sources(results)
+
+
 def unique_sources(candidates: list[dict]) -> list[dict]:
     return list({candidate["source"]["key"]: candidate for candidate in candidates}.values())
 
 
 def active_candidates(candidates: list[dict]) -> list[dict]:
     today = date.today().isoformat()
-    return [candidate for candidate in candidates if candidate["extracted"]["end_date"] >= today]
+    return [
+        candidate for candidate in candidates
+        if candidate["extracted"]["end_date"] >= today
+        and candidate["extracted"]["end_date"] >= candidate["extracted"]["start_date"]
+    ]
 
 
 SITES = {
@@ -517,6 +744,16 @@ SITES = {
     "topmuseum": SiteDefinition("https://topmuseum.jp/", "東京都写真美術館", parse_topmuseum),
     "om-system": SiteDefinition("https://note.com/omsystem_plaza/m/m63fa0ad6a296", "OM SYSTEM GALLERY", parse_om_system),
     "leofoto": SiteDefinition("https://leofoto.co.jp/wp-json/wp/v2/posts?search=%E5%86%99%E7%9C%9F%E5%B1%95&per_page=50", "Leofotoショールーム", parse_leofoto),
+    "fotori": SiteDefinition("https://fotori.net/?page_id=292", "写真企画室 ホトリ", parse_fotori, "utf-8"),
+    "shadai": SiteDefinition("https://www.shadai.t-kougei.ac.jp/annual-schedule/", "東京工芸大学 写大ギャラリー", parse_shadai, "utf-8"),
+    "placem": SiteDefinition("https://placem.com/schedule/schedule.php", "Place M", parse_placem, "utf-8"),
+    "photographers-gallery": SiteDefinition("https://pg-web.net/exhibition/", "photographers’ gallery", parse_photographers_gallery, "utf-8"),
+    "zen-foto": SiteDefinition("https://zen-foto.jp/jp/exhibitions", "ZEN FOTO GALLERY", parse_zen_foto, "utf-8"),
+    "roonee": SiteDefinition("https://www.roonee.jp/exhibition/", "Roonee 247 Fine Arts", parse_roonee, "utf-8"),
+    "tosei": SiteDefinition(
+        "https://www.tosei-sha.jp/TOSEI-NEW-HP/html/EXHIBITIONS/j_exhibitions.html",
+        "ギャラリー冬青", parse_tosei, "cp932",
+    ),
 }
 
 
