@@ -822,10 +822,16 @@ def parse_higashikawa(html: str) -> list[dict]:
         dates = dates_from_text(text)
         if not dates:
             continue
-        place_match = re.search(r"(?:○)?場所[：:]\s*(.+?)(?=\s+(?:○|レビュ|協力|主催|写真|昨年|今年|結成|1985年)|$)", text)
+        title = link.get_text(" ", strip=True)
+        place_match = re.search(
+            r"(?:○)?場所[：:]\s*(.+?)(?=\s+(?:○|レビュ|協力|主催|出展作家|料金|時間|写真|昨年|今年|結成|1985年)|$)",
+            text,
+        )
         place = place_match.group(1).strip() if place_match else "東川町内各所"
+        if "東川賞受賞作家作品展" in title:
+            place = "東川町文化ギャラリー"
         results.append(build_candidate(
-            title=link.get_text(" ", strip=True),
+            title=title,
             venue=place,
             prefecture="北海道",
             start_date=dates[0],
