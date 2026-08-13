@@ -57,6 +57,15 @@ class ExtractEventTests(unittest.TestCase):
 
         self.assertEqual(first["event_fingerprint"], second["event_fingerprint"])
 
+    def test_explicit_start_year_applies_to_omitted_end_year(self):
+        result = extract_event(
+            "写真展『昨年の展示』\n2025年11月19日～12月27日\n会場：スタジオ35分",
+            PUBLISHED,
+            "202",
+        )
+        self.assertEqual(result["extracted"]["start_date"], "2025-11-19")
+        self.assertEqual(result["extracted"]["end_date"], "2025-12-27")
+
 
 if __name__ == "__main__":
     unittest.main()

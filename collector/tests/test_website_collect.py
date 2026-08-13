@@ -18,15 +18,26 @@ from collector.website_collect import (
     parse_gallery_owada,
     parse_higashikawa,
     parse_iia_gallery,
+    parse_fugensha,
+    parse_gallery176,
     parse_monography,
+    parse_nadar,
+    parse_niepce,
+    parse_nine_gallery,
+    parse_pgi,
     parse_photographers_gallery,
     parse_placem,
     parse_room305,
+    parse_red_gallery,
     parse_roonee,
+    parse_sirius,
     parse_shadai,
+    parse_solaris,
     parse_sony,
     parse_sony_alpha_plaza,
+    parse_studio35,
     parse_tosei,
+    parse_totem_pole,
     parse_topmuseum,
     parse_zen_foto,
     verified_event_parser,
@@ -224,6 +235,100 @@ class WebsiteCollectorTests(unittest.TestCase):
         self.assertEqual(candidate["extracted"]["start_date"], "2026-07-03")
         self.assertEqual(candidate["extracted"]["end_date"], "2026-10-12")
         self.assertEqual(candidate["extracted"]["venue"], "アイアイエーギャラリー")
+
+    def test_red_gallery_schedule_row(self):
+        html = """<table><tr><td>2026.08.17 - 2026.08.23</td><td>
+          <a href="./schedule/2026/20260817/exhibition.php">小島三幸</a>
+          <a href="./schedule/2026/20260817/exhibition.php">11周年記念 メンバー展</a>
+        </td></tr></table>"""
+        candidate = parse_red_gallery(html)[0]
+        self.assertEqual(candidate["extracted"]["end_date"], "2026-08-23")
+        self.assertEqual(candidate["extracted"]["title"], "小島三幸 11周年記念 メンバー展")
+
+    def test_sirius_entry_card(self):
+        html = """<article class="entry-card"><h3>サコッティ 写真展</h3>
+          <p>「あって、ないようなもの」</p><p>2026/08/20 ～ 2026/08/26</p>
+          <a href="https://www.photo-sirius.net/tenji/test/">詳しく見る</a></article>"""
+        candidate = parse_sirius(html)[0]
+        self.assertIn("あって、ないようなもの", candidate["extracted"]["title"])
+        self.assertEqual(candidate["extracted"]["end_date"], "2026-08-26")
+
+    def test_niepce_annual_entry(self):
+        html = """<div id="content_area"><div class="j-textWithImage">
+          2026年9月1日(火)～2026年9月6日(日) 山田太郎 写真展「街」
+        </div></div>"""
+        candidate = parse_niepce(html)[0]
+        self.assertEqual(candidate["extracted"]["title"], "山田太郎 写真展「街」")
+
+    def test_totem_current_and_upcoming(self):
+        html = """<main><article class="hentry" id="post-1">
+          古佳立「理想と荒野のあいだ」 2026.8.3 – 8.16</article></main>
+          <section class="cat-post-widget"><li class="cat-post-item">
+          <a href="https://tppg.jp/next/">水島貴大 写真展「雙北青年」2026.8.18 – 8.23</a>
+          </li></section>"""
+        candidates = parse_totem_pole(html)
+        self.assertEqual(len(candidates), 2)
+        self.assertEqual(candidates[1]["extracted"]["start_date"], "2026-08-18")
+
+    def test_nadar_excludes_closure(self):
+        html = """<div class="post_list"><ul class="panel-group">
+          <li><a href="https://g-nadar.net/gallery/260810"><h3 class="ex_title">夏季休業</h3>
+          <p>2026年8月10日〜18日</p></a></li>
+          <li><a href="https://g-nadar.net/gallery/260819"><h3 class="ex_title">HOLGA EXPO 2026</h3>
+          <p>2026年8月19日〜23日</p></a></li></ul></div>"""
+        candidates = parse_nadar(html)
+        self.assertEqual(len(candidates), 1)
+        self.assertEqual(candidates[0]["extracted"]["venue"], "Nadar 東京／世田谷")
+
+    def test_nine_gallery_event(self):
+        html = """<section class="p-archive--events-bottom">
+          <a href="https://ninegallery.com/event/exhibition260811/">
+          2026 8月 <h3 class="p-events-loop__item-title">【8/11-16】第13回「勝手にナインギャラリー借りてみた」</h3></a>
+        </section>"""
+        candidate = parse_nine_gallery(html)[0]
+        self.assertEqual(candidate["extracted"]["start_date"], "2026-08-11")
+        self.assertTrue(candidate["extracted"]["title"].startswith("第13回"))
+
+    def test_fugensha_exhibition_only(self):
+        html = """<section class="events">
+          <div class="card item"><a href="https://fugensha.jp/events/show/">
+          2026/09/11 （金） - 2026/10/04 （日） 中井菜央 個展「ゆれる水脈」 Exhibition</a></div>
+          <div class="card item"><a href="https://example.com/talk">
+          2026/09/20 （日） ギャラリートーク Event</a></div></section>"""
+        candidates = parse_fugensha(html)
+        self.assertEqual(len(candidates), 1)
+        self.assertEqual(candidates[0]["extracted"]["end_date"], "2026-10-04")
+
+    def test_pgi_current_exhibition(self):
+        html = """<div class="ex-current-row"><li class="item">
+          <a href="/exhibitions/11324">井津建郎 インド・祈りのこだまする地
+          2026.7.22 － 9.16</a></li></div>"""
+        candidate = parse_pgi(html)[0]
+        self.assertEqual(candidate["extracted"]["title"], "井津建郎 インド・祈りのこだまする地")
+
+    def test_gallery176_upcoming(self):
+        html = """<article class="tag-upcoming-exhibitions">
+          <h2><a href="https://176.photos/exhibitions/260905/">鈴木郁子写真展「残像の街」</a></h2>
+          <p>会期 2026年9月5日(土)〜9月13日(日)</p></article>"""
+        candidate = parse_gallery176(html)[0]
+        self.assertEqual(candidate["extracted"]["prefecture"], "大阪府")
+
+    def test_studio35_exhibition(self):
+        html = """<article class="grid-item category-exhibition">
+          <p>2026年9月2日-10月10日</p>
+          <a href="https://35fn.com/exhibition/test/">山田太郎 写真展「夜」</a></article>"""
+        candidate = parse_studio35(html)[0]
+        self.assertEqual(candidate["extracted"]["end_date"], "2026-10-10")
+
+    def test_solaris_skips_closures(self):
+        html = """<article class="portfolio_category_44"><div class="portfolio_description">
+          <a href="https://solaris-g.com/portfolio_page/260825/">8/25（火）〜8/30（日） 修了展 vol.19</a>
+          </div></article><article class="portfolio_category_44"><div class="portfolio_description">
+          <a href="https://solaris-g.com/closed/">9/7（月）〜9/14（月） 夏季休廊</a>
+          </div></article>"""
+        candidates = parse_solaris(html)
+        self.assertEqual(len(candidates), 1)
+        self.assertEqual(candidates[0]["extracted"]["title"], "修了展 vol.19")
 
     def test_tosei_current_exhibition(self):
         html = """<table><tr><td class="j12"><p>稲垣徳文写真展 Paris Blue

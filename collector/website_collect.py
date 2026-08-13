@@ -87,7 +87,7 @@ def dates_from_text(value: str) -> tuple[str, str] | None:
         normalized,
     )
     slash_range = re.search(
-        r"(?<!\d)(?P<sm>\d{1,2})/(?P<sd>\d{1,2})[^~〜～–—]{0,20}[~〜～–—]\s*"
+        r"(?<!\d)(?P<sm>\d{1,2})/(?P<sd>\d{1,2})[^~〜～–—\-]{0,20}[~〜～–—\-]\s*"
         r"(?:(?P<em>\d{1,2})/)?(?P<ed>\d{1,2})",
         normalized,
     )
@@ -746,6 +746,300 @@ def parse_iia_gallery(html: str) -> list[dict]:
     return unique_sources(results)
 
 
+def parse_red_gallery(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for row in soup.select("tr"):
+        links = row.select("a[href*='/exhibition.php'], a[href*='exhibition.php']")
+        dates = dates_from_text(row.get_text(" ", strip=True))
+        if not links or not dates:
+            continue
+        parts = []
+        for link in links:
+            part = normalize(link.get_text(" ", strip=True))
+            if part and part not in parts:
+                parts.append(part)
+        if not parts:
+            continue
+        results.append(build_candidate(
+            title=" ".join(parts),
+            venue="RED Photo Gallery",
+            prefecture="東京都",
+            address="東京都新宿区新宿1-2-11 近代ビル2F",
+            start_date=dates[0], end_date=dates[1],
+            source_url=urljoin("https://photogallery.red/schedule.php", links[0].get("href", "")),
+            source_name="RED Photo Gallery",
+            card_text=row.get_text(" ", strip=True),
+        ))
+    return unique_sources(results)
+
+
+def parse_sirius(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for card in soup.select("article.entry-card"):
+        text = normalize(card.get_text(" ", strip=True))
+        dates = dates_from_text(text)
+        date_match = re.search(r"20\d{2}/\d{1,2}/\d{1,2}", text)
+        links = [
+            link for link in card.select("a[href*='/tenji/']")
+            if link.get_text(" ", strip=True)
+        ]
+        if not dates or not date_match or not links:
+            continue
+        title = text[:date_match.start()].strip()
+        results.append(build_candidate(
+            title=title,
+            venue="アイデムフォトギャラリー シリウス",
+            prefecture="東京都",
+            address="東京都新宿区新宿1-4-10 アイデム本社ビル2F",
+            start_date=dates[0], end_date=dates[1],
+            source_url=links[0].get("href", ""),
+            source_name="アイデムフォトギャラリー シリウス",
+            card_text=text,
+        ))
+    return unique_sources(results)
+
+
+def parse_niepce(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    range_pattern = re.compile(
+        r"^20\d{2}年\d{1,2}月\d{1,2}日(?:\([^)]*\))?\s*[~〜～\-]\s*"
+        r"(?:20\d{2}年)?\d{1,2}月\d{1,2}日(?:\([^)]*\))?"
+    )
+    for card in soup.select("#content_area .j-textWithImage"):
+        text = normalize(card.get_text(" ", strip=True))
+        dates = dates_from_text(text)
+        prefix = range_pattern.search(text)
+        if not dates or not prefix:
+            continue
+        title = text[prefix.end():].strip()
+        if not title:
+            continue
+        results.append(build_candidate(
+            title=title,
+            venue="ギャラリー・ニエプス",
+            prefecture="東京都",
+            address="東京都新宿区四谷4-10 メイプル花上2F",
+            start_date=dates[0], end_date=dates[1],
+            source_url=(
+                f"https://www.niepce-tokyo.net/exhibitions/{date.today().year}/"
+                f"#exhibition-{text_hash(title)[:12]}"
+            ),
+            source_name="ギャラリー・ニエプス",
+            card_text=text,
+        ))
+    return unique_sources(results)
+
+
+def parse_totem_pole(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    cards = list(soup.select("main article.hentry"))
+    cards.extend(soup.select("section.cat-post-widget li.cat-post-item"))
+    results = []
+    for card in cards:
+        text = normalize(card.get_text(" ", strip=True))
+        dates = dates_from_text(text)
+        date_match = re.search(r"20\d{2}[./]\d{1,2}[./]\d{1,2}", text)
+        if not dates or not date_match:
+            continue
+        title = text[:date_match.start()].strip()
+        link = card.select_one("a[href]")
+        post_id = card.get("id", "")
+        source_url = link.get("href", "") if link else f"https://tppg.jp/current/#{post_id or text_hash(title)[:12]}"
+        results.append(build_candidate(
+            title=title,
+            venue="TOTEM POLE PHOTO GALLERY",
+            prefecture="東京都",
+            address="東京都新宿区四谷4-22 第二富士川ビル1F",
+            start_date=dates[0], end_date=dates[1],
+            source_url=source_url,
+            source_name="TOTEM POLE PHOTO GALLERY",
+            card_text=text,
+        ))
+    return unique_sources(results)
+
+
+def parse_nadar(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for card in soup.select(".post_list .panel-group li"):
+        title_node = card.select_one(".ex_title")
+        link = card.select_one("a[href]")
+        text = normalize(card.get_text(" ", strip=True))
+        dates = dates_from_text(text)
+        if not title_node or not link or not dates or "休業" in text:
+            continue
+        results.append(build_candidate(
+            title=title_node.get_text(" ", strip=True),
+            venue="Nadar 東京／世田谷",
+            prefecture="東京都",
+            address="東京都世田谷区世田谷1-41-2 スカイコート第3 108",
+            start_date=dates[0], end_date=dates[1],
+            source_url=link.get("href", ""),
+            source_name="Nadar",
+            card_text=text,
+        ))
+    return unique_sources(results)
+
+
+def parse_nine_gallery(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for link in soup.select(".p-archive--events-bottom a[href*='/event/exhibition']"):
+        text = normalize(link.get_text(" ", strip=True))
+        dates = dates_from_text(text)
+        title_node = link.select_one(".p-events-loop__item-title")
+        if not dates or not title_node:
+            continue
+        title = re.sub(
+            r"^【\d{1,2}/\d{1,2}\s*[-〜～]\s*(?:\d{1,2}/)?\d{1,2}】\s*", "",
+            normalize(title_node.get_text(" ", strip=True)),
+        )
+        results.append(build_candidate(
+            title=title,
+            venue="Nine Gallery",
+            prefecture="東京都",
+            address="東京都港区北青山2-10-22 谷・荒井ビル1F",
+            start_date=dates[0], end_date=dates[1],
+            source_url=link.get("href", ""),
+            source_name="Nine Gallery",
+            card_text=text,
+        ))
+    return unique_sources(results)
+
+
+def parse_fugensha(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    prefix_pattern = re.compile(
+        r"^20\d{2}/\d{1,2}/\d{1,2}\s*[（(].{1,3}[)）]\s*[-–—]\s*"
+        r"20\d{2}/\d{1,2}/\d{1,2}\s*[（(].{1,3}[)）]\s*"
+    )
+    for card in soup.select(".events .card.item"):
+        text = normalize(card.get_text(" ", strip=True))
+        link = card.select_one("a[href]")
+        dates = dates_from_text(text)
+        prefix = prefix_pattern.search(text)
+        if not link or not dates or not prefix or "Exhibition" not in text:
+            continue
+        title = re.sub(r"\s*Exhibition\s*$", "", text[prefix.end():]).strip()
+        results.append(build_candidate(
+            title=title,
+            venue="ふげん社",
+            prefecture="東京都",
+            address="東京都目黒区下目黒5-3-12",
+            start_date=dates[0], end_date=dates[1],
+            source_url=link.get("href", ""),
+            source_name="ふげん社",
+            card_text=text,
+        ))
+    return unique_sources(results)
+
+
+def parse_pgi(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for card in soup.select(".ex-current-row li.item, .ex-upcoming-row li.item"):
+        text = normalize(card.get_text(" ", strip=True))
+        dates = dates_from_text(text)
+        date_match = re.search(r"20\d{2}[./]\d{1,2}[./]\d{1,2}", text)
+        link = card.select_one("a[href*='/exhibitions/']")
+        if not dates or not date_match or not link:
+            continue
+        results.append(build_candidate(
+            title=text[:date_match.start()].strip(),
+            venue="PGI",
+            prefecture="東京都",
+            address="東京都港区東麻布2-3-4 TKBビル3F",
+            start_date=dates[0], end_date=dates[1],
+            source_url=urljoin("https://www.pgi.ac/exhibitions/", link.get("href", "")),
+            source_name="PGI",
+            card_text=text,
+        ))
+    return unique_sources(results)
+
+
+def parse_gallery176(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for card in soup.select("article.tag-upcoming-exhibitions"):
+        text = normalize(card.get_text(" ", strip=True))
+        dates = dates_from_text(text)
+        title_link = next((
+            link for link in card.select("a[href*='/exhibitions/']")
+            if link.get_text(" ", strip=True)
+        ), None)
+        if not dates or not title_link:
+            continue
+        results.append(build_candidate(
+            title=title_link.get_text(" ", strip=True),
+            venue="gallery 176",
+            prefecture="大阪府",
+            address="大阪府豊中市服部元町1-6-1",
+            start_date=dates[0], end_date=dates[1],
+            source_url=title_link.get("href", ""),
+            source_name="gallery 176",
+            card_text=text,
+        ))
+    return unique_sources(results)
+
+
+def parse_studio35(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for card in soup.select("article.grid-item.category-exhibition"):
+        text = normalize(card.get_text(" ", strip=True))
+        dates = dates_from_text(text)
+        title_link = next((
+            link for link in card.select("a[href*='/exhibition/']")
+            if "写真展" in link.get_text(" ", strip=True)
+        ), None)
+        if not dates or not title_link:
+            continue
+        results.append(build_candidate(
+            title=title_link.get_text(" ", strip=True),
+            venue="スタジオ35分",
+            prefecture="東京都",
+            address="東京都中野区上高田5-47-8",
+            start_date=dates[0], end_date=dates[1],
+            source_url=title_link.get("href", ""),
+            source_name="スタジオ35分",
+            card_text=text,
+        ))
+    return unique_sources(results)
+
+
+def parse_solaris(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    prefix_pattern = re.compile(
+        r"^\d{1,2}/\d{1,2}(?:[（(].{1,3}[)）])?\s*[〜～~\-]\s*"
+        r"\d{1,2}/\d{1,2}(?:[（(].{1,3}[)）])?\s*"
+    )
+    for card in soup.select("article.portfolio_category_44"):
+        link = card.select_one(".portfolio_description a[href]")
+        if not link:
+            continue
+        text = normalize(link.get_text(" ", strip=True))
+        dates = dates_from_text(text)
+        prefix = prefix_pattern.search(text)
+        if not dates or not prefix or "休廊" in text or "開催予定" in text:
+            continue
+        results.append(build_candidate(
+            title=text[prefix.end():].strip(),
+            venue="ギャラリー・ソラリス",
+            prefecture="大阪府",
+            address="大阪府大阪市中央区南船場3-2-6 大阪農林会館B1F",
+            start_date=dates[0], end_date=dates[1],
+            source_url=link.get("href", ""),
+            source_name="ギャラリー・ソラリス",
+            card_text=text,
+        ))
+    return unique_sources(results)
+
+
 def parse_tosei(html: str) -> list[dict]:
     soup = BeautifulSoup(html, "html.parser")
     results = []
@@ -1003,6 +1297,13 @@ def calendar_month_url(offset: int) -> str:
     return f"https://shibu-cul.jp/gallery/calendar?ym={year:04d}-{month_zero + 1:02d}"
 
 
+def nine_calendar_url(offset: int) -> str:
+    today = date.today()
+    month_index = today.year * 12 + today.month - 1 + offset
+    year, month_zero = divmod(month_index, 12)
+    return f"https://ninegallery.com/event/?calender={year:04d}-{month_zero + 1:02d}"
+
+
 def unique_sources(candidates: list[dict]) -> list[dict]:
     return list({candidate["source"]["key"]: candidate for candidate in candidates}.values())
 
@@ -1065,6 +1366,43 @@ SITES = {
     ),
     "iia-gallery": SiteDefinition(
         "https://iiagallery.com/", "アイアイエーギャラリー", parse_iia_gallery, "utf-8",
+    ),
+    "red-gallery": SiteDefinition(
+        "https://photogallery.red/schedule.php", "RED Photo Gallery", parse_red_gallery, "utf-8",
+    ),
+    "sirius": SiteDefinition(
+        "https://www.photo-sirius.net/tenji/", "アイデムフォトギャラリー シリウス", parse_sirius, "utf-8",
+    ),
+    "niepce": SiteDefinition(
+        f"https://www.niepce-tokyo.net/exhibitions/{date.today().year}/",
+        "ギャラリー・ニエプス", parse_niepce, "utf-8",
+    ),
+    "totem-pole": SiteDefinition(
+        "https://tppg.jp/current/", "TOTEM POLE PHOTO GALLERY", parse_totem_pole, "utf-8",
+    ),
+    "nadar": SiteDefinition(
+        "https://g-nadar.net/gallery/ex_new", "Nadar 東京／世田谷", parse_nadar, "utf-8",
+    ),
+    "nine-current": SiteDefinition(
+        nine_calendar_url(0), "Nine Gallery（今月）", parse_nine_gallery, "utf-8",
+    ),
+    "nine-next": SiteDefinition(
+        nine_calendar_url(1), "Nine Gallery（翌月）", parse_nine_gallery, "utf-8",
+    ),
+    "fugensha": SiteDefinition(
+        "https://fugensha.jp/", "ふげん社", parse_fugensha, "utf-8",
+    ),
+    "pgi": SiteDefinition(
+        "https://www.pgi.ac/exhibitions/", "PGI", parse_pgi, "utf-8",
+    ),
+    "gallery176": SiteDefinition(
+        "https://176.photos/tag/upcoming-exhibitions/", "gallery 176", parse_gallery176, "utf-8",
+    ),
+    "studio35": SiteDefinition(
+        "https://35fn.com/category/exhibition/", "スタジオ35分", parse_studio35, "utf-8",
+    ),
+    "solaris": SiteDefinition(
+        "https://solaris-g.com/exhibition/", "ギャラリー・ソラリス", parse_solaris, "utf-8",
     ),
     "tosei": SiteDefinition(
         "https://www.tosei-sha.jp/TOSEI-NEW-HP/html/EXHIBITIONS/j_exhibitions.html",

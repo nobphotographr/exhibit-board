@@ -72,7 +72,12 @@ def extract_dates(text: str, published_at: datetime) -> tuple[str | None, str | 
         start_month = int(match.group("sm"))
         end_month = int(match.group("em") or start_month)
         start_year = inferred_year(start_month, published_at, match.group("sy"))
-        end_year = inferred_year(end_month, published_at, match.group("ey"))
+        if match.group("ey"):
+            end_year = int(match.group("ey"))
+        elif match.group("sy"):
+            end_year = start_year
+        else:
+            end_year = inferred_year(end_month, published_at, None)
         if end_month < start_month and not match.group("ey"):
             end_year = start_year + 1
         return (
