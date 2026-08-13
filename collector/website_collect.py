@@ -102,6 +102,10 @@ def dates_from_text(value: str) -> tuple[str, str] | None:
         )
     start, end = extract_dates(normalized, datetime.now(timezone.utc))
     if start and end:
+        if end < start:
+            start_year = int(start[:4])
+            inferred_end_year = start_year + (1 if end[5:7] < start[5:7] else 0)
+            end = f"{inferred_end_year:04d}-{end[5:]}"
         return start, end
     return None
 
@@ -887,6 +891,44 @@ def parse_japanese_medium_format_2026(html: str) -> list[dict]:
     ) for title, venue, address, start, end, fragment in events]
 
 
+def annual_festival_parser(
+    *, marker: str, title_base: str, venue: str, prefecture: str,
+    source_url: str, source_name: str,
+) -> Callable[[str], list[dict]]:
+    def parse(html: str) -> list[dict]:
+        text = BeautifulSoup(html, "html.parser").get_text(" ", strip=True)
+        marker_position = text.find(marker)
+        if marker_position < 0:
+            return []
+        window = text[marker_position:marker_position + 1500]
+        range_match = re.search(
+            r"(?P<sy>20\d{2})年\s*(?P<sm>\d{1,2})月\s*(?P<sd>\d{1,2})日"
+            r".{0,15}?[～〜~–—-]\s*(?:(?P<ey>20\d{2})年\s*)?"
+            r"(?P<em>\d{1,2})月\s*(?P<ed>\d{1,2})日",
+            window,
+        )
+        if range_match:
+            start_year = int(range_match.group("sy"))
+            start_month = int(range_match.group("sm"))
+            end_month = int(range_match.group("em"))
+            end_year = int(range_match.group("ey") or start_year + (end_month < start_month))
+            dates = (
+                f"{start_year:04d}-{start_month:02d}-{int(range_match.group('sd')):02d}",
+                f"{end_year:04d}-{end_month:02d}-{int(range_match.group('ed')):02d}",
+            )
+        else:
+            dates = dates_from_text(window)
+        if not dates:
+            return []
+        year = dates[0][:4]
+        return [build_candidate(
+            title=f"{title_base} {year}", venue=venue, prefecture=prefecture,
+            start_date=dates[0], end_date=dates[1], source_url=source_url,
+            source_name=source_name, card_text=window,
+        )]
+    return parse
+
+
 def calendar_month_url(offset: int) -> str:
     today = date.today()
     month_index = today.year * 12 + today.month - 1 + offset
@@ -1025,6 +1067,22 @@ SITES = {
             address="東京都港区芝5-26-20",
             start_date="2026-10-31", end_date="2026-11-03",
             source_url="https://10p10fp10.studio.site/", source_name="10p10fp展",
+        ), "utf-8",
+    ),
+    "shiogama-photo-festival": SiteDefinition(
+        "https://sgma.jp/", "塩竈フォトフェスティバル",
+        annual_festival_parser(
+            marker="塩竈フォトフェスティバル", title_base="塩竈フォトフェスティバル",
+            venue="塩竈市内各所", prefecture="宮城県",
+            source_url="https://sgma.jp/", source_name="塩竈フォトフェスティバル",
+        ), "utf-8",
+    ),
+    "yakushima-photo-festival": SiteDefinition(
+        "https://www.ypf.photos/", "屋久島国際写真祭",
+        annual_festival_parser(
+            marker="屋久島国際写真祭", title_base="屋久島国際写真祭",
+            venue="屋久島島内各所", prefecture="鹿児島県",
+            source_url="https://www.ypf.photos/", source_name="屋久島国際写真祭",
         ), "utf-8",
     ),
 }

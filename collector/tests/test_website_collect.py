@@ -2,6 +2,7 @@ import json
 import unittest
 
 from collector.website_collect import (
+    annual_festival_parser,
     fujifilm_regional_parser,
     parse_canon,
     parse_fujifilm,
@@ -263,6 +264,15 @@ class WebsiteCollectorTests(unittest.TestCase):
         self.assertEqual(len(candidates), 2)
         self.assertEqual(candidates[0]["extracted"]["venue"], "rouleur studio")
         self.assertEqual(candidates[1]["extracted"]["venue"], "Gallery ANBAI.")
+
+    def test_annual_festival_uses_current_official_dates(self):
+        parser = annual_festival_parser(
+            marker="島の写真祭", title_base="島の写真祭", venue="島内各所",
+            prefecture="鹿児島県", source_url="https://example.com/", source_name="島の写真祭",
+        )
+        candidate = parser("<h1>島の写真祭</h1><p>2027年10月12日～10月26日</p>")[0]
+        self.assertEqual(candidate["extracted"]["title"], "島の写真祭 2027")
+        self.assertEqual(candidate["extracted"]["end_date"], "2027-10-26")
 
 
 if __name__ == "__main__":
