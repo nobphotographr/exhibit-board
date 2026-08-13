@@ -21,7 +21,9 @@ DEFAULT_QUERY = (
     '(("写真展" OR "写真個展" OR "グループ写真展") '
     '("開催します" OR "展示します" OR "個展を開催" OR "写真展を開催") '
     'OR "Gallery F16" OR "ギャラリーF16" OR "10p10fp展" '
-    'OR "国産中判フィルム写真展") '
+    'OR "国産中判フィルム写真展" '
+    'OR (("HuBase" OR "Hubase" OR "HUBASE") '
+    '("写真展" OR "個展" OR "グループ展" OR "展示"))) '
     'lang:ja -is:retweet -is:reply'
 )
 
