@@ -32,7 +32,7 @@ python -m venv .venv
 本番稼働前にVPSをUbuntu LTSへ移行してください。
 
 現在の本番運用ではVPSを使わず、`.github/workflows/collect-exhibitions.yml`の
-GitHub ActionsでXを毎時取得します。公開リポジトリのためActions利用料はかからず、
+GitHub ActionsでXを毎日06:17（日本時間）に取得します。公開リポジトリのためActions利用料はかからず、
 必要なSecretsは`X_BEARER_TOKEN`と`COLLECTOR_API_KEY`です。
 
 ## Official venue sites
