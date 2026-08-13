@@ -13,7 +13,7 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border">
-        <div className="max-w-5xl mx-auto px-6 sm:px-8">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-8 gap-2">
             <h1 className="text-2xl font-semibold text-foreground">
               Exhibit Board
@@ -26,8 +26,8 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-5xl mx-auto px-6 sm:px-8 py-16">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-12">
+      <main className="max-w-6xl mx-auto px-6 sm:px-8 py-12 sm:py-16">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-10 sm:space-y-12">
           <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto">
             <TabsTrigger value="events" className="flex items-center gap-2">
               <List className="w-4 h-4" />
@@ -35,7 +35,7 @@ export default function Home() {
             </TabsTrigger>
             <TabsTrigger value="submit" className="flex items-center gap-2">
               <Plus className="w-4 h-4" />
-              新規登録
+              情報を投稿
             </TabsTrigger>
           </TabsList>
 
@@ -45,7 +45,7 @@ export default function Home() {
                 写真展を探す
               </h2>
               <p className="text-muted-foreground">
-                会期・地域・展示規模から開催情報を絞り込めます
+                キーワード・会期・地域・展示規模から開催情報を絞り込めます
               </p>
             </div>
             <EventList />
@@ -57,21 +57,17 @@ export default function Home() {
                 展示情報登録
               </h2>
               <p className="text-muted-foreground">
-                あなたの展示情報を登録して、多くの人に知ってもらいましょう
+                写真展の情報をお寄せください。内容を確認後に掲載します
               </p>
             </div>
-            <EventForm
-              onSuccess={() => {
-                setActiveTab('events')
-              }}
-            />
+            <EventForm />
           </TabsContent>
         </Tabs>
       </main>
 
       {/* Footer */}
       <footer className="border-t border-border mt-24">
-        <div className="max-w-5xl mx-auto px-6 sm:px-8 py-8">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 py-8">
           <div className="text-sm text-muted-foreground space-y-2">
             <p>
               展示情報は会場・主催者の公式サイトまたは告知元のSNS投稿をもとに掲載しています。詳細は各告知をご確認ください。

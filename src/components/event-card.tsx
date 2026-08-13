@@ -13,33 +13,40 @@ interface EventCardProps {
 }
 
 export function EventCard({ event }: EventCardProps) {
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
-    return date.toLocaleDateString('ja-JP', {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    })
+  const dateParts = (dateString: string) => {
+    const [year, month, day] = dateString.split('-').map(Number)
+    return { year, month, day }
   }
 
   const formatDateRange = (start: string, end: string) => {
+    const startDate = dateParts(start)
+    const endDate = dateParts(end)
+    const formattedStart = `${startDate.year}/${startDate.month}/${startDate.day}`
+
     if (start === end) {
-      return formatDate(start)
+      return formattedStart
     }
-    return `${formatDate(start)} - ${formatDate(end)}`
+
+    const formattedEnd = startDate.year === endDate.year
+      ? `${endDate.month}/${endDate.day}`
+      : `${endDate.year}/${endDate.month}/${endDate.day}`
+
+    return `${formattedStart}〜${formattedEnd}`
   }
 
+  const today = new Date()
+  const todayKey = [
+    today.getFullYear(),
+    String(today.getMonth() + 1).padStart(2, '0'),
+    String(today.getDate()).padStart(2, '0'),
+  ].join('-')
+
   const isOngoing = () => {
-    const today = new Date()
-    const startDate = new Date(event.start_date)
-    const endDate = new Date(event.end_date)
-    return today >= startDate && today <= endDate
+    return event.start_date <= todayKey && event.end_date >= todayKey
   }
 
   const isUpcoming = () => {
-    const today = new Date()
-    const startDate = new Date(event.start_date)
-    return today < startDate
+    return todayKey < event.start_date
   }
 
   const getStatusBadge = () => {
@@ -65,7 +72,7 @@ export function EventCard({ event }: EventCardProps) {
   }
 
   return (
-    <div className="h-full border border-border flex flex-col">
+    <article className="h-full border border-border flex flex-col transition-colors hover:border-foreground/40">
       {/* Card Header */}
       <CardHeader className="pb-3">
         <div className="flex justify-between items-start gap-2">
@@ -88,8 +95,8 @@ export function EventCard({ event }: EventCardProps) {
         <div className="space-y-3 flex-1">
           {/* Date */}
           <div className="flex items-center text-sm text-muted-foreground">
-            <Calendar className="w-4 h-4 mr-2" />
-            {formatDateRange(event.start_date, event.end_date)}
+            <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
+            <time dateTime={event.start_date}>{formatDateRange(event.start_date, event.end_date)}</time>
           </div>
 
           {/* Venue and Location */}
@@ -138,6 +145,7 @@ export function EventCard({ event }: EventCardProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center"
+                    aria-label={`Xの告知を見る: ${event.title}`}
                     onClick={() => trackEventClick(event.id, event.title, 'sns')}
                   >
                     <Image
@@ -162,6 +170,7 @@ export function EventCard({ event }: EventCardProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center"
+                    aria-label={`Instagramの告知を見る: ${event.title}`}
                     onClick={() => trackEventClick(event.id, event.title, 'sns')}
                   >
                     <Image
@@ -186,6 +195,7 @@ export function EventCard({ event }: EventCardProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center"
+                    aria-label={`Threadsの告知を見る: ${event.title}`}
                     onClick={() => trackEventClick(event.id, event.title, 'sns')}
                   >
                     <Image
@@ -204,6 +214,8 @@ export function EventCard({ event }: EventCardProps) {
               variant="outline"
               size="sm"
               className="text-xs"
+              aria-label={`カレンダーに追加: ${event.title}`}
+              title="カレンダーに追加"
               onClick={() => {
                 handleAddToCalendar(event)
                 trackEventClick(event.id, event.title, 'calendar')
@@ -229,6 +241,7 @@ export function EventCard({ event }: EventCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center"
+              aria-label={`詳細を見る: ${event.title}`}
               onClick={() => trackEventClick(event.id, event.title, 'announce')}
             >
               <ExternalLink className="w-4 h-4 mr-2" />
@@ -237,6 +250,6 @@ export function EventCard({ event }: EventCardProps) {
           </Button>
         </div>
       </CardContent>
-    </div>
+    </article>
   )
 }

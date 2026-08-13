@@ -91,7 +91,7 @@ export function EventForm({ onSuccess }: EventFormProps) {
         throw new Error(result.message || 'Failed to submit event')
       }
 
-      setSubmitSuccess('イベントを登録しました！展示一覧への反映まで5分程度かかります。')
+      setSubmitSuccess('登録を受け付けました。内容を確認後、展示一覧に掲載します。')
 
       trackEventSubmission(data.title)
 
@@ -335,13 +335,13 @@ export function EventForm({ onSuccess }: EventFormProps) {
 
           {/* Error/Success Messages */}
           {submitError && (
-            <div className="p-4 text-sm text-destructive border border-destructive">
+            <div className="p-4 text-sm text-destructive border border-destructive" role="alert">
               {submitError}
             </div>
           )}
 
           {submitSuccess && (
-            <div className="p-4 text-sm border border-foreground text-foreground">
+            <div className="p-4 text-sm border border-foreground text-foreground" role="status">
               {submitSuccess}
             </div>
           )}
@@ -356,9 +356,9 @@ export function EventForm({ onSuccess }: EventFormProps) {
           </Button>
 
           <div className="text-sm text-muted-foreground text-center space-y-1">
-            <p>登録された情報は公開されます。内容に間違いがないかご確認ください。</p>
+            <p>送信された情報は内容を確認後に公開します。入力内容に間違いがないかご確認ください。</p>
             <p className="text-xs">
-              ※ 登録後、展示一覧への反映まで5分程度お時間をいただきます
+              ※ 掲載までお時間をいただく場合や、内容確認のためご連絡する場合があります
             </p>
           </div>
         </form>

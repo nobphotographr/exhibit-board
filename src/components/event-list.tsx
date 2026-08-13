@@ -1,15 +1,18 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { Event } from '@/lib/database.types'
 import { EventCard } from './event-card'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { PREFECTURES, FILTER_RANGES, VENUE_TYPES } from '@/lib/constants'
 type FilterRange = 'upcoming' | 'ongoing' | 'thisWeek' | 'thisMonth'
 type VenueType = 'all' | 'major' | 'independent'
-import { Loader2, RefreshCw } from 'lucide-react'
+import { Loader2, RefreshCw, Search, ChevronDown } from 'lucide-react'
 import { trackFilterUsage } from '@/lib/gtag'
+
+const PAGE_SIZE = 24
 
 interface EventListProps {
   initialEvents?: Event[]
@@ -23,6 +26,8 @@ export function EventList({ initialEvents = [] }: EventListProps) {
   const [selectedRange, setSelectedRange] = useState<FilterRange | 'all'>('upcoming')
   const [selectedPrefecture, setSelectedPrefecture] = useState<string>('all')
   const [selectedVenueType, setSelectedVenueType] = useState<VenueType>('all')
+  const [query, setQuery] = useState('')
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
 
   const fetchEvents = useCallback(async () => {
     setLoading(true)
@@ -37,7 +42,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
       const response = await fetch(`/api/events?${params.toString()}`)
 
       if (!response.ok) {
-        throw new Error('Failed to fetch events')
+        throw new Error('展示情報を取得できませんでした。時間をおいて再度お試しください。')
       }
 
       const data = await response.json()
@@ -58,19 +63,89 @@ export function EventList({ initialEvents = [] }: EventListProps) {
     setSelectedRange('upcoming')
     setSelectedPrefecture('all')
     setSelectedVenueType('all')
+    setQuery('')
   }
 
-  const hasActiveFilters = selectedRange !== 'upcoming' || selectedPrefecture !== 'all' || selectedVenueType !== 'all'
+  const hasActiveFilters = selectedRange !== 'upcoming' || selectedPrefecture !== 'all' || selectedVenueType !== 'all' || query.trim() !== ''
+
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE)
+  }, [selectedRange, selectedPrefecture, selectedVenueType, query])
+
+  const filteredEvents = useMemo(() => {
+    const normalizedQuery = query.trim().toLocaleLowerCase('ja')
+    const today = new Date()
+    const todayKey = [
+      today.getFullYear(),
+      String(today.getMonth() + 1).padStart(2, '0'),
+      String(today.getDate()).padStart(2, '0'),
+    ].join('-')
+
+    const matches = normalizedQuery
+      ? events.filter((event) => [
+          event.title,
+          event.host_name,
+          event.venue,
+          event.prefecture,
+          event.address,
+          event.notes,
+        ].some((value) => value?.toLocaleLowerCase('ja').includes(normalizedQuery)))
+      : [...events]
+
+    const statusRank = (event: Event) => {
+      if (event.start_date <= todayKey && event.end_date >= todayKey) return 0
+      if (event.start_date > todayKey) return 1
+      return 2
+    }
+
+    return matches.sort((a, b) => {
+      const rankDifference = statusRank(a) - statusRank(b)
+      if (rankDifference !== 0) return rankDifference
+
+      const dateComparison = statusRank(a) === 0
+        ? a.end_date.localeCompare(b.end_date)
+        : a.start_date.localeCompare(b.start_date)
+
+      return dateComparison || a.title.localeCompare(b.title, 'ja')
+    })
+  }, [events, query])
+
+  const displayedEvents = filteredEvents.slice(0, visibleCount)
 
   return (
     <div className="space-y-8">
       {/* Filter Controls */}
       <div className="border border-border p-6">
-        <h3 className="text-sm font-medium mb-4">フィルタ</h3>
+        <div className="flex items-center justify-between gap-4 mb-5">
+          <h3 className="text-sm font-medium">展示を絞り込む</h3>
+          {hasActiveFilters && (
+            <Button variant="ghost" size="sm" onClick={clearFilters} disabled={loading}>
+              条件をリセット
+            </Button>
+          )}
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="event-search" className="block text-sm text-muted-foreground mb-2">
+            キーワード
+          </label>
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
+            <Input
+              id="event-search"
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="展示名・作家名・会場名で検索"
+              className="pl-9"
+            />
+          </div>
+        </div>
+
         <div className="flex flex-col sm:flex-row gap-4">
           {/* Date Range Filter */}
           <div className="flex-1">
-            <label className="block text-sm text-muted-foreground mb-2">期間</label>
+            <label htmlFor="range-filter" className="block text-sm text-muted-foreground mb-2">期間</label>
             <Select
               value={selectedRange}
               onValueChange={(value) => {
@@ -78,7 +153,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
                 trackFilterUsage('range', value)
               }}
             >
-              <SelectTrigger>
+              <SelectTrigger id="range-filter">
                 <SelectValue placeholder="期間を選択" />
               </SelectTrigger>
               <SelectContent>
@@ -101,7 +176,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
 
           {/* Prefecture Filter */}
           <div className="flex-1">
-            <label className="block text-sm text-muted-foreground mb-2">都道府県</label>
+            <label htmlFor="prefecture-filter" className="block text-sm text-muted-foreground mb-2">都道府県</label>
             <Select
               value={selectedPrefecture}
               onValueChange={(value) => {
@@ -109,7 +184,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
                 trackFilterUsage('prefecture', value)
               }}
             >
-              <SelectTrigger>
+              <SelectTrigger id="prefecture-filter">
                 <SelectValue placeholder="都道府県を選択" />
               </SelectTrigger>
               <SelectContent>
@@ -125,7 +200,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
 
           {/* Exhibition Scale Filter */}
           <div className="flex-1">
-            <label className="block text-sm text-muted-foreground mb-2">展示規模</label>
+            <label htmlFor="venue-type-filter" className="block text-sm text-muted-foreground mb-2">展示規模</label>
             <Select
               value={selectedVenueType}
               onValueChange={(value) => {
@@ -133,7 +208,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
                 trackFilterUsage('venue_type', value)
               }}
             >
-              <SelectTrigger>
+              <SelectTrigger id="venue-type-filter">
                 <SelectValue placeholder="展示規模を選択" />
               </SelectTrigger>
               <SelectContent>
@@ -148,21 +223,13 @@ export function EventList({ initialEvents = [] }: EventListProps) {
 
           {/* Control Buttons */}
           <div className="flex gap-2 items-end">
-            {hasActiveFilters && (
-              <Button
-                variant="outline"
-                onClick={clearFilters}
-                disabled={loading}
-              >
-                クリア
-              </Button>
-            )}
-
             <Button
               variant="outline"
               size="icon"
               onClick={fetchEvents}
               disabled={loading}
+              aria-label="展示情報を再読み込み"
+              title="展示情報を再読み込み"
             >
               {loading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -176,9 +243,14 @@ export function EventList({ initialEvents = [] }: EventListProps) {
         {/* Active Filters Display */}
         {hasActiveFilters && (
           <div className="mt-4 flex flex-wrap gap-2">
-            {selectedRange && (
+            {query.trim() && (
               <span className="inline-flex items-center px-2 py-1 text-xs border border-border text-muted-foreground">
-                {FILTER_RANGES.find(r => r.value === selectedRange)?.label}
+                「{query.trim()}」
+              </span>
+            )}
+            {selectedRange !== 'upcoming' && (
+              <span className="inline-flex items-center px-2 py-1 text-xs border border-border text-muted-foreground">
+                {selectedRange === 'all' ? 'すべての期間' : FILTER_RANGES.find(r => r.value === selectedRange)?.label}
               </span>
             )}
             {selectedPrefecture && selectedPrefecture !== 'all' && (
@@ -210,7 +282,7 @@ export function EventList({ initialEvents = [] }: EventListProps) {
       )}
 
       {/* Events Grid */}
-      {!loading && events.length === 0 ? (
+      {!loading && filteredEvents.length === 0 ? (
         <div className="border border-border p-6">
           <div className="text-center py-8">
             <p className="text-muted-foreground">
@@ -233,20 +305,36 @@ export function EventList({ initialEvents = [] }: EventListProps) {
       ) : (
         <>
           {/* Results Count */}
-          <div className="text-sm text-muted-foreground">
+          <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-muted-foreground" aria-live="polite">
             {loading ? (
               '読み込み中...'
             ) : (
-              `${events.length}件の展示${hasActiveFilters ? '（フィルタ適用済み）' : ''}`
+              <>
+                <span>{filteredEvents.length}件の展示{hasActiveFilters ? '（条件適用済み）' : ''}</span>
+                <span>{Math.min(displayedEvents.length, filteredEvents.length)}件を表示中</span>
+              </>
             )}
           </div>
 
           {/* Events Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {events.map((event) => (
+            {displayedEvents.map((event) => (
               <EventCard key={event.id} event={event} />
             ))}
           </div>
+
+          {visibleCount < filteredEvents.length && (
+            <div className="flex justify-center pt-2">
+              <Button
+                variant="outline"
+                onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
+                className="min-w-48"
+              >
+                <ChevronDown className="w-4 h-4 mr-2" aria-hidden="true" />
+                さらに表示
+              </Button>
+            </div>
+          )}
         </>
       )}
     </div>

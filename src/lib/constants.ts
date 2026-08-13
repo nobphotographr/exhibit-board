@@ -11,7 +11,7 @@ export const PREFECTURES: JpPrefecture[] = [
 ]
 
 export const FILTER_RANGES = [
-  { value: 'upcoming', label: 'これから' },
+  { value: 'upcoming', label: '開催中・開催予定' },
   { value: 'ongoing', label: '開催中' },
   { value: 'thisWeek', label: '今週' },
   { value: 'thisMonth', label: '今月' }
