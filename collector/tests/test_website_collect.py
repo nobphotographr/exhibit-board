@@ -17,6 +17,8 @@ from collector.website_collect import (
     parse_fotori,
     parse_gallery_owada,
     parse_higashikawa,
+    parse_iia_gallery,
+    parse_monography,
     parse_photographers_gallery,
     parse_placem,
     parse_room305,
@@ -197,6 +199,31 @@ class WebsiteCollectorTests(unittest.TestCase):
         </div></article>"""
         candidate = parse_roonee(html)[0]
         self.assertIn("Room 1", candidate["extracted"]["venue"])
+
+    def test_monography_square_bootstrap_schedule(self):
+        repeatable = {"text": {"content": {"quill": {"ops": [{
+            "insert": "北井一夫\n「セレクション展」\n2026年8月11日-8月30日\n",
+        }]}}}}
+        cell = {"content": {"properties": {"repeatables": [repeatable]}}}
+        state = {"siteData": {"page": {"properties": {"contentAreas": {
+            "userContent": {"content": {"cells": [cell]}},
+        }}}}}
+        html = f"<script>window.__BOOTSTRAP_STATE__ = {json.dumps(state, ensure_ascii=False)};</script>"
+        candidate = parse_monography(html)[0]
+        self.assertEqual(candidate["extracted"]["title"], "北井一夫 「セレクション展」")
+        self.assertEqual(candidate["extracted"]["end_date"], "2026-08-30")
+        self.assertEqual(candidate["extracted"]["venue"], "MONO GRAPHY Camera & Art")
+
+    def test_iia_gallery_home_card(self):
+        html = """<div class="item"><div class="item--content">
+          <h2 class="item--title">「２Lぐらいがちょうどいい」</h2>
+          <div class="item--desc"><p>2026.7.3～10.12</p></div>
+          <a href="https://iiagallery.com/exhibition/20260707/">展示詳細</a>
+        </div></div>"""
+        candidate = parse_iia_gallery(html)[0]
+        self.assertEqual(candidate["extracted"]["start_date"], "2026-07-03")
+        self.assertEqual(candidate["extracted"]["end_date"], "2026-10-12")
+        self.assertEqual(candidate["extracted"]["venue"], "アイアイエーギャラリー")
 
     def test_tosei_current_exhibition(self):
         html = """<table><tr><td class="j12"><p>稲垣徳文写真展 Paris Blue

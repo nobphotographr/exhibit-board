@@ -679,6 +679,73 @@ def parse_roonee(html: str) -> list[dict]:
     return unique_sources(results)
 
 
+def parse_monography(html: str) -> list[dict]:
+    marker = "window.__BOOTSTRAP_STATE__ = "
+    if marker not in html:
+        return []
+    try:
+        state, _ = json.JSONDecoder().raw_decode(html.split(marker, 1)[1])
+        cells = state["siteData"]["page"]["properties"]["contentAreas"]["userContent"]["content"]["cells"]
+    except (json.JSONDecodeError, KeyError, IndexError, TypeError):
+        return []
+
+    results = []
+    for cell in cells:
+        repeatables = cell.get("content", {}).get("properties", {}).get("repeatables", [])
+        for item in repeatables:
+            ops = item.get("text", {}).get("content", {}).get("quill", {}).get("ops", [])
+            card_text = "".join(
+                str(op.get("insert", "")) for op in ops if isinstance(op, dict)
+            ).strip()
+            date_match = re.search(r"20\d{2}年\d{1,2}月\d{1,2}日", card_text)
+            dates = dates_from_text(card_text)
+            if not date_match or not dates:
+                continue
+            title = normalize(card_text[:date_match.start()].replace("\n", " "))
+            if not title:
+                continue
+            source_url = f"https://www.monography.shop/2026#exhibition-{text_hash(title)[:12]}"
+            results.append(build_candidate(
+                title=title,
+                venue="MONO GRAPHY Camera & Art",
+                prefecture="東京都",
+                address="東京都中央区日本橋小伝馬町17-5 7ビル2F",
+                start_date=dates[0],
+                end_date=dates[1],
+                source_url=source_url,
+                source_name="MONO GRAPHY Camera & Art",
+                card_text=card_text,
+            ))
+    return unique_sources(results)
+
+
+def parse_iia_gallery(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for card in soup.select(".item"):
+        title_node = card.select_one(".item--title")
+        date_node = card.select_one(".item--desc")
+        link = card.select_one("a[href*='/exhibition/']")
+        if not title_node or not date_node or not link:
+            continue
+        card_text = card.get_text(" ", strip=True)
+        dates = dates_from_text(date_node.get_text(" ", strip=True))
+        if not dates:
+            continue
+        results.append(build_candidate(
+            title=title_node.get_text(" ", strip=True),
+            venue="アイアイエーギャラリー",
+            prefecture="東京都",
+            address="東京都中央区日本橋小伝馬町17-5 7ビル1F",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=urljoin("https://iiagallery.com/", link.get("href", "")),
+            source_name="アイアイエーギャラリー",
+            card_text=card_text,
+        ))
+    return unique_sources(results)
+
+
 def parse_tosei(html: str) -> list[dict]:
     soup = BeautifulSoup(html, "html.parser")
     results = []
@@ -993,6 +1060,12 @@ SITES = {
     "photographers-gallery": SiteDefinition("https://pg-web.net/exhibition/", "photographers’ gallery", parse_photographers_gallery, "utf-8"),
     "zen-foto": SiteDefinition("https://zen-foto.jp/jp/exhibitions", "ZEN FOTO GALLERY", parse_zen_foto, "utf-8"),
     "roonee": SiteDefinition("https://www.roonee.jp/exhibition/", "Roonee 247 Fine Arts", parse_roonee, "utf-8"),
+    "monography": SiteDefinition(
+        "https://www.monography.shop/2026", "MONO GRAPHY Camera & Art", parse_monography, "utf-8",
+    ),
+    "iia-gallery": SiteDefinition(
+        "https://iiagallery.com/", "アイアイエーギャラリー", parse_iia_gallery, "utf-8",
+    ),
     "tosei": SiteDefinition(
         "https://www.tosei-sha.jp/TOSEI-NEW-HP/html/EXHIBITIONS/j_exhibitions.html",
         "ギャラリー冬青", parse_tosei, "cp932",
