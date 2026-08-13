@@ -73,7 +73,10 @@ export function EventList({ initialEvents = [] }: EventListProps) {
             <label className="block text-sm text-muted-foreground mb-2">期間</label>
             <Select
               value={selectedRange}
-              onValueChange={(value) => setSelectedRange(value as FilterRange | 'all')}
+              onValueChange={(value) => {
+                setSelectedRange(value as FilterRange | 'all')
+                trackFilterUsage('range', value)
+              }}
             >
               <SelectTrigger>
                 <SelectValue placeholder="期間を選択" />
@@ -81,7 +84,6 @@ export function EventList({ initialEvents = [] }: EventListProps) {
               <SelectContent>
                 <SelectItem
                   value="all"
-                  onSelect={() => trackFilterUsage('range', 'all')}
                 >
                   すべての期間
                 </SelectItem>
@@ -89,7 +91,6 @@ export function EventList({ initialEvents = [] }: EventListProps) {
                   <SelectItem
                     key={range.value}
                     value={range.value}
-                    onSelect={() => trackFilterUsage('range', range.value)}
                   >
                     {range.label}
                   </SelectItem>
@@ -103,7 +104,10 @@ export function EventList({ initialEvents = [] }: EventListProps) {
             <label className="block text-sm text-muted-foreground mb-2">都道府県</label>
             <Select
               value={selectedPrefecture}
-              onValueChange={setSelectedPrefecture}
+              onValueChange={(value) => {
+                setSelectedPrefecture(value)
+                trackFilterUsage('prefecture', value)
+              }}
             >
               <SelectTrigger>
                 <SelectValue placeholder="都道府県を選択" />
@@ -124,7 +128,10 @@ export function EventList({ initialEvents = [] }: EventListProps) {
             <label className="block text-sm text-muted-foreground mb-2">展示規模</label>
             <Select
               value={selectedVenueType}
-              onValueChange={(value) => setSelectedVenueType(value as VenueType)}
+              onValueChange={(value) => {
+                setSelectedVenueType(value as VenueType)
+                trackFilterUsage('venue_type', value)
+              }}
             >
               <SelectTrigger>
                 <SelectValue placeholder="展示規模を選択" />

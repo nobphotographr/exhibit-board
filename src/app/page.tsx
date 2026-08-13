@@ -88,6 +88,18 @@ export default function Home() {
               </a>
               までご連絡ください。
             </p>
+            <p>
+              当サイトでは利用状況の把握と改善のため Google Analytics を使用し、ページ閲覧やリンク操作などの情報を収集しています。詳しくは
+              <a
+                href="https://policies.google.com/technologies/partner-sites?hl=ja"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground mx-1"
+              >
+                Google によるデータ利用について
+              </a>
+              をご確認ください。
+            </p>
           </div>
         </div>
       </footer>
