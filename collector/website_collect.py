@@ -4,11 +4,12 @@ import argparse
 import hashlib
 import json
 import os
+import re
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Callable
-from urllib.parse import urljoin
+from urllib.parse import unquote, urljoin
 
 import requests
 from bs4 import BeautifulSoup
@@ -67,7 +68,13 @@ def build_candidate(
 
 
 def dates_from_text(value: str) -> tuple[str, str] | None:
-    start, end = extract_dates(normalize(value), datetime.now(timezone.utc))
+    normalized = normalize(value)
+    normalized = re.sub(
+        r"(20\d{2})\.(\d{1,2})\.(\d{1,2})",
+        lambda match: f"{match.group(1)}年{match.group(2)}月{match.group(3)}日",
+        normalized,
+    )
+    start, end = extract_dates(normalized, datetime.now(timezone.utc))
     if start and end:
         return start, end
     return None
@@ -97,6 +104,37 @@ def parse_fujifilm(html: str) -> list[dict]:
             card_text=card.get_text(" ", strip=True),
         ))
     return unique_sources(results)
+
+
+def fujifilm_regional_parser(
+    *, venue: str, prefecture: str, address: str, base_url: str,
+) -> Callable[[str], list[dict]]:
+    def parse(html: str) -> list[dict]:
+        soup = BeautifulSoup(html, "html.parser")
+        results = []
+        for card in soup.select("#nowevent_list .nowevent"):
+            link = card.select_one(".salonbox h4 a[href]")
+            date_node = card.select_one(".salonbox .exdate")
+            if not link or not date_node:
+                continue
+            dates = dates_from_text(date_node.get_text(" ", strip=True))
+            if not dates:
+                continue
+            url = urljoin(base_url, link.get("href", ""))
+            results.append(build_candidate(
+                title=link.get_text(" ", strip=True),
+                venue=venue,
+                prefecture=prefecture,
+                address=address,
+                start_date=dates[0],
+                end_date=dates[1],
+                source_url=url,
+                source_name=venue,
+                card_text=card.get_text(" ", strip=True),
+            ))
+        return unique_sources(results)
+
+    return parse
 
 
 def parse_canon(html: str) -> list[dict]:
@@ -186,6 +224,252 @@ def parse_jcii(html: str) -> list[dict]:
     return unique_sources(results)
 
 
+def parse_sony_alpha_plaza(html: str) -> list[dict]:
+    match = re.search(r"callback\s*\((.*)\)\s*;?\s*$", html, re.DOTALL)
+    if not match:
+        return []
+    data = json.loads(match.group(1))
+    location_map = {
+        "札幌": ("αプラザ札幌", "北海道", "北海道札幌市中央区南一条西3-8-20 4階"),
+        "銀座": ("αプラザ銀座", "東京都", "東京都中央区銀座5-8-1 銀座プレイス4階"),
+        "名古屋": ("αプラザ名古屋", "愛知県", "愛知県名古屋市中区錦3-24-17 BINO栄3階"),
+        "大阪": ("αプラザ大阪", "大阪府", "大阪府大阪市北区梅田2-2-22 ハービスエント4階"),
+        "福岡天神": ("αプラザ福岡天神", "福岡県", "福岡県福岡市中央区今泉1-19-22 天神CLASS 1階"),
+    }
+    results = []
+    for event in data.get("EventInformationList", []):
+        if event.get("RefineClassification__c") != "ギャラリー":
+            continue
+        place = event.get("Place__c", "")
+        if place not in location_map:
+            continue
+        venue, prefecture, address = location_map[place]
+        start = str(event.get("StartTime__c", ""))[:10]
+        end = str(event.get("EndTime__c", ""))[:10]
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", start) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", end):
+            continue
+        source_url = unquote(event.get("URL__c", ""))
+        if not source_url:
+            continue
+        title = " ".join(filter(None, [event.get("SubTitle__c", ""), event.get("Name__c", "")]))
+        results.append(build_candidate(
+            title=title,
+            venue=venue,
+            prefecture=prefecture,
+            address=address,
+            start_date=start,
+            end_date=end,
+            source_url=source_url,
+            source_name="ソニー αプラザ",
+            card_text=json.dumps(event, ensure_ascii=False, sort_keys=True),
+        ))
+    return unique_sources(results)
+
+
+def parse_nikon(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    venue_map = {
+        "ニコンサロン(ニコンプラザ東京)": (
+            "ニコンサロン", "東京都", "東京都新宿区西新宿1-6-1 新宿エルタワー28階",
+        ),
+        "ニコンプラザ東京 THE GALLERY": (
+            "ニコンプラザ東京 THE GALLERY", "東京都", "東京都新宿区西新宿1-6-1 新宿エルタワー28階",
+        ),
+        "ニコンプラザ大阪 THE GALLERY": (
+            "ニコンプラザ大阪 THE GALLERY", "大阪府", "大阪府大阪市中央区博労町3-5-1 御堂筋グランタワー17階",
+        ),
+    }
+    results = []
+    for card in soup.select("li.item-event"):
+        link = card.select_one("a.item-inner[href]")
+        title_node = card.select_one(".is-title.is-name")
+        venue_node = card.select_one(".icon-wrap .icon")
+        date_node = card.select_one("time.day[data-start][data-end]")
+        if not link or not title_node or not venue_node or not date_node:
+            continue
+        venue_label = normalize(venue_node.get_text(" ", strip=True))
+        if venue_label not in venue_map:
+            continue
+        venue, prefecture, address = venue_map[venue_label]
+        start = date_node.get("data-start", "")[:10].replace("/", "-")
+        end = date_node.get("data-end", "")[:10].replace("/", "-")
+        url = urljoin("https://nij.nikon.com", link.get("href", ""))
+        results.append(build_candidate(
+            title=normalize(title_node.get_text(" ", strip=True)),
+            venue=venue,
+            prefecture=prefecture,
+            address=address,
+            start_date=start,
+            end_date=end,
+            source_url=url,
+            source_name="ニコンプラザ写真展",
+            card_text=card.get_text(" ", strip=True),
+        ))
+    return unique_sources(results)
+
+
+def parse_leica(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    venue_map = {
+        "Leica Gallery Tokyo": ("ライカギャラリー東京", "東京都", "東京都中央区銀座6-4-1 2F"),
+        "Leica Gallery Omotesando": ("ライカギャラリー表参道", "東京都", "東京都渋谷区神宮前5-16-15 2F"),
+        "Leica Gallery Kyoto": ("ライカギャラリー京都", "京都府", "京都府京都市東山区祇園町南側570-120 2F"),
+    }
+    results = []
+    for card in soup.select(".node--events-overview"):
+        title_node = card.select_one(".card_headline_info__headline")
+        info = [normalize(node.get_text(" ", strip=True)) for node in card.select(".card__event-info__item")]
+        link = card.select_one("a[href]")
+        if not title_node or not link or len(info) < 3 or info[1] != "日本" or info[2] not in venue_map:
+            continue
+        dates = dates_from_text(info[0])
+        if not dates:
+            continue
+        venue, prefecture, address = venue_map[info[2]]
+        results.append(build_candidate(
+            title=title_node.get_text(" ", strip=True),
+            venue=venue,
+            prefecture=prefecture,
+            address=address,
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=urljoin("https://leica-camera.com", link.get("href", "")),
+            source_name="ライカイベント",
+            card_text=card.get_text(" ", strip=True),
+        ))
+    return unique_sources(results)
+
+
+def parse_kenko(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for card in soup.select("section.gal-02 ul.gal-list li.clickable"):
+        title_node = card.select_one("h3.name")
+        date_node = card.select_one("p.date")
+        link = card.select_one("a.bt[href]")
+        if not title_node or not date_node or not link:
+            continue
+        dates = dates_from_text(date_node.get_text(" ", strip=True))
+        if not dates:
+            continue
+        results.append(build_candidate(
+            title=title_node.get_text(" ", strip=True),
+            venue="ケンコー・トキナーギャラリー",
+            prefecture="東京都",
+            address="東京都中野区中野5-68-10 KT中野ビル2F",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=urljoin("https://www.kenko-tokina.co.jp/gallery/", link.get("href", "")),
+            source_name="ケンコー・トキナーギャラリー",
+            card_text=card.get_text(" ", strip=True),
+        ))
+    return unique_sources(results)
+
+
+def parse_topmuseum(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for card in soup.select(".slider__item"):
+        link = card.select_one("a[href]")
+        title_node = card.select_one("dt .main")
+        description = card.select_one("dd")
+        floor_node = description.select_one("em") if description else None
+        if not link or not title_node or not description or not floor_node:
+            continue
+        floor = normalize(floor_node.get_text(" ", strip=True))
+        if "展示室" not in floor:
+            continue
+        dates = dates_from_text(description.get_text(" ", strip=True))
+        if not dates:
+            continue
+        subtitle = card.select_one("dt .sub")
+        title = " ".join(filter(None, [
+            title_node.get_text(" ", strip=True),
+            subtitle.get_text(" ", strip=True) if subtitle else "",
+        ]))
+        results.append(build_candidate(
+            title=title,
+            venue=f"東京都写真美術館 {floor}",
+            prefecture="東京都",
+            address="東京都目黒区三田1-13-3 恵比寿ガーデンプレイス内",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=urljoin("https://topmuseum.jp", link.get("href", "")),
+            source_name="東京都写真美術館",
+            card_text=card.get_text(" ", strip=True),
+        ))
+    return unique_sources(results)
+
+
+def parse_om_system(html: str) -> list[dict]:
+    pairs = re.findall(
+        r'\\"href\\":\\"(https://note\.com/omsystem_plaza/n/[^?\\"]+)[^\\"]*'
+        r'\\",\\"title\\":\\"([^\\"]+)',
+        html,
+    )
+    results = []
+    for url, full_title in pairs:
+        dates = dates_from_text(full_title)
+        if not dates:
+            continue
+        title = re.sub(r"^\s*\d{4}年\d{1,2}月\d{1,2}日[^～〜~]*[～〜~]\s*\d{1,2}月\d{1,2}日[^）)]*[）)]\s*", "", full_title)
+        results.append(build_candidate(
+            title=title,
+            venue="OM SYSTEM GALLERY",
+            prefecture="東京都",
+            address="東京都新宿区西新宿1-24-1 エステック情報ビルB1F",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=url,
+            source_name="OM SYSTEM GALLERY",
+            card_text=full_title,
+        ))
+    return unique_sources(results)
+
+
+def parse_leofoto(html: str) -> list[dict]:
+    try:
+        posts = json.loads(html)
+    except json.JSONDecodeError:
+        return []
+    results = []
+    for post in posts:
+        content = BeautifulSoup(post.get("content", {}).get("rendered", ""), "html.parser").get_text(" ", strip=True)
+        range_match = re.search(
+            r"(?P<sm>\d{1,2})/(?P<sd>\d{1,2})[^~～〜]{0,15}[~～〜]\s*"
+            r"(?P<em>\d{1,2})/(?P<ed>\d{1,2})",
+            content,
+        )
+        dates = None
+        if range_match:
+            year = int(str(post.get("date", ""))[:4])
+            start_month = int(range_match.group("sm"))
+            end_month = int(range_match.group("em"))
+            end_year = year + 1 if end_month < start_month else year
+            dates = (
+                f"{year:04d}-{start_month:02d}-{int(range_match.group('sd')):02d}",
+                f"{end_year:04d}-{end_month:02d}-{int(range_match.group('ed')):02d}",
+            )
+        if not dates or "写真展" not in content:
+            continue
+        title = BeautifulSoup(post.get("title", {}).get("rendered", ""), "html.parser").get_text(" ", strip=True)
+        title = re.sub(r"^【イベント情報】\s*", "", title)
+        title = re.sub(r"^\d{1,2}/\d{1,2}[^~～〜]*[~～〜]\s*", "", title)
+        title = re.sub(r"\s*開催のお知らせ\s*$", "", title)
+        results.append(build_candidate(
+            title=title,
+            venue="Leofoto/Summit Creativeショールーム",
+            prefecture="埼玉県",
+            address="埼玉県川口市西川口3-33-29 NWビル2F",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=post.get("link", ""),
+            source_name="Leofotoショールーム",
+            card_text=content,
+        ))
+    return unique_sources(results)
+
+
 def unique_sources(candidates: list[dict]) -> list[dict]:
     return list({candidate["source"]["key"]: candidate for candidate in candidates}.values())
 
@@ -197,9 +481,42 @@ def active_candidates(candidates: list[dict]) -> list[dict]:
 
 SITES = {
     "fujifilm": SiteDefinition("https://fujifilmsquare.jp/event.html", "フジフイルム スクエア", parse_fujifilm),
+    "fujifilm-sapporo": SiteDefinition(
+        "https://www.fujifilm.co.jp/photosalon/sapporo/", "富士フイルムフォトサロン 札幌",
+        fujifilm_regional_parser(
+            venue="富士フイルムフォトサロン 札幌", prefecture="北海道",
+            address="北海道札幌市中央区大通西6丁目1 富士フイルム札幌ビル1F",
+            base_url="https://www.fujifilm.co.jp/photosalon/sapporo/",
+        ),
+    ),
+    "fujifilm-nagoya": SiteDefinition(
+        "https://www.fujifilm.co.jp/photosalon/nagoya/", "富士フイルムフォトサロン 名古屋",
+        fujifilm_regional_parser(
+            venue="富士フイルムフォトサロン 名古屋", prefecture="愛知県",
+            address="愛知県名古屋市中区栄1-12-17 富士フイルム名古屋ビル1F",
+            base_url="https://www.fujifilm.co.jp/photosalon/nagoya/",
+        ),
+    ),
+    "fujifilm-osaka": SiteDefinition(
+        "https://www.fujifilm.co.jp/photosalon/osaka/", "富士フイルムフォトサロン 大阪",
+        fujifilm_regional_parser(
+            venue="富士フイルムフォトサロン 大阪", prefecture="大阪府",
+            address="大阪府大阪市中央区本町2-5-7 メットライフ本町スクエア1F",
+            base_url="https://www.fujifilm.co.jp/photosalon/osaka/",
+        ),
+    ),
     "canon": SiteDefinition("https://personal.canon.jp/showroom/gallery", "キヤノンギャラリー", parse_canon),
     "sony": SiteDefinition("https://www.sony.jp/camera/imaging-gallery/", "Sony Imaging Gallery", parse_sony, "cp932"),
+    "sony-alpha-plaza": SiteDefinition("https://www.sony.jp/function/event/data/aplaza.json", "ソニー αプラザ", parse_sony_alpha_plaza),
     "jcii": SiteDefinition("https://www.jcii-cameramuseum.jp/photosalon/photo-exhibition/", "JCIIフォトサロン", parse_jcii),
+    "nikon-salon": SiteDefinition("https://nij.nikon.com/ajax/enjoy/nikonplaza/photoex/plaza_photoplace/salon", "ニコンサロン", parse_nikon),
+    "nikon-tokyo": SiteDefinition("https://nij.nikon.com/ajax/enjoy/nikonplaza/photoex/plaza_photoplace/tokyo_gallery", "ニコンプラザ東京 THE GALLERY", parse_nikon),
+    "nikon-osaka": SiteDefinition("https://nij.nikon.com/ajax/enjoy/nikonplaza/photoex/plaza_photoplace/osaka_gallery", "ニコンプラザ大阪 THE GALLERY", parse_nikon),
+    "leica": SiteDefinition("https://leica-camera.com/ja-JP/leica-event", "ライカギャラリー", parse_leica),
+    "kenko": SiteDefinition("https://www.kenko-tokina.co.jp/gallery/", "ケンコー・トキナーギャラリー", parse_kenko),
+    "topmuseum": SiteDefinition("https://topmuseum.jp/", "東京都写真美術館", parse_topmuseum),
+    "om-system": SiteDefinition("https://note.com/omsystem_plaza/m/m63fa0ad6a296", "OM SYSTEM GALLERY", parse_om_system),
+    "leofoto": SiteDefinition("https://leofoto.co.jp/wp-json/wp/v2/posts?search=%E5%86%99%E7%9C%9F%E5%B1%95&per_page=50", "Leofotoショールーム", parse_leofoto),
 }
 
 
