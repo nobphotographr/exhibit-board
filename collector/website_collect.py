@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 import re
+import sys
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
@@ -1752,8 +1753,17 @@ def main() -> int:
 
     selected = SITES.items() if args.site == "all" else [(args.site, SITES[args.site])]
     total = 0
+    failures = 0
     for key, definition in selected:
-        candidates = active_candidates(definition.parser(fetch_site(definition)))
+        try:
+            candidates = active_candidates(definition.parser(fetch_site(definition)))
+        except Exception as error:  # Keep other independent venues collectable.
+            failures += 1
+            print(
+                f"{key}: WARNING {error.__class__.__name__}: {error}",
+                file=sys.stderr,
+            )
+            continue
         for candidate in candidates:
             if not args.dry_run:
                 post_candidate(f"{endpoint}/api/internal/candidates", api_key, candidate)
@@ -1766,7 +1776,7 @@ def main() -> int:
             }, ensure_ascii=False))
             total += 1
         print(f"{key}: {len(candidates)} candidates")
-    print(f"total={total}")
+    print(f"total={total} failures={failures}")
     return 0
 
 
