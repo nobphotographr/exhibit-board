@@ -18,8 +18,10 @@ except ImportError:  # Direct script execution
 
 SEARCH_URL = "https://api.x.com/2/tweets/search/recent"
 DEFAULT_QUERY = (
-    '("写真展" OR "写真個展" OR "グループ写真展") '
+    '(("写真展" OR "写真個展" OR "グループ写真展") '
     '("開催します" OR "展示します" OR "個展を開催" OR "写真展を開催") '
+    'OR "Gallery F16" OR "ギャラリーF16" OR "10p10fp展" '
+    'OR "国産中判フィルム写真展") '
     'lang:ja -is:retweet -is:reply'
 )
 

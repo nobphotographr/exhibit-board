@@ -6,14 +6,19 @@ from collector.website_collect import (
     parse_canon,
     parse_fujifilm,
     parse_jcii,
+    parse_japanese_medium_format_2026,
     parse_kenko,
     parse_leica,
     parse_leofoto,
+    parse_ledeco,
     parse_nikon,
     parse_om_system,
     parse_fotori,
+    parse_gallery_owada,
+    parse_higashikawa,
     parse_photographers_gallery,
     parse_placem,
+    parse_room305,
     parse_roonee,
     parse_shadai,
     parse_sony,
@@ -21,6 +26,7 @@ from collector.website_collect import (
     parse_tosei,
     parse_topmuseum,
     parse_zen_foto,
+    verified_event_parser,
 )
 
 
@@ -198,6 +204,65 @@ class WebsiteCollectorTests(unittest.TestCase):
         candidate = parse_tosei(html)[0]
         self.assertEqual(candidate["extracted"]["venue"], "ギャラリー冬青")
         self.assertEqual(candidate["extracted"]["end_date"], "2026-08-29")
+
+    def test_room305_page_json(self):
+        page = {"ListItems": [{
+            "Guid": "show-1",
+            "Description": "公募展『フィルムジャンキーvol.5』\n\n2026.08.19-08.23\nフィルム写真展",
+        }]}
+        html = f"<script>pageJson : {json.dumps(page, ensure_ascii=False)}, other: true</script>"
+        candidate = parse_room305(html)[0]
+        self.assertEqual(candidate["extracted"]["title"], "公募展『フィルムジャンキーvol.5』")
+        self.assertEqual(candidate["extracted"]["end_date"], "2026-08-23")
+        self.assertEqual(candidate["source"]["url"], "https://www.gallery-room305.com/schedule#show-1")
+
+    def test_ledeco_photo_rss_item(self):
+        html = """<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+          xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><item>
+          <title>FOTO.ism 2026夏展「鼓動」</title><link>https://ledeco.net/?p=1</link>
+          <category>今週の催事</category><category>４Ｆ</category><category>５Ｆ</category>
+          <content:encoded><![CDATA[<p>会期 2026年8月11日～8月16日 写真・映像作品を展示</p>]]></content:encoded>
+          </item></channel></rss>"""
+        candidate = parse_ledeco(html)[0]
+        self.assertEqual(candidate["extracted"]["venue"], "ギャラリー・ルデコ 4F・5F")
+        self.assertEqual(candidate["extracted"]["end_date"], "2026-08-16")
+
+    def test_gallery_owada_groups_calendar_days(self):
+        html = """<ul class="day-box">
+          <li class="day link"><span data-pickup-date="2026-09-9">9</span><ul class="event-list">
+          <li><a href="https://shibu-cul.jp/event/1">9/9～13 国産中判フィルム写真展 2026</a></li></ul></li>
+          <li class="day link"><span data-pickup-date="2026-09-13">13</span><ul class="event-list">
+          <li><a href="https://shibu-cul.jp/event/1">9/9～13 国産中判フィルム写真展 2026【最終日】</a></li></ul></li>
+          </ul>"""
+        candidate = parse_gallery_owada(html)[0]
+        self.assertEqual(candidate["extracted"]["title"], "国産中判フィルム写真展 2026")
+        self.assertEqual(candidate["extracted"]["start_date"], "2026-09-09")
+        self.assertEqual(candidate["extracted"]["end_date"], "2026-09-13")
+
+    def test_higashikawa_photo_exhibition_only(self):
+        html = """<ul><li class="ArticleList__item category-photo-exhibition">
+          <div class="ArticleList__title"><a href="https://photo-town.jp/schedule/1">屋外写真展</a></div>
+          <p>会期：2026年8月1日～8月31日 場所：東川町文化ギャラリー 今年の展示です。</p>
+          </li><li class="ArticleList__item category-event"><div class="ArticleList__title">
+          <a href="https://example.com/talk">トーク</a></div></li></ul>"""
+        candidates = parse_higashikawa(html)
+        self.assertEqual(len(candidates), 1)
+        self.assertEqual(candidates[0]["extracted"]["venue"], "東川町文化ギャラリー")
+
+    def test_verified_event_requires_marker(self):
+        parser = verified_event_parser(
+            marker="写真祭2026", title="写真祭2026", venue="市内各所", prefecture="東京都",
+            address=None, start_date="2026-10-01", end_date="2026-10-31",
+            source_url="https://example.com/", source_name="写真祭",
+        )
+        self.assertEqual(parser("別のページ"), [])
+        self.assertEqual(parser("<h1>写真祭2026</h1>開催" )[0]["extracted"]["start_date"], "2026-10-01")
+
+    def test_japanese_medium_format_osaka_venues(self):
+        candidates = parse_japanese_medium_format_2026("<h1>国産中判フィルム写真展2026</h1>")
+        self.assertEqual(len(candidates), 2)
+        self.assertEqual(candidates[0]["extracted"]["venue"], "rouleur studio")
+        self.assertEqual(candidates[1]["extracted"]["venue"], "Gallery ANBAI.")
 
 
 if __name__ == "__main__":

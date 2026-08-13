@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 import re
+import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -69,6 +70,17 @@ def build_candidate(
 
 def dates_from_text(value: str) -> tuple[str, str] | None:
     normalized = normalize(value)
+    numeric_range = re.search(
+        r"(?P<sy>20\d{2})[./](?P<sm>\d{1,2})[./](?P<sd>\d{1,2})"
+        r"[^~〜～–—-]{0,20}[~〜～–—-]\s*"
+        r"(?:(?P<ey>20\d{2})[./])?(?P<em>\d{1,2})[./](?P<ed>\d{1,2})",
+        normalized,
+    )
+    if numeric_range:
+        return (
+            f"{int(numeric_range.group('sy')):04d}-{int(numeric_range.group('sm')):02d}-{int(numeric_range.group('sd')):02d}",
+            f"{int(numeric_range.group('ey') or numeric_range.group('sy')):04d}-{int(numeric_range.group('em')):02d}-{int(numeric_range.group('ed')):02d}",
+        )
     normalized = re.sub(
         r"(20\d{2})[./](\d{1,2})[./](\d{1,2})",
         lambda match: f"{match.group(1)}年{match.group(2)}月{match.group(3)}日",
@@ -693,6 +705,189 @@ def parse_tosei(html: str) -> list[dict]:
     return unique_sources(results)
 
 
+def parse_room305(html: str) -> list[dict]:
+    marker = "pageJson : "
+    if marker not in html:
+        return []
+    try:
+        page, _ = json.JSONDecoder().raw_decode(html.split(marker, 1)[1])
+    except (json.JSONDecodeError, IndexError):
+        return []
+    results = []
+    for item in page.get("ListItems", []):
+        raw_description = item.get("Description", "")
+        description = normalize(raw_description)
+        dates = dates_from_text(description)
+        if not description or not dates:
+            continue
+        title = normalize(raw_description.splitlines()[0])
+        if title in {"Gallery Room305", "展示スケジュール"}:
+            continue
+        source_url = f"https://www.gallery-room305.com/schedule#{item.get('Guid', text_hash(title)[:12])}"
+        results.append(build_candidate(
+            title=title,
+            venue="Gallery Room305",
+            prefecture="大阪府",
+            address="大阪府大阪市都島区片町2-2-64",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=source_url,
+            source_name="Gallery Room305",
+            card_text=description,
+        ))
+    return unique_sources(results)
+
+
+def parse_ledeco(html: str) -> list[dict]:
+    try:
+        root = ET.fromstring(html)
+    except ET.ParseError:
+        return []
+    results = []
+    for item in root.findall(".//item"):
+        title_node = item.find("title")
+        link_node = item.find("link")
+        content_node = item.find("{http://purl.org/rss/1.0/modules/content/}encoded")
+        categories = [normalize(node.text or "") for node in item.findall("category")]
+        if title_node is None or link_node is None or content_node is None or "今週の催事" not in categories:
+            continue
+        content = BeautifulSoup(content_node.text or "", "html.parser").get_text(" ", strip=True)
+        title = normalize(title_node.text or "")
+        if not re.search(r"写真|PHOTO|FOTO", f"{title} {content}", re.IGNORECASE):
+            continue
+        dates = dates_from_text(content)
+        if not dates:
+            continue
+        floors = "・".join(category for category in categories if re.fullmatch(r"[ＢB]?[１-６1-6][ＦF]", category))
+        results.append(build_candidate(
+            title=title,
+            venue=f"ギャラリー・ルデコ {floors}".strip(),
+            prefecture="東京都",
+            address="東京都渋谷区渋谷3-16-3 高桑ビル",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=normalize(link_node.text or ""),
+            source_name="ギャラリー・ルデコ",
+            card_text=content,
+        ))
+    return unique_sources(results)
+
+
+def parse_gallery_owada(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    grouped: dict[str, dict] = {}
+    for day in soup.select(".day.link"):
+        date_node = day.select_one("[data-pickup-date]")
+        if not date_node:
+            continue
+        day_value = date_node.get("data-pickup-date", "")
+        match = re.fullmatch(r"(20\d{2})-(\d{1,2})-(\d{1,2})", day_value)
+        if not match:
+            continue
+        iso_day = f"{int(match.group(1)):04d}-{int(match.group(2)):02d}-{int(match.group(3)):02d}"
+        for link in day.select(".event-list a[href]"):
+            title = normalize(link.get_text(" ", strip=True))
+            if "写真" not in title:
+                continue
+            url = link.get("href", "")
+            clean_title = re.sub(r"【最終日】$", "", title).strip()
+            clean_title = re.sub(r"^\d{1,2}/\d{1,2}\s*[～〜~\-]\s*\d{1,2}\s*", "", clean_title)
+            entry = grouped.setdefault(url, {"title": clean_title, "days": [], "text": []})
+            entry["days"].append(iso_day)
+            entry["text"].append(title)
+    return unique_sources([
+        build_candidate(
+            title=entry["title"],
+            venue="ギャラリー大和田",
+            prefecture="東京都",
+            address="東京都渋谷区桜丘町23-21 渋谷区文化総合センター大和田2F",
+            start_date=min(entry["days"]),
+            end_date=max(entry["days"]),
+            source_url=url,
+            source_name="ギャラリー大和田",
+            card_text=" ".join(entry["text"]),
+        )
+        for url, entry in grouped.items()
+    ])
+
+
+def parse_higashikawa(html: str) -> list[dict]:
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for card in soup.select("li.ArticleList__item.category-photo-exhibition, li.ArticleList__item.category-exhibition"):
+        link = card.select_one(".ArticleList__title a[href]")
+        if not link:
+            continue
+        text = normalize(card.get_text(" ", strip=True))
+        dates = dates_from_text(text)
+        if not dates:
+            continue
+        place_match = re.search(r"(?:○)?場所[：:]\s*(.+?)(?=\s+(?:○|レビュ|協力|主催|写真|昨年|今年|結成|1985年)|$)", text)
+        place = place_match.group(1).strip() if place_match else "東川町内各所"
+        results.append(build_candidate(
+            title=link.get_text(" ", strip=True),
+            venue=place,
+            prefecture="北海道",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=link.get("href", ""),
+            source_name="東川町国際写真フェスティバル",
+            card_text=text,
+        ))
+    return unique_sources(results)
+
+
+def verified_event_parser(
+    *, marker: str, title: str, venue: str, prefecture: str, address: str | None,
+    start_date: str, end_date: str, source_url: str, source_name: str,
+) -> Callable[[str], list[dict]]:
+    def parse(html: str) -> list[dict]:
+        text = BeautifulSoup(html, "html.parser").get_text(" ", strip=True)
+        if marker not in text:
+            return []
+        return [build_candidate(
+            title=title,
+            venue=venue,
+            prefecture=prefecture,
+            address=address,
+            start_date=start_date,
+            end_date=end_date,
+            source_url=source_url,
+            source_name=source_name,
+            card_text=f"{title} {start_date} {end_date} {text[:500]}",
+        )]
+    return parse
+
+
+def parse_japanese_medium_format_2026(html: str) -> list[dict]:
+    text = BeautifulSoup(html, "html.parser").get_text(" ", strip=True)
+    if "国産中判フィルム写真展2026" not in text:
+        return []
+    source = "https://amemiya-hair.tokyo/jpcamera-120film-expo2026/"
+    events = [
+        (
+            "国産中判フィルム写真展 2026（大阪）", "rouleur studio",
+            "大阪府大阪市北区天満1-3-3 天馬ビル201", "2026-10-01", "2026-10-04", "osaka",
+        ),
+        (
+            "国産中判フィルム写真展 2026（大阪・特別展示）", "Gallery ANBAI.",
+            "大阪府大阪市北区芝田2-1-3 梅仙堂ビル4F", "2026-10-03", "2026-10-04", "anbai",
+        ),
+    ]
+    return [build_candidate(
+        title=title, venue=venue, prefecture="大阪府", address=address,
+        start_date=start, end_date=end, source_url=f"{source}#{fragment}",
+        source_name="国産中判フィルム写真展", card_text=f"{title} {start} {end} {text[:500]}",
+    ) for title, venue, address, start, end, fragment in events]
+
+
+def calendar_month_url(offset: int) -> str:
+    today = date.today()
+    month_index = today.year * 12 + today.month - 1 + offset
+    year, month_zero = divmod(month_index, 12)
+    return f"https://shibu-cul.jp/gallery/calendar?ym={year:04d}-{month_zero + 1:02d}"
+
+
 def unique_sources(candidates: list[dict]) -> list[dict]:
     return list({candidate["source"]["key"]: candidate for candidate in candidates}.values())
 
@@ -753,6 +948,78 @@ SITES = {
     "tosei": SiteDefinition(
         "https://www.tosei-sha.jp/TOSEI-NEW-HP/html/EXHIBITIONS/j_exhibitions.html",
         "ギャラリー冬青", parse_tosei, "cp932",
+    ),
+    "room305": SiteDefinition(
+        "https://www.gallery-room305.com/schedule", "Gallery Room305", parse_room305, "utf-8",
+    ),
+    "ledeco": SiteDefinition(
+        "https://ledeco.net/?feed=rss2&cat=5", "ギャラリー・ルデコ", parse_ledeco, "utf-8",
+    ),
+    "gallery-owada-current": SiteDefinition(
+        calendar_month_url(0), "ギャラリー大和田（今月）", parse_gallery_owada, "utf-8",
+    ),
+    "gallery-owada-next": SiteDefinition(
+        calendar_month_url(1), "ギャラリー大和田（翌月）", parse_gallery_owada, "utf-8",
+    ),
+    "higashikawa": SiteDefinition(
+        "https://photo-town.jp/schedule/", "東川町国際写真フェスティバル", parse_higashikawa, "utf-8",
+    ),
+    "asama-photo-festival": SiteDefinition(
+        "https://asamaphotofes.jp/", "浅間国際フォトフェスティバル",
+        verified_event_parser(
+            marker="浅間国際フォトフェスティバル2026 PHOTO MIYOTA",
+            title="浅間国際フォトフェスティバル2026 PHOTO MIYOTA",
+            venue="MMoPほか御代田町内各所", prefecture="長野県",
+            address="長野県北佐久郡御代田町馬瀬口1794-1",
+            start_date="2026-08-01", end_date="2026-09-27",
+            source_url="https://asamaphotofes.jp/", source_name="浅間国際フォトフェスティバル",
+        ), "utf-8",
+    ),
+    "t3-photo-festival": SiteDefinition(
+        "https://prtimes.jp/main/html/rd/p/000000015.000085103.html", "T3 PHOTO FESTIVAL TOKYO",
+        verified_event_parser(
+            marker="T3 PHOTO FESTIVAL TOKYO 2026",
+            title="T3 PHOTO FESTIVAL TOKYO 2026",
+            venue="八重洲・日本橋・京橋・銀座エリア各所", prefecture="東京都", address=None,
+            start_date="2026-10-03", end_date="2026-10-26",
+            source_url="https://t3photo.tokyo/", source_name="T3 PHOTO FESTIVAL TOKYO",
+        ), "utf-8",
+    ),
+    "tokyo-camera-club-2026": SiteDefinition(
+        "https://tokyocameraclub.com/special/exhibition_2026/", "東京カメラ部2026写真展",
+        verified_event_parser(
+            marker="東京カメラ部2026写真展",
+            title="東京カメラ部2026写真展「ひろがる世界。」",
+            venue="渋谷ヒカリエ 9F ヒカリエホール ホールAB", prefecture="東京都",
+            address="東京都渋谷区渋谷2-21-1",
+            start_date="2026-09-19", end_date="2026-09-22",
+            source_url="https://tokyocameraclub.com/special/exhibition_2026/",
+            source_name="東京カメラ部2026写真展",
+        ), "utf-8",
+    ),
+    "kyotographie-2027": SiteDefinition(
+        "https://www.kyotographie.jp/", "KYOTOGRAPHIE 京都国際写真祭",
+        verified_event_parser(
+            marker="2027.04.17 - 05.16",
+            title="KYOTOGRAPHIE 京都国際写真祭 2027",
+            venue="京都市内各所", prefecture="京都府", address=None,
+            start_date="2027-04-17", end_date="2027-05-16",
+            source_url="https://www.kyotographie.jp/", source_name="KYOTOGRAPHIE 京都国際写真祭",
+        ), "utf-8",
+    ),
+    "japanese-medium-format-2026": SiteDefinition(
+        "https://amemiya-hair.tokyo/jpcamera-120film-expo2026/", "国産中判フィルム写真展2026",
+        parse_japanese_medium_format_2026, "utf-8",
+    ),
+    "10p10fp-2026": SiteDefinition(
+        "https://10p10fp10.studio.site/", "10p10fp展2026",
+        verified_event_parser(
+            marker="10p10fp展2026",
+            title="10p10fp展2026", venue="建築会館ギャラリー", prefecture="東京都",
+            address="東京都港区芝5-26-20",
+            start_date="2026-10-31", end_date="2026-11-03",
+            source_url="https://10p10fp10.studio.site/", source_name="10p10fp展",
+        ), "utf-8",
     ),
 }
 
