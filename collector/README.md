@@ -31,6 +31,10 @@ python -m venv .venv
 
 本番稼働前にVPSをUbuntu LTSへ移行してください。
 
+現在の本番運用ではVPSを使わず、`.github/workflows/collect-exhibitions.yml`の
+GitHub ActionsでXを毎時取得します。公開リポジトリのためActions利用料はかからず、
+必要なSecretsは`X_BEARER_TOKEN`と`COLLECTOR_API_KEY`です。
+
 ## Official venue sites
 
 公式サイトは1日1回だけ取得します。現在の対象はフジフイルム スクエア、キヤノンギャラリー、
@@ -43,3 +47,5 @@ Sony Imaging Gallery、JCIIフォトサロンです。
 ```cron
 42 5 * * * cd /opt/exhibit-board && .venv/bin/python collector/website_collect.py --env-file /opt/exhibit-board/.env >> /var/log/exhibit-venues.log 2>&1
 ```
+
+公式会場の本番取得もGitHub Actionsで毎日05:42（日本時間）に実行します。

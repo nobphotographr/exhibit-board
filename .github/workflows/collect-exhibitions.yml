@@ -1,0 +1,55 @@
+name: Collect exhibition candidates
+
+on:
+  workflow_dispatch:
+  schedule:
+    # X Recent Search: every hour at :17.
+    - cron: '17 * * * *'
+    # Official venue sites: daily at 05:42 JST (20:42 UTC).
+    - cron: '42 20 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: exhibition-collector-${{ github.event.schedule || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  collect-x:
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '17 * * * *'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+      COLLECTOR_API_KEY: ${{ secrets.COLLECTOR_API_KEY }}
+      COLLECTOR_ENDPOINT: https://exhibit.iruagaru.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r collector/requirements.txt
+      - name: Collect recent X announcements
+        run: >-
+          python collector/x_recent_search.py
+          --state-file /tmp/exhibit-x-state.json
+          --bootstrap-hours 6
+
+  collect-venues:
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '42 20 * * *'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      COLLECTOR_API_KEY: ${{ secrets.COLLECTOR_API_KEY }}
+      COLLECTOR_ENDPOINT: https://exhibit.iruagaru.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r collector/requirements.txt
+      - name: Collect official venue schedules
+        run: python collector/website_collect.py
