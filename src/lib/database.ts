@@ -1,6 +1,6 @@
 import { supabase, supabaseAdmin } from './supabase'
 import { Event, EventInsert } from './database.types'
-import { getEventType } from './venue-classifier'
+import { getEventType, isOnlineEvent } from './venue-classifier'
 
 export type FilterRange = 'upcoming' | 'ongoing' | 'thisWeek' | 'thisMonth'
 export type VenueType = 'all' | 'major' | 'independent' | 'festival'
@@ -74,6 +74,12 @@ export class DatabaseService {
     }
 
     let events = data || []
+
+    // Online exhibitions use a storage-compatible prefecture fallback but should
+    // never appear as a physical exhibition in that prefecture's results.
+    if (filters?.prefecture) {
+      events = events.filter(event => !isOnlineEvent(event.venue))
+    }
 
     // Apply venue type filter (client-side filtering due to venue name patterns)
     if (filters?.venueType && filters.venueType !== 'all') {

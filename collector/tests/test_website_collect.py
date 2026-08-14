@@ -21,6 +21,7 @@ from collector.website_collect import (
     parse_fotori,
     parse_gallery_owada,
     parse_higashikawa,
+    parse_house_of_photography,
     parse_ig_photo_gallery,
     parse_iia_gallery,
     parse_fugensha,
@@ -50,6 +51,37 @@ from collector.website_collect import (
 
 
 class WebsiteCollectorTests(unittest.TestCase):
+    def test_house_of_photography_metaverse_gallery(self):
+        payload = [{
+            "date": "2026-07-23T11:57:55",
+            "link": "https://houseofphotography-jp.fujifilm.com/contents/gallery/gallery-7434/",
+            "title": {"rendered": "【ギャラリー】写真展『光の庭』"},
+            "content": {"rendered": """
+              <table><tbody>
+              <tr><th>開催日時</th><td>
+                第一期 2026年8月21日 10:00～2026年8月28日 9:30<br>
+                第二期 2026年8月28日 10:00～2026年9月18日 9:30
+              </td></tr>
+              <tr><th>開催場所</th><td>House of Photography in Metaverse　パノラマギャラリー<br>ENTERから入場</td></tr>
+              <tr><th>入場料</th><td>無料</td></tr>
+              </tbody></table>
+            """},
+        }, {
+            "date": "2025-12-01T10:00:00",
+            "link": "https://houseofphotography-jp.fujifilm.com/contents/gallery/__trashed/",
+            "title": {"rendered": "削除済み写真展"},
+            "content": {"rendered": "<table><tr><th>開催期間</th><td>2026年1月1日～12月31日</td></tr></table>"},
+        }]
+        candidates = parse_house_of_photography(json.dumps(payload, ensure_ascii=False))
+        self.assertEqual(len(candidates), 1)
+        candidate = candidates[0]
+        self.assertEqual(candidate["extracted"]["title"], "写真展『光の庭』")
+        self.assertEqual(candidate["extracted"]["start_date"], "2026-08-21")
+        self.assertEqual(candidate["extracted"]["end_date"], "2026-09-18")
+        self.assertEqual(candidate["extracted"]["price"], "無料")
+        self.assertEqual(candidate["extracted"]["notes"], "オンライン開催（メタバース）")
+        self.assertIn("パノラマギャラリー", candidate["extracted"]["venue"])
+
     def test_fujifilm_card(self):
         html = """<a class="area-link" href="/exhibition/260814_01.html">
           <p class="area-link__title">山田花子写真展「海辺」</p>

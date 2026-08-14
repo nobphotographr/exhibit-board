@@ -3,11 +3,11 @@
 import { CardContent, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Event } from '@/lib/database.types'
-import { ExternalLink, MapPin, Calendar, User, CircleDollarSign } from 'lucide-react'
+import { ExternalLink, MapPin, Calendar, User, CircleDollarSign, Globe2 } from 'lucide-react'
 import Image from 'next/image'
 import { trackEventClick } from '@/lib/gtag'
 import { handleAddToCalendar } from '@/lib/calendar-utils'
-import { getEventType } from '@/lib/venue-classifier'
+import { getEventType, isOnlineEvent } from '@/lib/venue-classifier'
 
 interface EventCardProps {
   event: Event
@@ -15,6 +15,7 @@ interface EventCardProps {
 
 export function EventCard({ event }: EventCardProps) {
   const eventType = getEventType(event.venue, event.title, event.host_name)
+  const isOnline = isOnlineEvent(event.venue)
 
   const dateParts = (dateString: string) => {
     const [year, month, day] = dateString.split('-').map(Number)
@@ -88,6 +89,11 @@ export function EventCard({ event }: EventCardProps) {
                 写真祭
               </span>
             )}
+            {isOnline && (
+              <span className="inline-flex items-center px-2 py-1 text-xs font-medium bg-foreground text-background">
+                オンライン
+              </span>
+            )}
             {getStatusBadge()}
           </div>
         </div>
@@ -111,11 +117,13 @@ export function EventCard({ event }: EventCardProps) {
 
           {/* Venue and Location */}
           <div className="flex items-start text-sm text-muted-foreground">
-            <MapPin className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" />
+            {isOnline
+              ? <Globe2 className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
+              : <MapPin className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />}
             <div>
               <div className="font-medium text-foreground">{event.venue}</div>
-              <div className="text-xs">{event.prefecture}</div>
-              {event.address && (
+              <div className="text-xs">{isOnline ? 'オンライン' : event.prefecture}</div>
+              {!isOnline && event.address && (
                 <div className="text-xs">{event.address}</div>
               )}
             </div>

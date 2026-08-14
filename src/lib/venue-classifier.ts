@@ -82,6 +82,12 @@ const PHOTO_FESTIVAL_PATTERNS = [
   ['屋久島国際写真祭', 'YAKUSHIMA PHOTOGRAPHY FESTIVAL'],
 ]
 
+const ONLINE_VENUE_PATTERNS = [
+  'House of Photography in Metaverse',
+  'オンライン会場',
+  'メタバースギャラリー',
+]
+
 /**
  * 会場が大型ギャラリー・企業ギャラリーかどうかを判定
  * @param venueName 会場名
@@ -135,6 +141,17 @@ export const isPhotoFestival = (
 
   return PHOTO_FESTIVAL_PATTERNS.some(patterns =>
     patterns.some(pattern => normalized.includes(normalizeVenueName(pattern)))
+  )
+}
+
+/**
+ * 物理的な会場を持たないオンライン展示かどうかを判定
+ */
+export const isOnlineEvent = (venueName?: string | null): boolean => {
+  if (!venueName) return false
+  const normalized = normalizeVenueName(venueName)
+  return ONLINE_VENUE_PATTERNS.some(pattern =>
+    normalized.includes(normalizeVenueName(pattern))
   )
 }
 

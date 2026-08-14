@@ -42,7 +42,7 @@ def text_hash(text: str) -> str:
 def build_candidate(
     *, title: str, venue: str, prefecture: str, start_date: str, end_date: str,
     source_url: str, source_name: str, card_text: str, address: str | None = None,
-    notes: str | None = None,
+    notes: str | None = None, price: str | None = None,
 ) -> dict:
     extracted = {
         "title": title.strip(),
@@ -50,7 +50,7 @@ def build_candidate(
         "venue": venue.strip(),
         "address": address,
         "prefecture": prefecture,
-        "price": None,
+        "price": price,
         "start_date": start_date,
         "end_date": end_date,
         "notes": notes,
@@ -110,6 +110,99 @@ def dates_from_text(value: str) -> tuple[str, str] | None:
             end = f"{inferred_end_year:04d}-{end[5:]}"
         return start, end
     return None
+
+
+def schedule_span_from_text(value: str, reference_year: int | None = None) -> tuple[str, str] | None:
+    """Return the first and last calendar dates from a schedule, including multi-part shows."""
+    matches = list(re.finditer(
+        r"(?:(?P<year>20\d{2})年)?\s*(?P<month>\d{1,2})月\s*(?P<day>\d{1,2})日",
+        normalize(value),
+    ))
+    if not matches:
+        return dates_from_text(value)
+
+    current_year = reference_year or date.today().year
+    previous_month: int | None = None
+    parsed: list[date] = []
+    for match in matches:
+        month = int(match.group("month"))
+        if match.group("year"):
+            current_year = int(match.group("year"))
+        elif previous_month is not None and previous_month >= 10 and month <= 3:
+            current_year += 1
+        try:
+            parsed.append(date(current_year, month, int(match.group("day"))))
+        except ValueError:
+            continue
+        previous_month = month
+
+    if not parsed:
+        return None
+    return min(parsed).isoformat(), max(parsed).isoformat()
+
+
+def parse_house_of_photography(html: str) -> list[dict]:
+    """Parse FUJIFILM's official metaverse gallery WordPress API response."""
+    try:
+        posts = json.loads(html)
+    except json.JSONDecodeError:
+        return []
+    if not isinstance(posts, list):
+        return []
+
+    results = []
+    for post in posts:
+        title_html = post.get("title", {}).get("rendered", "")
+        content_html = post.get("content", {}).get("rendered", "")
+        source_url = post.get("link", "")
+        if not title_html or not content_html or not source_url or "/__trashed/" in source_url:
+            continue
+
+        title = BeautifulSoup(title_html, "html.parser").get_text(" ", strip=True)
+        title = re.sub(r"^【ギャラリー】\s*", "", title).strip()
+        soup = BeautifulSoup(content_html, "html.parser")
+        schedule = ""
+        venue = "House of Photography in Metaverse"
+        price = None
+        for row in soup.select("tr"):
+            heading = row.select_one("th")
+            value = row.select_one("td")
+            if not heading or not value:
+                continue
+            label = normalize(heading.get_text(" ", strip=True))
+            if label in {"開催日時", "開催期間"}:
+                schedule = value.get_text(" ", strip=True)
+            elif label in {"開催場所", "展示会場"}:
+                location = next(value.stripped_strings, "")
+                if location:
+                    venue = normalize(location)
+            elif label == "入場料":
+                price = normalize(value.get_text(" ", strip=True)) or None
+
+        published = str(post.get("date", ""))
+        year_match = re.match(r"(20\d{2})", published)
+        dates = schedule_span_from_text(
+            schedule,
+            int(year_match.group(1)) if year_match else None,
+        )
+        if not title or not dates:
+            continue
+
+        results.append(build_candidate(
+            title=title,
+            venue=venue,
+            # The current database requires a prefecture. UI and filtering treat this
+            # source as online; 東京都 is only a storage-compatible fallback.
+            prefecture="東京都",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=source_url,
+            source_name="House of Photography in Metaverse",
+            card_text=f"{title} {schedule} {venue}",
+            notes="オンライン開催（メタバース）",
+            price=price,
+        ))
+    return unique_sources(results)
 
 
 def english_dates_from_text(value: str) -> tuple[str, str] | None:
@@ -1530,6 +1623,11 @@ def active_candidates(candidates: list[dict]) -> list[dict]:
 
 SITES = {
     "fujifilm": SiteDefinition("https://fujifilmsquare.jp/event.html", "フジフイルム スクエア", parse_fujifilm),
+    "fujifilm-metaverse": SiteDefinition(
+        "https://houseofphotography-jp.fujifilm.com/wp-json/wp/v2/gallery"
+        "?per_page=100&orderby=date&order=desc&_fields=link,title,content,date",
+        "House of Photography in Metaverse", parse_house_of_photography, "utf-8",
+    ),
     "fujifilm-sapporo": SiteDefinition(
         "https://www.fujifilm.co.jp/photosalon/sapporo/", "富士フイルムフォトサロン 札幌",
         fujifilm_regional_parser(
