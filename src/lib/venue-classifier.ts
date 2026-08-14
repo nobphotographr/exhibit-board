@@ -71,12 +71,23 @@ const MAJOR_EXHIBITION_PATTERNS = [
   ['世界報道写真展', 'world press photo'],
 ]
 
+// 写真祭は数が限られるため、既知のイベント名だけを明示的に登録する。
+// 新しい写真祭を掲載するときは、このリストへ名称または表記揺れを追加する。
+const PHOTO_FESTIVAL_PATTERNS = [
+  ['KYOTOGRAPHIE', '京都国際写真祭'],
+  ['T3 PHOTO FESTIVAL TOKYO', 'T3 PHOTO FESTIVAL'],
+  ['東川町国際写真フェスティバル', '東川町国際写真祭'],
+  ['浅間国際フォトフェスティバル', 'PHOTO MIYOTA'],
+  ['塩竈フォトフェスティバル', '塩釜フォトフェスティバル', 'SHIOGAMA PHOTO FESTIVAL'],
+  ['屋久島国際写真祭', 'YAKUSHIMA PHOTOGRAPHY FESTIVAL'],
+]
+
 /**
  * 会場が大型ギャラリー・企業ギャラリーかどうかを判定
  * @param venueName 会場名
  * @returns true: 大型ギャラリー, false: 個展・グループ展
  */
-export const isMajorVenue = (venueName: string): boolean => {
+export const isMajorVenue = (venueName?: string | null): boolean => {
   if (!venueName) return false
   
   const normalized = normalizeVenueName(venueName)
@@ -95,7 +106,7 @@ export const isMajorVenue = (venueName: string): boolean => {
  * @param hostName 主催者名
  * @returns true: 大型企画, false: 個展・グループ展
  */
-export const isMajorExhibition = (title?: string, hostName?: string): boolean => {
+export const isMajorExhibition = (title?: string | null, hostName?: string | null): boolean => {
   const textToCheck = `${title || ''} ${hostName || ''}`
   if (!textToCheck.trim()) return false
   
@@ -110,14 +121,50 @@ export const isMajorExhibition = (title?: string, hostName?: string): boolean =>
 }
 
 /**
+ * 展示名・主催者名・会場名が既知の写真祭に一致するかどうかを判定
+ */
+export const isPhotoFestival = (
+  title?: string | null,
+  hostName?: string | null,
+  venueName?: string | null
+): boolean => {
+  const textToCheck = `${title || ''} ${hostName || ''} ${venueName || ''}`
+  if (!textToCheck.trim()) return false
+
+  const normalized = normalizeVenueName(textToCheck)
+
+  return PHOTO_FESTIVAL_PATTERNS.some(patterns =>
+    patterns.some(pattern => normalized.includes(normalizeVenueName(pattern)))
+  )
+}
+
+/**
  * 総合判定：会場名と展示名の両方をチェック
  * @param venueName 会場名
  * @param title 展示タイトル
  * @param hostName 主催者名
  * @returns true: 大型企画, false: 個展・グループ展
  */
-export const isMajorEvent = (venueName: string, title?: string, hostName?: string): boolean => {
+export const isMajorEvent = (
+  venueName?: string | null,
+  title?: string | null,
+  hostName?: string | null
+): boolean => {
   return isMajorVenue(venueName) || isMajorExhibition(title, hostName)
+}
+
+export type EventType = 'festival' | 'major' | 'independent'
+
+/**
+ * 写真祭を最優先に、イベントの展示タイプを取得
+ */
+export const getEventType = (
+  venueName?: string | null,
+  title?: string | null,
+  hostName?: string | null
+): EventType => {
+  if (isPhotoFestival(title, hostName, venueName)) return 'festival'
+  return isMajorEvent(venueName, title, hostName) ? 'major' : 'independent'
 }
 
 /**
@@ -127,7 +174,11 @@ export const isMajorEvent = (venueName: string, title?: string, hostName?: strin
  * @param hostName 主催者名
  * @returns 'major' | 'independent'
  */
-export const getVenueType = (venueName: string, title?: string, hostName?: string): 'major' | 'independent' => {
+export const getVenueType = (
+  venueName?: string | null,
+  title?: string | null,
+  hostName?: string | null
+): 'major' | 'independent' => {
   return isMajorEvent(venueName, title, hostName) ? 'major' : 'independent'
 }
 

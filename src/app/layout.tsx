@@ -19,7 +19,7 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://exhibit.iruagaru.com"),
   title: "Exhibit Board｜全国の写真展・写真祭情報",
-  description: "全国の写真展・写真祭を、会期・都道府県・展示規模から探せる情報サイト。個展・グループ展から美術館の企画展まで掲載しています。",
+  description: "全国の写真展・写真祭を、会期・都道府県・展示タイプから探せる情報サイト。個展・グループ展から美術館の企画展、写真祭まで掲載しています。",
   alternates: {
     canonical: "/",
   },

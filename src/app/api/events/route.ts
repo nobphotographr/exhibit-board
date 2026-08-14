@@ -168,7 +168,7 @@ export async function GET(request: NextRequest) {
         filters.prefecture = prefecture
       }
 
-      if (venueType && venueType !== 'all' && (venueType === 'major' || venueType === 'independent')) {
+      if (venueType && venueType !== 'all' && (venueType === 'major' || venueType === 'independent' || venueType === 'festival')) {
         filters.venueType = venueType as VenueType
       }
 
@@ -212,10 +212,9 @@ export async function GET(request: NextRequest) {
 
       // Filter by venue type
       if (filters.venueType) {
-        const { isMajorEvent } = await import('@/lib/venue-classifier')
+        const { getEventType } = await import('@/lib/venue-classifier')
         dummyEvents = dummyEvents.filter(event => {
-          const isMajor = isMajorEvent(event.venue, event.title, event.host_name)
-          return filters.venueType === 'major' ? isMajor : !isMajor
+          return getEventType(event.venue, event.title, event.host_name) === filters.venueType
         })
       }
       
@@ -241,7 +240,7 @@ export async function GET(request: NextRequest) {
       filters.prefecture = prefecture
     }
 
-    if (venueType && venueType !== 'all' && (venueType === 'major' || venueType === 'independent')) {
+    if (venueType && venueType !== 'all' && (venueType === 'major' || venueType === 'independent' || venueType === 'festival')) {
       filters.venueType = venueType as VenueType
     }
 

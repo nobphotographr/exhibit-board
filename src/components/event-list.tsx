@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { PREFECTURES, FILTER_RANGES, VENUE_TYPES } from '@/lib/constants'
 type FilterRange = 'upcoming' | 'ongoing' | 'thisWeek' | 'thisMonth'
-type VenueType = 'all' | 'major' | 'independent'
+type VenueType = 'all' | 'major' | 'independent' | 'festival'
 import { Loader2, RefreshCw, Search, ChevronDown } from 'lucide-react'
 import { trackFilterUsage } from '@/lib/gtag'
 
@@ -198,18 +198,18 @@ export function EventList({ initialEvents = [] }: EventListProps) {
             </Select>
           </div>
 
-          {/* Exhibition Scale Filter */}
+          {/* Exhibition Type Filter */}
           <div className="flex-1">
-            <label htmlFor="venue-type-filter" className="block text-sm text-muted-foreground mb-2">展示規模</label>
+            <label htmlFor="venue-type-filter" className="block text-sm text-muted-foreground mb-2">展示タイプ</label>
             <Select
               value={selectedVenueType}
               onValueChange={(value) => {
                 setSelectedVenueType(value as VenueType)
-                trackFilterUsage('venue_type', value)
+                trackFilterUsage('event_type', value)
               }}
             >
               <SelectTrigger id="venue-type-filter">
-                <SelectValue placeholder="展示規模を選択" />
+                <SelectValue placeholder="展示タイプを選択" />
               </SelectTrigger>
               <SelectContent>
                 {VENUE_TYPES.map((venueType) => (

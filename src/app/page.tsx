@@ -45,7 +45,7 @@ export default function Home() {
                 写真展を探す
               </h2>
               <p className="text-muted-foreground">
-                キーワード・会期・地域・展示規模から開催情報を絞り込めます
+                キーワード・会期・地域・展示タイプから開催情報を絞り込めます
               </p>
             </div>
             <EventList />

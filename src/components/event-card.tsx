@@ -7,12 +7,15 @@ import { ExternalLink, MapPin, Calendar, User, CircleDollarSign } from 'lucide-r
 import Image from 'next/image'
 import { trackEventClick } from '@/lib/gtag'
 import { handleAddToCalendar } from '@/lib/calendar-utils'
+import { getEventType } from '@/lib/venue-classifier'
 
 interface EventCardProps {
   event: Event
 }
 
 export function EventCard({ event }: EventCardProps) {
+  const eventType = getEventType(event.venue, event.title, event.host_name)
+
   const dateParts = (dateString: string) => {
     const [year, month, day] = dateString.split('-').map(Number)
     return { year, month, day }
@@ -79,7 +82,14 @@ export function EventCard({ event }: EventCardProps) {
           <h3 className="text-base font-semibold line-clamp-2 flex-1">
             {event.title}
           </h3>
-          {getStatusBadge()}
+          <div className="flex flex-col items-end gap-1 shrink-0">
+            {eventType === 'festival' && (
+              <span className="inline-flex items-center px-2 py-1 text-xs font-medium bg-foreground text-background">
+                写真祭
+              </span>
+            )}
+            {getStatusBadge()}
+          </div>
         </div>
 
         {event.host_name && (

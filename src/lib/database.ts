@@ -1,9 +1,9 @@
 import { supabase, supabaseAdmin } from './supabase'
 import { Event, EventInsert } from './database.types'
-import { isMajorEvent } from './venue-classifier'
+import { getEventType } from './venue-classifier'
 
 export type FilterRange = 'upcoming' | 'ongoing' | 'thisWeek' | 'thisMonth'
-export type VenueType = 'all' | 'major' | 'independent'
+export type VenueType = 'all' | 'major' | 'independent' | 'festival'
 
 export interface EventFilters {
   range?: FilterRange
@@ -78,8 +78,7 @@ export class DatabaseService {
     // Apply venue type filter (client-side filtering due to venue name patterns)
     if (filters?.venueType && filters.venueType !== 'all') {
       events = events.filter(event => {
-        const isMajor = isMajorEvent(event.venue, event.title, event.host_name)
-        return filters.venueType === 'major' ? isMajor : !isMajor
+        return getEventType(event.venue, event.title, event.host_name) === filters.venueType
       })
     }
 

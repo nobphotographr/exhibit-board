@@ -20,5 +20,6 @@ export const FILTER_RANGES = [
 export const VENUE_TYPES = [
   { value: 'all', label: 'すべて' },
   { value: 'independent', label: '個展・グループ展' },
-  { value: 'major', label: '大型企画' }
+  { value: 'major', label: '大型企画・美術館' },
+  { value: 'festival', label: '写真祭・フォトフェスティバル' },
 ] as const
