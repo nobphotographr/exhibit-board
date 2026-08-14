@@ -205,6 +205,65 @@ def parse_house_of_photography(html: str) -> list[dict]:
     return unique_sources(results)
 
 
+def parse_irorimura_search(html: str) -> list[dict]:
+    """Parse strong photo-exhibition matches from the official annual blog search."""
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    photo_marker = re.compile(
+        r"写真展|写真部|写真研究部|写真連盟|photo\s*exhibition|photography\s*exhibition",
+        re.IGNORECASE,
+    )
+    for card in soup.select(".article-list-item"):
+        link = card.select_one("a.article-list-item__body-title[href]")
+        if not link:
+            continue
+        listing_title = normalize(link.get_text(" ", strip=True))
+        snippet_node = card.select_one(".article-list-item__body-content")
+        snippet = normalize(snippet_node.get_text(" ", strip=True)) if snippet_node else ""
+        combined = f"{listing_title} {snippet}"
+        if not photo_marker.search(combined):
+            continue
+        dates = dates_from_text(combined)
+        if not dates:
+            continue
+
+        title = re.sub(
+            r"^\s*\d{1,2}/\s*\d{1,2}\s*[~〜～–—-]\s*"
+            r"(?:\d{1,2}/\s*)?\d{1,2}\s*",
+            "",
+            listing_title,
+        ).strip()
+        if not title:
+            continue
+
+        venue = "イロリムラ"
+        if "プチホール" in combined:
+            venue += " プチホール"
+        elif re.search(r"\[?89\]?画廊", combined, re.IGNORECASE):
+            venue += " [89]画廊"
+        elif "89α" in combined or "８９α" in combined:
+            venue += " 89α"
+        elif re.search(r"\bcref\b", combined, re.IGNORECASE):
+            venue += " cref"
+
+        source_url = urljoin(
+            f"https://irorimura{date.today().year}.sblo.jp/",
+            link.get("href", ""),
+        )
+        results.append(build_candidate(
+            title=title,
+            venue=venue,
+            prefecture="大阪府",
+            address="大阪府大阪市北区中崎1-4-15",
+            start_date=dates[0],
+            end_date=dates[1],
+            source_url=source_url,
+            source_name="イロリムラ 公式イベント案内",
+            card_text=combined,
+        ))
+    return unique_sources(results)
+
+
 def english_dates_from_text(value: str) -> tuple[str, str] | None:
     months = {
         "Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6,
@@ -1627,6 +1686,22 @@ SITES = {
         "https://houseofphotography-jp.fujifilm.com/wp-json/wp/v2/gallery"
         "?per_page=100&orderby=date&order=desc&_fields=link,title,content,date",
         "House of Photography in Metaverse", parse_house_of_photography, "utf-8",
+    ),
+    "irorimura-photo-ja-1": SiteDefinition(
+        f"https://irorimura{date.today().year}.sblo.jp/search?keyword=%E5%86%99%E7%9C%9F&page=1",
+        "イロリムラ 写真展検索（1ページ目）", parse_irorimura_search, "utf-8",
+    ),
+    "irorimura-photo-ja-2": SiteDefinition(
+        f"https://irorimura{date.today().year}.sblo.jp/search?keyword=%E5%86%99%E7%9C%9F&page=2",
+        "イロリムラ 写真展検索（2ページ目）", parse_irorimura_search, "utf-8",
+    ),
+    "irorimura-photo-en-1": SiteDefinition(
+        f"https://irorimura{date.today().year}.sblo.jp/search?keyword=Photo&page=1",
+        "イロリムラ Photo検索（1ページ目）", parse_irorimura_search, "utf-8",
+    ),
+    "irorimura-photo-en-2": SiteDefinition(
+        f"https://irorimura{date.today().year}.sblo.jp/search?keyword=Photo&page=2",
+        "イロリムラ Photo検索（2ページ目）", parse_irorimura_search, "utf-8",
     ),
     "fujifilm-sapporo": SiteDefinition(
         "https://www.fujifilm.co.jp/photosalon/sapporo/", "富士フイルムフォトサロン 札幌",

@@ -24,6 +24,7 @@ from collector.website_collect import (
     parse_house_of_photography,
     parse_ig_photo_gallery,
     parse_iia_gallery,
+    parse_irorimura_search,
     parse_fugensha,
     parse_gallery176,
     parse_monography,
@@ -51,6 +52,30 @@ from collector.website_collect import (
 
 
 class WebsiteCollectorTests(unittest.TestCase):
+    def test_irorimura_photo_search_filters_and_extracts_events(self):
+        html = """
+          <div class="article-list-item"><div class="article-list-item__body">
+            <a class="article-list-item__body-title" href="/articles/131">8/13～ 8/17　写真展『TO2』</a>
+            <p class="article-list-item__body-content">写真展『TO2』 会期｜2026年8月13日-8月17日 会場｜イロリムラ プチホール</p>
+          </div></div>
+          <div class="article-list-item"><div class="article-list-item__body">
+            <a class="article-list-item__body-title" href="/articles/102">9/10～ 9/14　Photo Exhibition ヒトとモノ 2026</a>
+            <p class="article-list-item__body-content">Photo Exhibition ヒトとモノ 2026 2026/9/10～9/14 [89]画廊 展示室2・3</p>
+          </div></div>
+          <div class="article-list-item"><div class="article-list-item__body">
+            <a class="article-list-item__body-title" href="/articles/art">9/23～ 9/28　絵画展</a>
+            <p class="article-list-item__body-content">作家は日常的に写真を撮ります。2026/9/23～9/28</p>
+          </div></div>
+        """
+        candidates = parse_irorimura_search(html)
+        self.assertEqual(len(candidates), 2)
+        self.assertEqual(candidates[0]["extracted"]["title"], "写真展『TO2』")
+        self.assertEqual(candidates[0]["extracted"]["venue"], "イロリムラ プチホール")
+        self.assertEqual(candidates[0]["extracted"]["start_date"], "2026-08-13")
+        self.assertEqual(candidates[1]["extracted"]["title"], "Photo Exhibition ヒトとモノ 2026")
+        self.assertEqual(candidates[1]["extracted"]["end_date"], "2026-09-14")
+        self.assertEqual(candidates[1]["extracted"]["venue"], "イロリムラ [89]画廊")
+
     def test_house_of_photography_metaverse_gallery(self):
         payload = [{
             "date": "2026-07-23T11:57:55",
