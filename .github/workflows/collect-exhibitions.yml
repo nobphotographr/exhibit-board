@@ -69,6 +69,7 @@ jobs:
       - run: pip install -r collector/requirements.txt
       - name: Collect official venue schedules
         run: |
+          python collector/curated_collect.py
           python collector/website_collect.py
           python collector/photo_culture_collect.py
           python collector/directory_collect.py

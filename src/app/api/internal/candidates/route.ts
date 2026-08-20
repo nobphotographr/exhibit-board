@@ -52,6 +52,10 @@ export async function POST(request: NextRequest) {
   const payload = parsed.data
   const admin = supabaseAdmin()
   const now = new Date().toISOString()
+  // Official venue imports and explicitly curated manual records are trusted.
+  // X search results still require review even when their extraction confidence is high.
+  const trustedSource = payload.source.type === 'website'
+    || (payload.source.type === 'manual' && payload.confidence === 1)
 
   const { data: existing, error: lookupError } = await admin
     .from('event_candidates')
@@ -69,13 +73,13 @@ export async function POST(request: NextRequest) {
   if (existing) {
     candidateId = existing.id
 
-    // Website imports stay refreshable. A rejected candidate remains a human override.
+    // Trusted imports stay refreshable. A rejected candidate remains a human override.
     const refreshable = existing.status === 'pending' || existing.status === 'imported'
     const update = refreshable
       ? {
           extracted: payload.extracted as Json,
           confidence: Math.max(Number(existing.confidence), payload.confidence),
-          status: payload.source.type === 'website' ? 'imported' : existing.status,
+          status: trustedSource ? 'imported' : existing.status,
           last_seen_at: now,
         }
       : { last_seen_at: now }
@@ -96,7 +100,7 @@ export async function POST(request: NextRequest) {
         event_fingerprint: payload.event_fingerprint,
         extracted: payload.extracted as Json,
         confidence: payload.confidence,
-        status: payload.source.type === 'website' ? 'imported' : 'pending',
+        status: trustedSource ? 'imported' : 'pending',
         first_seen_at: now,
         last_seen_at: now,
       })
@@ -132,10 +136,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Candidate source upsert failed' }, { status: 500 })
   }
 
-  // Official venue pages are authoritative enough to publish immediately.
-  // X and manual candidates continue through the private review queue.
+  // Official venue pages and curator-approved manual records publish immediately.
+  // Automatically collected X candidates continue through the private review queue.
   const extracted = payload.extracted
-  const autoPublish = payload.source.type === 'website' && existing?.status !== 'rejected'
+  const autoPublish = trustedSource && existing?.status !== 'rejected'
   if (
     autoPublish && extracted.title && extracted.venue && extracted.prefecture
     && extracted.start_date && extracted.end_date
@@ -153,6 +157,9 @@ export async function POST(request: NextRequest) {
           start_date: extracted.start_date,
           end_date: extracted.end_date,
           announce_url: payload.source.url,
+          x_url: /^https?:\/\/(?:x\.com|twitter\.com)\//.test(payload.source.url)
+            ? payload.source.url
+            : null,
           notes: extracted.notes ?? null,
           status: 'published',
         },
